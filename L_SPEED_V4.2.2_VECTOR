@@ -3,11 +3,11 @@
 # Big thanks for our legend zeppelinrox
 # Thanks to Google, xda and to all users who contribute
 #
-# L SPEED V4.2.2 VECTOR by Paget96
+# L SPEED V4.3 VECTOR by Paget96
 #
-ver="4.2.2"
+ver="4.3"
 #
-# 25-DEC-2015
+# 26-DEC-2015
 #
 #=======================================================================#
 # This program is free software: you can redistribute it and/or modify
@@ -4725,7 +4725,7 @@ if [ -f $init/LS00CPU_Optimizer ]; then
 else
 	cpu_opt="\e[1;31mOff\e[0m"
 fi
-sestat=$(getenforce)
+sestat=$(getenforce) 2>/dev/null
 if [ "$sestat" = "Enforcing" ]; then
   selinux="\e[1;31mEnforcing\e[0m"
 elif [ "$sestat" = "Permissive" ]; then
@@ -4810,10 +4810,12 @@ if [ -f $init/LS00Net_Tweaks_RIL ]; then
 else
   ril="\e[1;31mOff\e[0m"
 fi
+if [ -f /system/etc/hosts ]; then
 if grep -q adblocker /system/etc/hosts; then
 	adblocker="\e[1;32m`busybox date -r /system/etc/hosts`\e[0m"
 else
 	adblocker="\e[1;31mOff\e[0m"
+fi
 fi
 if [ -f $init/LS00IO_Boost ]; then
   IO_boost="\e[1;32mOn\e[0m"
