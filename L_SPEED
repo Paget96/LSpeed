@@ -4715,6 +4715,13 @@ if [ -f /tmp/LSPEED.log ]; then
 else
 	LS_stat="\e[1;31mEnable init.d\e[0m"
 fi
+if [ -f /system/su.d/LS00init_d.sh ]; then
+	init_meth="\e[1;32msu.d\e[0m"
+elif [ -f /system/etc/install-recovery-2.sh ]; then
+  init_meth="\e[1;32mInstall-recovery-2.sh\e[0m"
+else
+	init_meth="\e[1;30mDefault\e[0m"
+fi
 if [ -f $init/LS00MCPS ]; then
 	mcps="\e[1;32mOn\e[0m"
 else
@@ -4964,11 +4971,11 @@ busybox echo -e "    Welcome to  \e[1;31m\../ \../\e[0m IZARD $ver"
 busybox echo $divider
 busybox echo -e "Current state: $LS_stat"
 busybox echo $divider
-busybox echo -e "1. Enable init.d support"
-busybox echo -e "2. Boost NOW"
-busybox echo -e "3. FStrim NOW"
-busybox echo -e "4. Battery Calibration"
+busybox echo -e "1. Boost NOW"
+busybox echo -e "2. FStrim NOW"
+busybox echo -e "3. Battery Calibration"
 busybox echo $divider
+busybox echo -e "4. Init.d support   | $init_meth"
 busybox echo -e "5. CPU Tuner        | $mcps;$cpu_opt"
 busybox echo -e "6. Selinux          | $selinux"
 busybox echo -e "7. Cleaner          | $cleaner"
@@ -5020,7 +5027,86 @@ busybox echo ""
 busybox echo -n "Please select an option:"
 read -r character
 case $character in 
-1)while true; do
+1)busybox clear
+busybox echo ""
+busybox free | busybox awk '/Mem/{print ">>>...Memory Before Boosting: "$4/1024" MB";}'
+busybox sleep $timeshort
+busybox echo ""
+busybox echo "Dropping cache"
+sync
+busybox sleep $timeshort
+busybox sysctl -w vm.drop_caches=3
+busybox sleep $timeshort
+dc=/proc/sys/vm/drop_caches
+dc_v=$(busybox cat $dc)
+if [ "$dc_v" -gt 1 ]; then
+busybox sysctl -w vm.drop_caches=1
+fi
+busybox echo ""
+busybox echo ""
+busybox echo "BOOSTED!!!"
+busybox echo ""
+busybox echo ""
+busybox free | busybox awk '/Mem/{print ">>>...Memory After Boosting : "$4/1024" MB";}'
+busybox sleep $timelonger;;
+2)busybox clear
+  busybox echo ""
+if [ -e /system/bin/fstrim ]; then
+	busybox echo "Triming cache, please wait..."
+       /system/bin/fstrim -v /cache;
+	busybox echo ""
+	busybox echo "Triming data, please wait..."
+       /system/bin/fstrim -v /data;
+	busybox echo ""
+	busybox echo "Triming system, please wait"
+       /system/bin/fstrim -v /system;
+elif [ -e /system/xbin/fstrim ]; then
+  busybox echo "Triming cache, please wait..."
+       /system/xbin/fstrim -v /cache;
+	busybox echo ""
+	busybox echo "Triming data, please wait..."
+       /system/xbin/fstrim -v /data;
+	busybox echo ""
+	busybox echo "Triming system, please wait"
+       /system/xbin/fstrim -v /system;
+else
+  busybox echo "Your device doesn't support fstrim"
+fi
+	busybox sleep $timeshort
+	busybox echo ""
+	busybox echo "Done !!!"
+	busybox sleep $timelong;;
+3)busybox clear
+	busybox echo ""
+	busybox echo "You need full battery..."
+	busybox echo ""
+	busybox sleep $timeshort
+	busybox echo "Checking, please wait..."
+	busybox echo ""
+	busybox sleep $timeshort
+  busybox chmod 644 /sys/class/power_supply/battery/capacity
+	if [ "$LEVEL" = "100" ] ; then
+		mount -o remount,rw /data
+    busybox mount -o remount,rw /data
+		busybox sleep $timeshort
+		busybox rm -f /data/system/batterystats.bin
+		busybox echo ""
+		busybox echo ""
+		busybox sleep $timelong
+		busybox echo ""
+		busybox echo "Your battery is now calibrated.."
+		busybox echo ""
+		busybox echo "Please reboot the device..."
+		busybox sleep $timelong
+	else
+		busybox echo ""
+		busybox echo ""
+		busybox sleep $timelong
+		busybox echo ""
+		busybox echo "Your battery is not fully charged..."
+		busybox sleep $timelong
+	fi;;
+4)while true; do
 busybox clear
 if [ -f /system/su.d/LS00init_d.sh ]; then
 	init_meth="\e[1;32msu.d\e[0m"
@@ -5080,85 +5166,6 @@ elif [ "$option" -eq 0 ]; then
 break
 	fi
 done;;
-2)busybox clear
-busybox echo ""
-busybox free | busybox awk '/Mem/{print ">>>...Memory Before Boosting: "$4/1024" MB";}'
-busybox sleep $timeshort
-busybox echo ""
-busybox echo "Dropping cache"
-sync
-busybox sleep $timeshort
-busybox sysctl -w vm.drop_caches=3
-busybox sleep $timeshort
-dc=/proc/sys/vm/drop_caches
-dc_v=$(busybox cat $dc)
-if [ "$dc_v" -gt 1 ]; then
-busybox sysctl -w vm.drop_caches=1
-fi
-busybox echo ""
-busybox echo ""
-busybox echo "BOOSTED!!!"
-busybox echo ""
-busybox echo ""
-busybox free | busybox awk '/Mem/{print ">>>...Memory After Boosting : "$4/1024" MB";}'
-busybox sleep $timelonger;;
-3)busybox clear
-  busybox echo ""
-if [ -e /system/bin/fstrim ]; then
-	busybox echo "Triming cache, please wait..."
-       /system/bin/fstrim -v /cache;
-	busybox echo ""
-	busybox echo "Triming data, please wait..."
-       /system/bin/fstrim -v /data;
-	busybox echo ""
-	busybox echo "Triming system, please wait"
-       /system/bin/fstrim -v /system;
-elif [ -e /system/xbin/fstrim ]; then
-  busybox echo "Triming cache, please wait..."
-       /system/xbin/fstrim -v /cache;
-	busybox echo ""
-	busybox echo "Triming data, please wait..."
-       /system/xbin/fstrim -v /data;
-	busybox echo ""
-	busybox echo "Triming system, please wait"
-       /system/xbin/fstrim -v /system;
-else
-  busybox echo "Your device doesn't support fstrim"
-fi
-	busybox sleep $timeshort
-	busybox echo ""
-	busybox echo "Done !!!"
-	busybox sleep $timelong;;
-4)busybox clear
-	busybox echo ""
-	busybox echo "You need full battery..."
-	busybox echo ""
-	busybox sleep $timeshort
-	busybox echo "Checking, please wait..."
-	busybox echo ""
-	busybox sleep $timeshort
-  busybox chmod 644 /sys/class/power_supply/battery/capacity
-	if [ "$LEVEL" = "100" ] ; then
-		mount -o remount,rw /data
-    busybox mount -o remount,rw /data
-		busybox sleep $timeshort
-		busybox rm -f /data/system/batterystats.bin
-		busybox echo ""
-		busybox echo ""
-		busybox sleep $timelong
-		busybox echo ""
-		busybox echo "Your battery is now calibrated.."
-		busybox echo ""
-		busybox echo "Please reboot the device..."
-		busybox sleep $timelong
-	else
-		busybox echo ""
-		busybox echo ""
-		busybox sleep $timelong
-		busybox echo ""
-		busybox echo "Your battery is not fully charged..."
-		busybox sleep $timelong
-	fi;;
 5)while true; do
 busybox clear
 online=$(busybox cat /sys/devices/system/cpu/online)
