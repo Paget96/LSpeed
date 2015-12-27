@@ -3629,7 +3629,6 @@ busybox echo "Scrolling cache disabled.." | busybox tee -a \$LS
 
 setprop ro.max.fling_velocity 12000
 setprop ro.min.fling_velocity 8000
-setprop touch.pressure.scale 0.001
 
 busybox echo "Other parameters tweaked.." | busybox tee -a \$LS
 
@@ -3893,8 +3892,7 @@ busybox echo "# L Speed log" | busybox tee -a \$LS
 busybox echo "" | busybox tee -a \$LS
 busybox echo "Activating Liquid UI..." | busybox tee -a \$LS
 
-setprop persist.service.lgospd.enable 0
-setprop persist.service.pcsync.enable 0
+setprop touch.pressure.scale 2
 
 busybox echo "" | busybox tee -a \$LS
 busybox echo "LiquidUI is activated" | busybox tee -a \$LS
