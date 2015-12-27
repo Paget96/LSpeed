@@ -5018,6 +5018,7 @@ busybox echo $divider
 busybox echo "0. Backup&Restore"
 busybox echo "t. xda thread"
 busybox echo "d. Donation"
+busybox echo "x. Load default"
 busybox echo "u. Uninstall"
 busybox echo "r. Reboot now"
 busybox echo $divider
@@ -6433,6 +6434,50 @@ break
 fi
 done;;
 d|D)su -c "LD_LIBRARY_PATH=/vendor/lib:/system/lib am start $donation";;
+x|X)for file in $init/LS00*
+do
+  busybox rm -rf $file 2>/dev/null
+done
+if [ -f $core/LS00Cleaner ]; then
+busybox cp -f $core/LS00Cleaner $init/LS00Cleaner
+busybox chmod 755 $init/LS00Cleaner
+busybox chown 0:2000 $init/LS00Cleaner
+fi
+if [ -f $core/LS00RAM_Manager_BL ]; then
+busybox cp -f $core/LS00RAM_Manager_BL $init/LS00RAM_Manager_BL
+busybox chmod 755 $init/LS00RAM_Manager_BL
+busybox chown 0:2000 $init/LS00RAM_Manager_BL
+fi
+if [ -f $core/LS00Kernel_Tweaks_Light ]; then
+busybox cp -f $core/LS00Kernel_Tweaks_Light $init/LS00Kernel_Tweaks_Light
+busybox chmod 755 $init/LS00Kernel_Tweaks_Light
+busybox chown 0:2000 $init/LS00Kernel_Tweaks_Light
+fi
+if [ -f $core/LS00Debugging ]; then
+busybox cp -f $core/LS00Debugging $init/LS00Debugging
+busybox chmod 755 $init/LS00Debugging
+busybox chown 0:2000 $init/LS00Debugging
+fi
+if [ -f $core/LS00Kernel_Panic ]; then
+busybox cp -f $core/LS00Kernel_Panic $init/LS00Kernel_Panic
+busybox chmod 755 $init/LS00Kernel_Panic
+busybox chown 0:2000 $init/LS00Kernel_Panic
+fi
+if [ -f $core/LS00SD ]; then
+busybox cp -f $core/LS00SD $init/LS00SD
+busybox chmod 755 $init/LS00SD
+busybox chown 0:2000 $init/LS00SD
+fi
+if [ -f $core/LS00Improve_Battery ]; then
+busybox cp -f $core/LS00Improve_Battery $init/LS00Improve_Battery
+busybox chmod 755 $init/LS00Improve_Battery
+busybox chown 0:2000 $init/LS00Improve_Battery
+fi
+if [ -f $init/LS00Disable_Logcats ]; then
+busybox cp -f $core/LS00Disable_Logcats $init/LS00Disable_Logcats
+busybox chmod 755 $init/LS00Disable_Logcats
+busybox chown 0:2000 $init/LS00Disable_Logcats
+fi;;
 t|T)su -c "LD_LIBRARY_PATH=/vendor/lib:/system/lib am start $thread";;
 u|U)for file in $init/LS00*
 do
