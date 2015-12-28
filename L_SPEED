@@ -1706,7 +1706,7 @@ busybox sysctl -w fs.inotify.max_user_watches=10240
 busybox echo "File system parameters are updated" | busybox tee -a \$LS
 
 mem=\$((\$(busybox awk '/MemTotal/{print \$2}' /proc/meminfo)))
-MFK=\$((mem*4/1024))
+MFK=\$((mem*3/1024))
 
 busybox chmod 644 /proc/sys/vm/*
 busybox sysctl -w vm.dirty_expire_centisecs=500
@@ -1818,7 +1818,7 @@ busybox echo "File system parameters are updated" | busybox tee -a \$LS
 
 # VM tweak
 mem=\$((\$(busybox awk '/MemTotal/{print \$2}' /proc/meminfo)))
-MFK=\$((mem*4/1024))
+MFK=\$((mem*3/1024))
 
 busybox chmod 644 /proc/sys/vm/*
 busybox sysctl -w vm.dirty_expire_centisecs=500
