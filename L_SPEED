@@ -3017,9 +3017,9 @@ su -c pm enable com.google.android.gms/com.google.android.location.network.Netwo
 su -c pm enable com.google.android.gms/com.google.android.location.util.PreferenceService
 su -c pm disable com.google.android.gsf/.update.SystemUpdateActivity
 su -c pm disable com.google.android.gsf/.update.SystemUpdatePanoActivity
-su -c pm disable com.google.android.gsf/com.google.android.gsf.checkin.CheckinService\$Receiver
-su -c pm disable com.google.android.gsf/com.google.android.gsf.checkin.CheckinService\$SecretCodeReceiver
-su -c pm disable com.google.android.gsf/com.google.android.gsf.checkin.CheckinService\$TriggerReceiver
+su -c pm disable com.google.android.gsf/com.google.android.gsf.checkin.CheckinService\\$Receiver
+su -c pm disable com.google.android.gsf/com.google.android.gsf.checkin.CheckinService\\$SecretCodeReceiver
+su -c pm disable com.google.android.gsf/com.google.android.gsf.checkin.CheckinService\\$TriggerReceiver
 su -c pm disable com.google.android.gsf/.checkin.EventLogService\$Receiver
 su -c pm disable com.google.android.gsf/.update.SystemUpdateService\$Receiver
 su -c pm disable com.google.android.gsf/.update.SystemUpdateService\$SecretCodeReceiver
