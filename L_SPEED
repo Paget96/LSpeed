@@ -3,11 +3,11 @@
 # Big thanks for our legend zeppelinrox
 # Thanks to Google, xda and to all users who contribute
 #
-# L SPEED V4.3 VECTOR by Paget96
+# L SPEED V4.3.1 VECTOR by Paget96
 #
-ver="4.3"
+ver="4.3.1"
 #
-# 26-DEC-2015
+# 30-DEC-2015
 #
 #=======================================================================#
 # This program is free software: you can redistribute it and/or modify
@@ -1118,9 +1118,9 @@ RAM=\$((\$(busybox awk '/MemTotal/{print \$2}' /proc/meminfo)/1024))
 lmk1=\$((RAM*4*1024/100/4));
 lmk2=\$((RAM*5*1024/100/4));
 lmk3=\$((RAM*6*1024/100/4));
-lmk4=\$((RAM*8*1024/100/4));
-lmk5=\$((RAM*10*1024/100/4));
-lmk6=\$((RAM*11*1024/100/4));
+lmk4=\$((RAM*7*1024/100/4));
+lmk5=\$((RAM*9*1024/100/4));
+lmk6=\$((RAM*10*1024/100/4));
 
 busybox chmod 644 /sys/module/lowmemorykiller/parameters/minfree
 busybox echo "\$lmk1,\$lmk2,\$lmk3,\$lmk4,\$lmk5,\$lmk6" > /sys/module/lowmemorykiller/parameters/minfree
@@ -3017,9 +3017,9 @@ su -c pm enable com.google.android.gms/com.google.android.location.network.Netwo
 su -c pm enable com.google.android.gms/com.google.android.location.util.PreferenceService
 su -c pm disable com.google.android.gsf/.update.SystemUpdateActivity
 su -c pm disable com.google.android.gsf/.update.SystemUpdatePanoActivity
-su -c pm disable com.google.android.gsf/com.google.android.gsf.checkin.CheckinService\\$Receiver
-su -c pm disable com.google.android.gsf/com.google.android.gsf.checkin.CheckinService\\$SecretCodeReceiver
-su -c pm disable com.google.android.gsf/com.google.android.gsf.checkin.CheckinService\\$TriggerReceiver
+su -c pm disable com.google.android.gsf/com.google.android.gsf.checkin.CheckinService\$Receiver
+su -c pm disable com.google.android.gsf/com.google.android.gsf.checkin.CheckinService\$SecretCodeReceiver
+su -c pm disable com.google.android.gsf/com.google.android.gsf.checkin.CheckinService\$TriggerReceiver
 su -c pm disable com.google.android.gsf/.checkin.EventLogService\$Receiver
 su -c pm disable com.google.android.gsf/.update.SystemUpdateService\$Receiver
 su -c pm disable com.google.android.gsf/.update.SystemUpdateService\$SecretCodeReceiver
