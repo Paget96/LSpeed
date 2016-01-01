@@ -7,7 +7,7 @@
 #
 ver="4.3.1"
 #
-# 30-DEC-2015
+# 2-JAN-2016
 #
 #=======================================================================#
 # This program is free software: you can redistribute it and/or modify
@@ -1115,9 +1115,9 @@ fi
 # Minfree Values 
 RAM=\$((\$(busybox awk '/MemTotal/{print \$2}' /proc/meminfo)/1024))
 
-lmk1=\$((RAM*4*1024/100/4));
-lmk2=\$((RAM*5*1024/100/4));
-lmk3=\$((RAM*6*1024/100/4));
+lmk1=\$((RAM*3*1024/100/4));
+lmk2=\$((RAM*4*1024/100/4));
+lmk3=\$((RAM*5*1024/100/4));
 lmk4=\$((RAM*7*1024/100/4));
 lmk5=\$((RAM*9*1024/100/4));
 lmk6=\$((RAM*10*1024/100/4));
