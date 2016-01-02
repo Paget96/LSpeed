@@ -1,5 +1,5 @@
 #!/system/bin/sh
-# Copyright (C) 2015 Paget96
+# Copyright (C) 2016 Paget96
 # Big thanks for our legend zeppelinrox
 # Thanks to Google, xda and to all users who contribute
 #
@@ -60,7 +60,7 @@ busybox echo " Welcome"
 busybox sleep $timeshort
 busybox echo "      to L SPEED"
 busybox sleep $timeshorter
-busybox echo "              INSTALLER"
+busybox echo "              VECTOR"
 busybox sleep $timeshorter
 busybox echo "                    by Paget96"
 busybox echo ""
@@ -93,7 +93,7 @@ if [ ! -d /system/su.d ]; then
 busybox mkdir -p /system/su.d/
 busybox chmod 755 /system/su.d/
 fi
-busybox echo "    Checking busybox"
+busybox echo "Checking busybox"
     busybox sleep $timeshort
         busybox echo ""
         busybox echo ""
@@ -131,17 +131,17 @@ busybox echo "Checking init.d support"
 busybox echo ""
 busybox sleep $timeshort
         if [ -e $init ]; then
-busybox echo "    GOOD!!! You have init.d support"
+busybox echo "GOOD!!! You have init.d support"
 busybox sleep $timelong
     else
-busybox echo "    Baad :( Please enable init.d support"
+busybox echo "Baad :( Please enable init.d support"
 busybox sleep $timeshort
 busybox echo " Installer will now create"
 busybox sleep $timeshort
-busybox echo "     only init.d folder"
+busybox echo "only init.d folder"
 busybox sleep $timeshort
-busybox echo "       You need to enable init.d support later"
-busybox echo "            from L SPEED WIZARD"
+busybox echo "You need to enable init.d support later"
+busybox echo "from L SPEED WIZARD"
 busybox sleep $timelong
 busybox mkdir -p $init/
 busybox chmod 755 $init/
@@ -166,7 +166,7 @@ done
 #
 busybox cat >> $core/LS00Init_d.sh <<EOF
 #!/system/bin/sh
-# Copyright (C) 2015 Paget96
+# Copyright (C) 2016 Paget96
 #=======================================================================#
 #  This program is free software: you can redistribute it and/or modify
 #  it under the terms of the GNU General Public License as published by
@@ -224,7 +224,7 @@ fi
 #
 busybox cat >> $core/LS00Sysinit <<EOF
 #!/system/bin/sh
-# Copyright (C) 2015 Paget96
+# Copyright (C) 2016 Paget96
 #=======================================================================#
 #  This program is free software: you can redistribute it and/or modify
 #  it under the terms of the GNU General Public License as published by
@@ -280,7 +280,7 @@ fi
 #
 busybox cat >> $core/LS00LSPEED <<EOF
 #!/system/bin/sh
-# Copyright (C) 2015 Paget96
+# Copyright (C) 2016 Paget96
 #=======================================================================#
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -338,7 +338,7 @@ busybox chown 0:0 $core/LS00LSPEED
 #
 busybox cat >> $core/LS00MCPS <<EOF
 #!/system/bin/sh
-# Copyright (C) 2015 Paget96
+# Copyright (C) 2016 Paget96
 #=======================================================================#
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -404,7 +404,7 @@ busybox chown 0:0 $core/LS00MCPS
 #
 busybox cat >> $core/LS00CPU_Optimizer <<EOF
 #!/system/bin/sh
-# Copyright (C) 2015 Paget96
+# Copyright (C) 2016 Paget96
 #=======================================================================#
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -478,7 +478,7 @@ busybox chown 0:0 $core/LS00CPU_Optimizer
 #
 busybox cat >> $core/LS00Selinux_Enforce <<EOF
 #!/system/bin/sh
-# Copyright (C) 2015 Paget96
+# Copyright (C) 2016 Paget96
 #=======================================================================#
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -528,7 +528,7 @@ busybox chown 0:0 $core/LS00Selinux_Enforce
 #
 busybox cat >> $core/LS00Selinux_Permissive <<EOF
 #!/system/bin/sh
-# Copyright (C) 2015 Paget96
+# Copyright (C) 2016 Paget96
 #=======================================================================#
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -578,7 +578,7 @@ busybox chown 0:0 $core/LS00Selinux_Permissive
 #
 busybox cat >> $core/LS00Cleaner <<EOF
 #!/system/bin/sh
-# Copyright (C) 2015 Paget96
+# Copyright (C) 2016 Paget96
 #=======================================================================#
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -733,7 +733,7 @@ busybox chown 0:0 $core/LS00Cleaner
 #
 busybox cat >> $core/LS00Seeder_Light <<EOF
 #!/system/bin/sh
-# Copyright (C) 2015 Paget96
+# Copyright (C) 2016 Paget96
 #=======================================================================#
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -799,7 +799,7 @@ busybox chown 0:0 $core/LS00Seeder_Light
 #
 busybox cat >> $core/LS00Seeder_Enlarger <<EOF
 #!/system/bin/sh
-# Copyright (C) 2015 Paget96
+# Copyright (C) 2016 Paget96
 #=======================================================================#
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -865,7 +865,7 @@ busybox chown 0:0 $core/LS00Seeder_Enlarger
 #
 busybox cat >> $core/LS00Seeder_Moderate <<EOF
 #!/system/bin/sh
-# Copyright (C) 2015 Paget96
+# Copyright (C) 2016 Paget96
 #=======================================================================#
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -931,7 +931,7 @@ busybox chown 0:0 $core/LS00Seeder_Moderate
 #
 busybox cat >> $core/LS00Seeder_Aggressive <<EOF
 #!/system/bin/sh
-# Copyright (C) 2015 Paget96
+# Copyright (C) 2016 Paget96
 #=======================================================================#
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -997,7 +997,7 @@ busybox chown 0:0 $core/LS00Seeder_Aggressive
 #
 busybox cat >> $core/LS00RAM_Manager_MT <<EOF
 #!/system/bin/sh
-# Copyright (C) 2015 Paget96
+# Copyright (C) 2016 Paget96
 #=======================================================================#
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -1073,7 +1073,7 @@ busybox chown 0:0 $core/LS00RAM_Manager_MT
 #
 busybox cat >> $core/LS00RAM_Manager_BL <<EOF
 #!/system/bin/sh
-# Copyright (C) 2015 Paget96
+# Copyright (C) 2016 Paget96
 #=======================================================================#
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -1149,7 +1149,7 @@ busybox chown 0:0 $core/LS00RAM_Manager_BL
 #
 busybox cat >> $core/LS00RAM_Manager_GM <<EOF
 #!/system/bin/sh
-# Copyright (C) 2015 Paget96
+# Copyright (C) 2016 Paget96
 #=======================================================================#
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -1225,7 +1225,7 @@ busybox chown 0:0 $core/LS00RAM_Manager_GM
 #
 busybox cat >> $core/LS00OOM_Enabled <<EOF
 #!/system/bin/sh
-# Copyright (C) 2015 Paget96
+# Copyright (C) 2016 Paget96
 #=======================================================================#
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -1285,7 +1285,7 @@ busybox chown 0:0 $core/LS00OOM_Enabled
 #
 busybox cat >> $core/LS00OOM_Disabled <<EOF
 #!/system/bin/sh
-# Copyright (C) 2015 Paget96
+# Copyright (C) 2016 Paget96
 #=======================================================================#
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -1345,7 +1345,7 @@ busybox chown 0:0 $core/LS00OOM_Disabled
 #
 busybox cat >> $core/LS00CR_Lesser <<EOF
 #!/system/bin/sh
-# Copyright (C) 2015 Paget96
+# Copyright (C) 2016 Paget96
 #=======================================================================#
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -1406,7 +1406,7 @@ busybox chown 0:0 $core/LS00CR_Lesser
 #
 busybox cat >> $core/LS00CR_Less <<EOF
 #!/system/bin/sh
-# Copyright (C) 2015 Paget96
+# Copyright (C) 2016 Paget96
 #=======================================================================#
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -1467,7 +1467,7 @@ busybox chown 0:0 $core/LS00CR_Less
 #
 busybox cat >> $core/LS00CR_x2 <<EOF
 #!/system/bin/sh
-# Copyright (C) 2015 Paget96
+# Copyright (C) 2016 Paget96
 #=======================================================================#
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -1528,7 +1528,7 @@ busybox chown 0:0 $core/LS00CR_x2
 #
 busybox cat >> $core/LS00Allocation_Medium <<EOF
 #!/system/bin/sh
-# Copyright (C) 2015 Paget96
+# Copyright (C) 2016 Paget96
 #=======================================================================#
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -1591,7 +1591,7 @@ busybox chown 0:0 $core/LS00Allocation_Medium
 #
 busybox cat >> $core/LS00Allocation_Large <<EOF
 #!/system/bin/sh
-# Copyright (C) 2015 Paget96
+# Copyright (C) 2016 Paget96
 #=======================================================================#
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -1654,7 +1654,7 @@ busybox chown 0:0 $core/LS00Allocation_Large
 #
 busybox cat >> $core/LS00Kernel_Tweaks_Light <<EOF
 #!/system/bin/sh
-# Copyright (C) 2015 Paget96
+# Copyright (C) 2016 Paget96
 #=======================================================================#
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -1757,7 +1757,7 @@ busybox chown 0:0 $core/LS00Kernel_Tweaks_Light
 #
 busybox cat >> $core/LS00Kernel_Tweaks_Heavy <<EOF
 #!/system/bin/sh
-# Copyright (C) 2015 Paget96
+# Copyright (C) 2016 Paget96
 #=======================================================================#
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -1861,7 +1861,7 @@ busybox chown 0:0 $core/LS00Kernel_Tweaks_Heavy
 #
 busybox cat >> $core/LS00Net_Small_Buffers <<EOF
 #!/system/bin/sh
-# Copyright (C) 2015 Paget96
+# Copyright (C) 2016 Paget96
 #=======================================================================#
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -1928,7 +1928,7 @@ busybox chown 0:0 $core/LS00Net_Small_Buffers
 #
 busybox cat >> $core/LS00Net_Big_Buffers <<EOF
 #!/system/bin/sh
-# Copyright (C) 2015 Paget96
+# Copyright (C) 2016 Paget96
 #=======================================================================#
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -1996,7 +1996,7 @@ busybox chown 0:0 $core/LS00Net_Big_Buffers
 #
 busybox cat >> $core/LS00Net_Tweaks_DNS <<EOF
 #!/system/bin/sh
-# Copyright (C) 2015 Paget96
+# Copyright (C) 2016 Paget96
 #=======================================================================#
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -2058,7 +2058,7 @@ busybox chown 0:0 $core/LS00Net_Tweaks_DNS
 #
 busybox cat >> $core/LS00Net_Protection <<EOF
 #!/system/bin/sh
-# Copyright (C) 2015 Paget96
+# Copyright (C) 2016 Paget96
 #=======================================================================#
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -2120,7 +2120,7 @@ busybox chown 0:0 $core/LS00Net_Protection
 #
 busybox cat >> $core/LS00Net_Tweaks_RIL <<EOF
 #!/system/bin/sh
-# Copyright (C) 2015 Paget96
+# Copyright (C) 2016 Paget96
 #=======================================================================#
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -2189,7 +2189,7 @@ busybox chown 0:0 $core/LS00Net_Tweaks_RIL
 #
 busybox cat >> $core/LS00IO_Boost <<EOF
 #!/system/bin/sh
-# Copyright (C) 2015 Paget96
+# Copyright (C) 2016 Paget96
 #=======================================================================#
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -2265,7 +2265,7 @@ busybox chown 0:0 $core/LS00IO_Boost
 #
 busybox cat >> $core/LS00IO_Queue <<EOF
 #!/system/bin/sh
-# Copyright (C) 2015 Paget96
+# Copyright (C) 2016 Paget96
 #=======================================================================#
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -2333,7 +2333,7 @@ busybox chown 0:0 $core/LS00IO_Queue
 #
 busybox cat >> $core/LS00Debugging <<EOF
 #!/system/bin/sh
-# Copyright (C) 2015 Paget96
+# Copyright (C) 2016 Paget96
 #=======================================================================#
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -2404,7 +2404,7 @@ busybox chown 0:0 $core/LS00Debugging
 #
 busybox cat >> $core/LS00Kernel_Panic <<EOF
 #!/system/bin/sh
-# Copyright (C) 2015 Paget96
+# Copyright (C) 2016 Paget96
 #=======================================================================#
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -2468,7 +2468,7 @@ busybox chown 0:0 $core/LS00Kernel_Panic
 #
 busybox cat >> $core/LS00Kernel_Sleepers <<EOF
 #!/system/bin/sh
-# Copyright (C) 2015 Paget96
+# Copyright (C) 2016 Paget96
 #=======================================================================#
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -2586,7 +2586,7 @@ busybox chown 0:0 $core/LS00Kernel_Sleepers
 #
 busybox cat >> $core/LS00KSM <<EOF
 #!/system/bin/sh
-# Copyright (C) 2015 Paget96
+# Copyright (C) 2016 Paget96
 #=======================================================================#
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -2650,7 +2650,7 @@ busybox chown 0:0 $core/LS00KSM
 #
 busybox cat >> $core/LS00SD <<EOF
 #!/system/bin/sh
-# Copyright (C) 2015 Paget96
+# Copyright (C) 2016 Paget96
 #=======================================================================#
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -2722,7 +2722,7 @@ busybox chown 0:0 $core/LS00SD
 #
 busybox cat >> $core/LS00Zipalign <<EOF
 #!/system/bin/sh
-# Copyright (C) 2015 Paget96
+# Copyright (C) 2016 Paget96
 #=======================================================================#
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -2824,7 +2824,7 @@ busybox chown 0:0 $core/LS00Zipalign
 #
 busybox cat >> $core/LS00Fast_Charge <<EOF
 #!/system/bin/sh
-# Copyright (C) 2015 Paget96
+# Copyright (C) 2016 Paget96
 #=======================================================================#
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -2889,7 +2889,7 @@ busybox chown 0:0 $core/LS00Fast_Charge
 #
 busybox cat >> $core/LS00GSDF <<EOF
 #!/system/bin/sh
-# Copyright (C) 2015 Paget96
+# Copyright (C) 2016 Paget96
 #=======================================================================#
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -3052,7 +3052,7 @@ busybox chown 0:0 $core/LS00GSDF
 #
 busybox cat >> $core/LS00KGA <<EOF
 #!/system/bin/sh
-# Copyright (C) 2015 Paget96
+# Copyright (C) 2016 Paget96
 #=======================================================================#
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -3118,7 +3118,7 @@ busybox chown 0:0 $core/LS00KGA
 #
 busybox cat >> $core/LS00KMS <<EOF
 #!/system/bin/sh
-# Copyright (C) 2015 Paget96
+# Copyright (C) 2016 Paget96
 #=======================================================================#
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -3181,7 +3181,7 @@ busybox chown 0:0 $core/LS00KMS
 #
 busybox cat >> $core/LS00Zram <<EOF
 #!/system/bin/sh
-# Copyright (C) 2015 Paget96
+# Copyright (C) 2016 Paget96
 #=======================================================================#
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -3255,7 +3255,7 @@ busybox chown 0:0 $core/LS00Zram
 #
 busybox cat >> $core/LS00Wifi_Sleeper <<EOF
 #!/system/bin/sh
-# Copyright (C) 2015 Paget96
+# Copyright (C) 2016 Paget96
 #=======================================================================#
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -3323,7 +3323,7 @@ EOF
 #
 busybox cat >> $core/LS00Flag_Tuner <<EOF
 #!/system/bin/sh
-# Copyright (C) 2015 Paget96
+# Copyright (C) 2016 Paget96
 #=======================================================================#
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -3399,7 +3399,7 @@ busybox chown 0:0 $core/LS00Flag_Tuner
 #
 busybox cat >> $core/LS00Voice_Call <<EOF
 #!/system/bin/sh
-# Copyright (C) 2015 Paget96
+# Copyright (C) 2016 Paget96
 #=======================================================================#
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -3459,7 +3459,7 @@ busybox chown 0:0 $core/LS00Voice_Call
 #
 busybox cat >> $core/LS00Blackscreen <<EOF
 #!/system/bin/sh
-# Copyright (C) 2015 Paget96
+# Copyright (C) 2016 Paget96
 #=======================================================================#
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -3520,7 +3520,7 @@ busybox chown 0:0 $core/LS00Blackscreen
 #
 busybox cat >> $core/LS00Improve_Battery <<EOF
 #!/system/bin/sh
-# Copyright (C) 2015 Paget96
+# Copyright (C) 2016 Paget96
 #=======================================================================#
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -3589,7 +3589,7 @@ busybox chown 0:0 $core/LS00Improve_Battery
 #
 busybox cat >> $core/LS00Scrolling <<EOF
 #!/system/bin/sh
-# Copyright (C) 2015 Paget96
+# Copyright (C) 2016 Paget96
 #=======================================================================#
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -3657,7 +3657,7 @@ busybox chown 0:0 $core/LS00Scrolling
 #
 busybox cat >> $core/LS00Faster_Boot <<EOF
 #!/system/bin/sh
-# Copyright (C) 2015 Paget96
+# Copyright (C) 2016 Paget96
 #=======================================================================#
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -3717,7 +3717,7 @@ busybox chown 0:0 $core/LS00Faster_Boot
 #
 busybox cat >> $core/LS00Image_Quality <<EOF
 #!/system/bin/sh
-# Copyright (C) 2015 Paget96
+# Copyright (C) 2016 Paget96
 #=======================================================================#
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -3793,7 +3793,7 @@ busybox chown 0:0 $core/LS00Image_Quality
 #
 busybox cat >> $core/LS00Faster_Streaming <<EOF
 #!/system/bin/sh
-# Copyright (C) 2015 Paget96
+# Copyright (C) 2016 Paget96
 #=======================================================================#
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -3859,7 +3859,7 @@ busybox chown 0:0 $core/LS00Faster_Streaming
 #
 busybox cat >> $core/LS00Liquid_UI <<EOF
 #!/system/bin/sh
-# Copyright (C) 2015 Paget96
+# Copyright (C) 2016 Paget96
 #=======================================================================#
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -3919,7 +3919,7 @@ busybox chown 0:0 $core/LS00Liquid_UI
 #
 busybox cat >> $core/LS00Disable_Logcats <<EOF
 #!/system/bin/sh
-# Copyright (C) 2015 Paget96
+# Copyright (C) 2016 Paget96
 #=======================================================================#
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -3983,7 +3983,7 @@ EOF
 #
 busybox cat >> $core/LS00Fast_Dormancy <<EOF
 #!/system/bin/sh
-# Copyright (C) 2015 Paget96
+# Copyright (C) 2016 Paget96
 #=======================================================================#
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -4045,7 +4045,7 @@ busybox chown 0:0 $core/LS00Fast_Dormancy
 #
 busybox cat >> $core/LS00Misc_Tweaks <<EOF
 #!/system/bin/sh
-# Copyright (C) 2015 Paget96
+# Copyright (C) 2016 Paget96
 #=======================================================================#
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -4107,7 +4107,7 @@ busybox chown 0:0 $core/LS00Misc_Tweaks
 #
 busybox cat >> $core/LS00Assertive_Display <<EOF
 #!/system/bin/sh
-# Copyright (C) 2015 Paget96
+# Copyright (C) 2016 Paget96
 #=======================================================================#
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -4280,7 +4280,7 @@ busybox chown 0:0 $core/LS00ad_calib.cfg
 rm -rf /system/xbin/boost
 busybox cat >> $core/LS00Boost <<EOF
 #!/system/bin/sh
-# Copyright (C) 2015 Paget96
+# Copyright (C) 2016 Paget96
 #=======================================================================#
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
