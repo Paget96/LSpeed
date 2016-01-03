@@ -5,9 +5,9 @@
 #
 # L SPEED V4.3.1 VECTOR by Paget96
 #
-ver="4.3.1"
+ver="4.3.2"
 #
-# 2-JAN-2016
+# 4-JAN-2016
 #
 #=======================================================================#
 # This program is free software: you can redistribute it and/or modify
@@ -70,7 +70,7 @@ busybox sleep $timeshorter
 busybox echo ""
 busybox sleep $timeshorter
 busybox echo ""
-busybox echo "                Hell yeah!!!"
+busybox echo "                    Hell yeah!!!"
 busybox echo ""
 busybox sleep $timelong
 busybox clear
@@ -4675,22 +4675,22 @@ sh $init/LSPEED
 fi
 busybox sleep $timelong 
   busybox clear
-busybox echo "    Checking selinux status"
+busybox echo "Checking selinux status"
 busybox sleep $timeshort
 if [ "$sestat" = "Enforcing" ]; then
-        busybox echo "  Your selinux status is $sestat"
+        busybox echo "Your selinux status is $sestat"
           busybox echo ""; busybox echo ""; busybox echo ""; 
             busybox sleep $timeshort
-             busybox echo "  Time to configure L Speed ;) "
+             busybox echo "Time to configure L Speed ;) "
     elif [ "$sestat" = "Permissive" ]; then
-              busybox echo "  Your selinux status is $sestat"
+              busybox echo "Your selinux status is $sestat"
                 busybox echo ""; busybox echo ""; busybox echo "";
-                  busybox echo "  Time to configure L Speed ;) "    
+                  busybox echo "Time to configure L Speed ;) "    
           else 
-             busybox echo "  Your device doesn't have selinux, this option is unavailable"
+             busybox echo "Your device doesn't have selinux, this option is unavailable"
                busybox echo ""; busybox echo ""; busybox echo "";
                  busybox sleep $timeshort
-                   busybox echo "  Time to configure L Speed ;) "
+                   busybox echo "Time to configure L Speed ;) "
                 fi
 busybox echo ""
 mount -o remount,ro / 2>/dev/null
