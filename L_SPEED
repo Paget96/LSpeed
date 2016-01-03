@@ -3359,15 +3359,11 @@ busybox echo "Activating Flag tuner..." | busybox tee -a \$LS
 setprop ENFORCE_PROCESS_LIMIT false
 setprop MAX_SERVICE_INACTIVITY false
 setprop MIN_HIDDEN_APPS false
-setprop MAX_HIDDEN_APPS false
 setprop CONTENT_APP_IDLE_OFFSET false
 setprop EMPTY_APP_IDLE_OFFSET false
-setprop MAX_ACTIVITIES false
 setprop ACTIVITY_INACTIVITY_RESET_TIME false
-setprop MAX_RECENT_TASKS false
 setprop MIN_RECENT_TASKS false
 setprop APP_SWITCH_DELAY_TIME false
-setprop MAX_PROCESSES false
 setprop PROC_START_TIMEOUT false
 setprop CPU_MIN_CHECK_DURATION false
 setprop GC_TIMEOUT false
