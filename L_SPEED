@@ -3514,7 +3514,7 @@ busybox chmod 755 $core/LS00Blackscreen
 busybox chown 0:0 $core/LS00Blackscreen
 #
 #
-#   Improve Batery
+#   Improve Battery
 #
 #
 #
@@ -3631,6 +3631,14 @@ setprop ro.max.fling_velocity 12000
 setprop ro.min.fling_velocity 8000
 
 busybox echo "Other parameters tweaked.." | busybox tee -a \$LS
+
+if [ -e /sys/module/tpd_setting/parameters/tpd_mode ]; then
+busybox chmod 644 /sys/module/tpd_setting/parameters/tpd_mode
+busybox echo "1" > /sys/module/tpd_setting/parameters/tpd_mode
+elif [ -e /sys/module/hid_magicmouse/parameters/scroll_speed ]; then
+busybox chmod 644 /sys/module/hid_magicmouse/parameters/scroll_speed
+busybox echo "63" > /sys/module/hid_magicmouse/parameters/scroll_speed
+fi
 
 busybox echo "" | busybox tee -a \$LS
 busybox echo "Better scrolling is enabled" | busybox tee -a \$LS
