@@ -38,7 +38,6 @@ bb_down="https://play.google.com/store/apps/details?id=stericson.busybox" 2>/dev
 thread="http://forum.xda-developers.com/android/software-hacking/tweak-l-speed-v1-0-02-02-2015-t3020138" 2>/dev/null
 donation="http://forum.xda-developers.com/donatetome.php?u=5514152" 2>/dev/null
 bbver=$(busybox | busybox head -n 1 | busybox awk '{print $1,$2}') 2>/dev/null
-LEVEL=$(busybox cat /sys/class/power_supply/battery/capacity) 2>/dev/null
 sestat=$(getenforce) 2>/dev/null
 id="$(id)"; id="${id#*=}"; id="${id%%\(*}"; id="${id%% *}"
 if [ "$id" != "0" ] && [ "$id" != "root" ]; then
@@ -2505,26 +2504,26 @@ busybox echo "Applying kernel sleepers.." | busybox tee -a \$LS
 if [ -e "/sys/kernel/debug/sched_features" ]; then
   mount -t debugfs none /sys/kernel/debug
   busybox mount -t debugfs none /sys/kernel/debug
-	busybox echo "NO_AFFINE_WAKEUPS " > /sys/kernel/debug/sched_features
-	busybox echo "ARCH_POWER " >> /sys/kernel/debug/sched_features
-  busybox echo "CACHE_HOT_BUDDY " >> /sys/kernel/debug/sched_features
-	busybox echo "NO_DOUBLE_TICK " >> /sys/kernel/debug/sched_features
-	busybox echo "NO_FORCE_SD_OVERLAP " >> /sys/kernel/debug/sched_features
-	busybox echo "GENTLE_FAIR_SLEEPERS " >> /sys/kernel/debug/sched_features
-	busybox echo "NO_HRTICK " >> /sys/kernel/debug/sched_features
-	busybox echo "LAST_BUDDY " >> /sys/kernel/debug/sched_features
-	busybox echo "LB_BIAS " >> /sys/kernel/debug/sched_features
-	busybox echo "NO_LB_MIN " >> /sys/kernel/debug/sched_features
-	busybox echo "NO_NEW_FAIR_SLEEPERS " >> /sys/kernel/debug/sched_features
-	busybox echo "NO_NEXT_BUDDY " >> /sys/kernel/debug/sched_features
-	busybox echo "NONTASK_POWER " >> /sys/kernel/debug/sched_features
-	busybox echo "NO_NORMALIZED_SLEEPERS " >> /sys/kernel/debug/sched_features
-	busybox echo "NO_OWNER_SPIN " >> /sys/kernel/debug/sched_features
-	busybox echo "RT_RUNTIME_SHARE " >> /sys/kernel/debug/sched_features
-	busybox echo "START_DEBIT " >> /sys/kernel/debug/sched_features
-	busybox echo "TTWU_QUEUE " >> /sys/kernel/debug/sched_features
-  busybox echo "NO_WAKEUP_OVERLAP " >> /sys/kernel/debug/sched_feature
-	busybox echo "WAKEUP_PREEMPTION " >> /sys/kernel/debug/sched_features
+    busybox echo "NO_AFFINE_WAKEUPS " > /sys/kernel/debug/sched_features
+  	busybox echo "ARCH_POWER " >> /sys/kernel/debug/sched_features
+    busybox echo "CACHE_HOT_BUDDY " >> /sys/kernel/debug/sched_features
+  	busybox echo "NO_DOUBLE_TICK " >> /sys/kernel/debug/sched_features
+  	busybox echo "NO_FORCE_SD_OVERLAP " >> /sys/kernel/debug/sched_features
+  	busybox echo "GENTLE_FAIR_SLEEPERS " >> /sys/kernel/debug/sched_features
+  	busybox echo "NO_HRTICK " >> /sys/kernel/debug/sched_features
+  	busybox echo "LAST_BUDDY " >> /sys/kernel/debug/sched_features
+  	busybox echo "LB_BIAS " >> /sys/kernel/debug/sched_features
+  	busybox echo "NO_LB_MIN " >> /sys/kernel/debug/sched_features
+  	busybox echo "NO_NEW_FAIR_SLEEPERS " >> /sys/kernel/debug/sched_features
+  	busybox echo "NO_NEXT_BUDDY " >> /sys/kernel/debug/sched_features
+  	busybox echo "NONTASK_POWER " >> /sys/kernel/debug/sched_features
+  	busybox echo "NO_NORMALIZED_SLEEPERS " >> /sys/kernel/debug/sched_features
+  	busybox echo "NO_OWNER_SPIN " >> /sys/kernel/debug/sched_features
+  	busybox echo "RT_RUNTIME_SHARE " >> /sys/kernel/debug/sched_features
+  	busybox echo "START_DEBIT " >> /sys/kernel/debug/sched_features
+  	busybox echo "TTWU_QUEUE " >> /sys/kernel/debug/sched_features
+    busybox echo "NO_WAKEUP_OVERLAP " >> /sys/kernel/debug/sched_feature
+  	busybox echo "WAKEUP_PREEMPTION " >> /sys/kernel/debug/sched_features
   umount /sys/kernel/debug
   busybox umount /sys/kernel/debug
 fi
@@ -4686,6 +4685,7 @@ if [ -f /tmp/LSPEED.log ]; then
 else
 	LS_stat="\e[1;31mEnable init.d\e[0m"
 fi
+LEVEL=$(busybox cat /sys/class/power_supply/battery/capacity) 2>/dev/null
 if [ -f /system/su.d/LS00init_d.sh ]; then
 	init_meth="\e[1;32msu.d\e[0m"
 elif [ -f /system/etc/install-recovery-2.sh ]; then
@@ -5056,7 +5056,6 @@ fi
 	busybox echo "Checking, please wait..."
 	busybox echo ""
 	busybox sleep $timeshort
-  busybox chmod 644 /sys/class/power_supply/battery/capacity
 	if [ "$LEVEL" = "100" ] ; then
 		mount -o remount,rw /data
     busybox mount -o remount,rw /data
