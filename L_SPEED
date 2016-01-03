@@ -2685,7 +2685,8 @@ busybox echo "Activating SD speed tweak..." | busybox tee -a \$LS
 
 L=256
 
-for S in /sys/block/mmc*;
+MMC=/sys/block/mmc*
+for S in \$MMC;
 do
 	if [ -f \$S/queue/read_ahead_kb ];
 	then
