@@ -7,7 +7,7 @@
 #
 ver="4.3.2"
 #
-# 4-JAN-2016
+# 5-JAN-2016
 #
 #=======================================================================#
 # This program is free software: you can redistribute it and/or modify
@@ -2859,6 +2859,7 @@ busybox chown 0:0 $core/LS00Fast_Charge
 busybox cat >> $core/LS00GSDF <<EOF
 #!/system/bin/sh
 # Copyright (C) 2016 Paget96
+# Thanks to @Alcolawl 
 #=======================================================================#
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -2891,110 +2892,16 @@ busybox echo "# L Speed log" | busybox tee -a \$LS
 busybox echo "" | busybox tee -a \$LS
 busybox echo "Activating GP services drain fix..." | busybox tee -a \$LS
 
-su -c pm disable com.google.android.gms/.ads.settings.AdsSettingsActivity
-su -c pm disable com.google.android.gms/com.google.android.location.places.ui.aliaseditor.AliasEditorActivity
-su -c pm disable com.google.android.gms/com.google.android.location.places.ui.aliaseditor.AliasEditorMapActivity
-su -c pm disable com.google.android.gms/com.google.android.location.settings.ActivityRecognitionPermissionActivity
-su -c pm disable com.google.android.gms/com.google.android.location.settings.GoogleLocationSettingsActivity
-su -c pm disable com.google.android.gms/com.google.android.location.settings.LocationHistorySettingsActivity
-su -c pm disable com.google.android.gms/com.google.android.location.settings.LocationSettingsCheckerActivity
-su -c pm disable com.google.android.gms/.usagereporting.settings.UsageReportingActivity
-su -c pm disable com.google.android.gms/.ads.adinfo.AdvertisingInfoContentProvider
-su -c pm disable com.google.android.gms/com.google.android.location.reporting.service.ReportingContentProvider
-su -c pm disable com.google.android.gms/com.google.android.location.internal.LocationContentProvider
-su -c pm enable com.google.android.gms/.common.stats.net.contentprovider.NetworkUsageContentProvider
-su -c pm disable com.google.android.gms/com.google.android.gms.ads.config.GServicesChangedReceiver
-su -c pm disable com.google.android.gms/com.google.android.contextmanager.systemstate.SystemStateReceiver
-su -c pm disable com.google.android.gms/.ads.jams.SystemEventReceiver
-su -c pm disable com.google.android.gms/.ads.config.FlagsReceiver
-su -c pm disable com.google.android.gms/.ads.social.DoritosReceiver
-su -c pm disable com.google.android.gms/.analytics.AnalyticsReceiver
-su -c pm disable com.google.android.gms/.analytics.internal.GServicesChangedReceiver
-su -c pm disable com.google.android.gms/.common.analytics.CoreAnalyticsReceiver
-su -c pm enable com.google.android.gms/.common.stats.GmsCoreStatsServiceLauncher
-su -c pm disable com.google.android.gms/com.google.android.location.internal.AnalyticsSamplerReceiver
-su -c pm disable com.google.android.gms/.checkin.CheckinService\$ActiveReceiver
-su -c pm disable com.google.android.gms/.checkin.CheckinService\$ClockworkFallbackReceiver
-su -c pm disable com.google.android.gms/.checkin.CheckinService\$ImposeReceiver
-su -c pm disable com.google.android.gms/.checkin.CheckinService\$SecretCodeReceiver
-su -c pm disable com.google.android.gms/.checkin.CheckinService\$TriggerReceiver
-su -c pm disable com.google.android.gms/.checkin.EventLogService\$Receiver
-su -c pm disable com.google.android.gms/com.google.android.location.reporting.service.ExternalChangeReceiver
-su -c pm disable com.google.android.gms/com.google.android.location.reporting.service.GcmRegistrationReceiver
-su -c pm disable com.google.android.gms/com.google.android.location.copresence.GcmRegistrationReceiver
-su -c pm disable com.google.android.gms/com.google.android.location.copresence.GservicesBroadcastReceiver
-su -c pm disable com.google.android.gms/com.google.android.location.internal.LocationProviderEnabler
-su -c pm disable com.google.android.gms/com.google.android.location.internal.NlpNetworkProviderSettingsUpdateReceiver
-su -c pm disable com.google.android.gms/com.google.android.location.network.ConfirmAlertActivity\$LocationModeChangingReceiver
-su -c pm disable com.google.android.gms/com.google.android.location.places.ImplicitSignalsReceiver
-su -c pm disable com.google.android.gms/com.google.android.libraries.social.mediamonitor.MediaMonitor
-su -c pm disable com.google.android.gms/.location.copresence.GcmBroadcastReceiver
-su -c pm disable com.google.android.gms/.location.reporting.service.GcmBroadcastReceiver
-su -c pm disable com.google.android.gms/.social.location.GservicesBroadcastReceiver
-su -c pm disable com.google.android.gms/.update.SystemUpdateService\$Receiver
-su -c pm disable com.google.android.gms/.update.SystemUpdateService\$OtaPolicyReceiver
-su -c pm disable com.google.android.gms/.update.SystemUpdateService\$SecretCodeReceiver
-su -c pm disable com.google.android.gms/.update.SystemUpdateService\$ActiveReceiver
-su -c pm disable com.google.android.gms/com.google.android.contextmanager.service.ContextManagerService
-su -c pm enable com.google.android.gms/.ads.AdRequestBrokerService
-su -c pm disable com.google.android.gms/.ads.GservicesValueBrokerService
-su -c pm disable com.google.android.gms/.ads.identifier.service.AdvertisingIdNotificationService
-su -c pm enable com.google.android.gms/.ads.identifier.service.AdvertisingIdService
-su -c pm disable com.google.android.gms/.ads.jams.NegotiationService
-su -c pm disable com.google.android.gms/.ads.pan.PanService
-su -c pm disable com.google.android.gms/.ads.social.GcmSchedulerWakeupService
-su -c pm disable com.google.android.gms/.analytics.AnalyticsService
-su -c pm disable com.google.android.gms/.analytics.internal.PlayLogReportingService
-su -c pm disable com.google.android.gms/.analytics.service.AnalyticsService
-su -c pm disable com.google.android.gms/.analytics.service.PlayLogMonitorIntervalService
-su -c pm disable com.google.android.gms/.analytics.service.RefreshEnabledStateService
-su -c pm disable com.google.android.gms/.auth.be.proximity.authorization.userpresence.UserPresenceService
-su -c pm disable com.google.android.gms/.common.analytics.CoreAnalyticsIntentService
-su -c pm enable com.google.android.gms/.common.stats.GmsCoreStatsService
-su -c pm disable com.google.android.gms/.backup.BackupStatsService
-su -c pm disable com.google.android.gms/.deviceconnection.service.DeviceConnectionAsyncService
-su -c pm disable com.google.android.gms/.deviceconnection.service.DeviceConnectionServiceBroker
-su -c pm disable com.google.android.gms/.wallet.service.analytics.AnalyticsIntentService
-su -c pm enable com.google.android.gms/.checkin.CheckinService
-su -c pm enable com.google.android.gms/.checkin.EventLogService
-su -c pm disable com.google.android.gms/com.google.android.location.internal.AnalyticsUploadIntentService
-su -c pm disable com.google.android.gms/com.google.android.location.reporting.service.DeleteHistoryService
-su -c pm disable com.google.android.gms/com.google.android.location.reporting.service.DispatchingService
-su -c pm disable com.google.android.gms/com.google.android.location.reporting.service.InternalPreferenceServiceDoNotUse
-su -c pm disable com.google.android.gms/com.google.android.location.reporting.service.LocationHistoryInjectorService
-su -c pm disable com.google.android.gms/com.google.android.location.reporting.service.ReportingAndroidService
-su -c pm disable com.google.android.gms/com.google.android.location.reporting.service.ReportingSyncService
-su -c pm disable com.google.android.gms/com.google.android.location.activity.HardwareArProviderService
-su -c pm disable com.google.android.gms/com.google.android.location.fused.FusedLocationService
-su -c pm disable com.google.android.gms/com.google.android.location.fused.service.FusedProviderService
-su -c pm disable com.google.android.gms/com.google.android.location.geocode.GeocodeService
-su -c pm disable com.google.android.gms/com.google.android.location.geofencer.service.GeofenceProviderService
-su -c pm enable com.google.android.gms/com.google.android.location.internal.GoogleLocationManagerService
-su -c pm disable com.google.android.gms/com.google.android.location.places.PlaylogService
-su -c pm enable com.google.android.gms/com.google.android.location.places.service.GeoDataService
-su -c pm enable com.google.android.gms/com.google.android.location.places.service.PlaceDetectionService
-su -c pm disable com.google.android.gms/com.google.android.libraries.social.mediamonitor.MediaMonitorIntentService
-su -c pm disable com.google.android.gms/.config.ConfigService
-su -c pm enable com.google.android.gms/.stats.PlatformStatsCollectorService
-su -c pm enable com.google.android.gms/.usagereporting.service.UsageReportingService
+su -c pm enable com.google.android.gms/.update.SystemUpdateActivity 
 su -c pm enable com.google.android.gms/.update.SystemUpdateService
-su -c pm enable com.google.android.gms/com.google.android.location.network.ConfirmAlertActivity
-su -c pm enable com.google.android.gms/com.google.android.location.network.LocationProviderChangeReceiver
-su -c pm enable com.google.android.gms/com.google.android.location.internal.server.GoogleLocationService
-su -c pm enable com.google.android.gms/com.google.android.location.internal.PendingIntentCallbackService
-su -c pm enable com.google.android.gms/com.google.android.location.network.NetworkLocationService
-su -c pm enable com.google.android.gms/com.google.android.location.util.PreferenceService
-su -c pm disable com.google.android.gsf/.update.SystemUpdateActivity
-su -c pm disable com.google.android.gsf/.update.SystemUpdatePanoActivity
-su -c pm disable com.google.android.gsf/com.google.android.gsf.checkin.CheckinService\$Receiver
-su -c pm disable com.google.android.gsf/com.google.android.gsf.checkin.CheckinService\$SecretCodeReceiver
-su -c pm disable com.google.android.gsf/com.google.android.gsf.checkin.CheckinService\$TriggerReceiver
-su -c pm disable com.google.android.gsf/.checkin.EventLogService\$Receiver
-su -c pm disable com.google.android.gsf/.update.SystemUpdateService\$Receiver
-su -c pm disable com.google.android.gsf/.update.SystemUpdateService\$SecretCodeReceiver
-su -c pm disable com.google.android.gsf/.checkin.CheckinService
-su -c pm disable com.google.android.gsf/.checkin.EventLogService
-su -c pm disable com.google.android.gsf/.update.SystemUpdateService
+su -c pm enable com.google.android.gms/.update.SystemUpdateService\$ActiveReceiver 
+su -c pm enable com.google.android.gms/.update.SystemUpdateService\$Receiver 
+su -c pm enable com.google.android.gms/.update.SystemUpdateService\$SecretCodeReceiver 
+su -c pm enable com.google.android.gsf/.update.SystemUpdateActivity 
+su -c pm enable com.google.android.gsf/.update.SystemUpdatePanoActivity 
+su -c pm enable com.google.android.gsf/.update.SystemUpdateService 
+su -c pm enable com.google.android.gsf/.update.SystemUpdateService\$Receiver 
+su -c pm enable com.google.android.gsf/.update.SystemUpdateService\$SecretCodeReceiver
 
 busybox echo "" | busybox tee -a \$LS
 busybox echo "GP services drain fix is activated" | busybox tee -a \$LS
