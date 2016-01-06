@@ -34,6 +34,7 @@ core="/system/L_SPEED" 2>/dev/null
 backup="/sdcard/LS_backup" 2>/dev/null
 bb1="/system/bin/busybox" 2>/dev/null
 bb2="/system/xbin/busybox" 2>/dev/null
+bb_down_flash="http://forum.xda-developers.com/showthread.php?t=3219431"
 bb_down="https://play.google.com/store/apps/details?id=stericson.busybox" 2>/dev/null
 thread="http://forum.xda-developers.com/android/software-hacking/tweak-l-speed-v1-0-02-02-2015-t3020138" 2>/dev/null
 donation="http://forum.xda-developers.com/donatetome.php?u=5514152" 2>/dev/null
@@ -85,8 +86,8 @@ busybox mount -o remount,rw / / 2>/dev/null
 busybox mount -o remount,rw rootfs 2>/dev/null
 busybox mount -o remount,rw /system 2>/dev/null
 busybox mount -o remount,rw /system /system 2>/dev/null
-if [ ! -d "/sqlite_stmt_journals" ]; then 
-  busybox mkdir -p /sqlite_stmt_journals; 
+if [ ! -d "/sqlite_stmt_journals" ]; then
+  busybox mkdir -p /sqlite_stmt_journals;
 fi
 if [ ! -d /system/su.d ]; then
 busybox mkdir -p /system/su.d/
@@ -106,13 +107,20 @@ if [ -e $bb1 ]; then
 	busybox echo "You don't have busybox"
 	busybox sleep $timeshorter
 	busybox echo "Do you want to download it now??"
-  busybox sleep $timeshorter
+  	busybox sleep $timeshorter
 	busybox echo "[ 1 = Download now | 2 = I will do that later ]:"
 	read -r option
 		if [ "$option" -eq 1 ]; then
-			su -c "LD_LIBRARY_PATH=/vendor/lib:/system/lib am start $bb_down"
-     busybox clear
-     exit
+			busybox echo "Choose source :"
+      			busybox sleep $timeshorter
+      			busybox echo "[ 1 = App from play store | 2 = Flashable zip by me]"
+      			read -r op2
+      			if [ "$op2" -eq 1 ]; then
+        			su -c "LD_LIBRARY_PATH=/vendor/lib:/system/lib am start $bb_down"
+      			if [ "$op2" -eq 2 ]; then
+        			su -c "LD_LIBRARY_PATH=/vendor/lib:/system/lib am start $bb_down_flash"
+     			busybox clear
+     			exit
 				else
 			busybox echo "     When you have a time, download it"
 			busybox sleep $timeshort
@@ -671,7 +679,7 @@ for file in /data/local/tmp/*.*
 do
   if [ -e "\$file" ]
   then
-	busybox echo "-local/tmp not cleaned" | busybox tee -a \$LS 
+	busybox echo "-local/tmp not cleaned" | busybox tee -a \$LS
 else
 	busybox echo "-local/tmp cleaned" | busybox tee -a \$LS
 fi
@@ -1035,7 +1043,7 @@ busybox chmod 644 /sys/module/lowmemorykiller/parameters/cost
 busybox echo "64" > /sys/module/lowmemorykiller/parameters/cost
 fi
 
-# Minfree Values 
+# Minfree Values
 RAM=\$((\$(busybox awk '/MemTotal/{print \$2}' /proc/meminfo)/1024))
 
 lmk1=\$((RAM*2*1024/100/4));
@@ -1111,7 +1119,7 @@ busybox chmod 644 /sys/module/lowmemorykiller/parameters/cost
 busybox echo "32" > /sys/module/lowmemorykiller/parameters/cost
 fi
 
-# Minfree Values 
+# Minfree Values
 RAM=\$((\$(busybox awk '/MemTotal/{print \$2}' /proc/meminfo)/1024))
 
 lmk1=\$((RAM*3*1024/100/4));
@@ -1187,7 +1195,7 @@ busybox chmod 644 /sys/module/lowmemorykiller/parameters/cost
 busybox echo "16" > /sys/module/lowmemorykiller/parameters/cost
 fi
 
-# Minfree Values 
+# Minfree Values
 RAM=\$((\$(busybox awk '/MemTotal/{print \$2}' /proc/meminfo)/1024))
 
 lmk1=\$((RAM*2*1024/100/4));
@@ -1521,7 +1529,7 @@ busybox chmod 755 $core/LS00CR_x2
 busybox chown 0:0 $core/LS00CR_x2
 #
 #
-#   Medium Cache Allocation 
+#   Medium Cache Allocation
 #
 #
 #
@@ -1584,7 +1592,7 @@ busybox chmod 755 $core/LS00Allocation_Medium
 busybox chown 0:0 $core/LS00Allocation_Medium
 #
 #
-#   Large Cache Allocation 
+#   Large Cache Allocation
 #
 #
 #
@@ -1797,7 +1805,7 @@ busybox sysctl -w kernel.shmmni=4096
 busybox sysctl -w kernel.shmall=2097152
 busybox sysctl -w kernel.shmmax=268435456
 busybox sysctl -w kernel.sem='250 32000 100 128'
-  
+
 if [ -e /sys/kernel/dyn_fsync/Dyn_fsync_active ]; then
 busybox echo "1" > /sys/kernel/dyn_fsync/Dyn_fsync_active
 fi
@@ -1834,7 +1842,7 @@ if [ -e /sys/block/zram* ]; then
 		busybox sysctl -w vm.swappiness=40
       else
 		busybox sysctl -w vm.swappiness=20
-fi 
+fi
 busybox echo "" | busybox tee -a \$LS
 busybox echo "Heavy kernel tweaks are activated" | busybox tee -a \$LS
 
@@ -2859,7 +2867,7 @@ busybox chown 0:0 $core/LS00Fast_Charge
 busybox cat >> $core/LS00GSDF <<EOF
 #!/system/bin/sh
 # Copyright (C) 2016 Paget96
-# Thanks to @Alcolawl 
+# Thanks to @Alcolawl
 #=======================================================================#
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -2892,15 +2900,15 @@ busybox echo "# L Speed log" | busybox tee -a \$LS
 busybox echo "" | busybox tee -a \$LS
 busybox echo "Activating GP services drain fix..." | busybox tee -a \$LS
 
-su -c pm enable com.google.android.gms/.update.SystemUpdateActivity 
+su -c pm enable com.google.android.gms/.update.SystemUpdateActivity
 su -c pm enable com.google.android.gms/.update.SystemUpdateService
-su -c pm enable com.google.android.gms/.update.SystemUpdateService\$ActiveReceiver 
-su -c pm enable com.google.android.gms/.update.SystemUpdateService\$Receiver 
-su -c pm enable com.google.android.gms/.update.SystemUpdateService\$SecretCodeReceiver 
-su -c pm enable com.google.android.gsf/.update.SystemUpdateActivity 
-su -c pm enable com.google.android.gsf/.update.SystemUpdatePanoActivity 
-su -c pm enable com.google.android.gsf/.update.SystemUpdateService 
-su -c pm enable com.google.android.gsf/.update.SystemUpdateService\$Receiver 
+su -c pm enable com.google.android.gms/.update.SystemUpdateService\$ActiveReceiver
+su -c pm enable com.google.android.gms/.update.SystemUpdateService\$Receiver
+su -c pm enable com.google.android.gms/.update.SystemUpdateService\$SecretCodeReceiver
+su -c pm enable com.google.android.gsf/.update.SystemUpdateActivity
+su -c pm enable com.google.android.gsf/.update.SystemUpdatePanoActivity
+su -c pm enable com.google.android.gsf/.update.SystemUpdateService
+su -c pm enable com.google.android.gsf/.update.SystemUpdateService\$Receiver
 su -c pm enable com.google.android.gsf/.update.SystemUpdateService\$SecretCodeReceiver
 
 busybox echo "" | busybox tee -a \$LS
@@ -4295,7 +4303,7 @@ if [ -f $init/LS00Seeder_Light ]; then
 busybox cp -f $core/LS00Seeder_Light $init/LS00Seeder_Light
 busybox chmod 755 $init/LS00Seeder_Light
 busybox chown 0:2000 $init/LS00Seeder_Light
-fi 
+fi
 if [ -f $init/LS00Seeder_Enlarger ]; then
 busybox cp -f $core/LS00Seeder_Enlarger $init/LS00Seeder_Enlarger
 busybox chmod 755 $init/LS00Seeder_Enlarger
@@ -4537,7 +4545,7 @@ fi
 fi
 if [ ! -f $init/LSPEED ]; then
 if [ ! -d /tmp ]; then
-busybox mkdir -p /tmp 
+busybox mkdir -p /tmp
 busybox chmod 755 /tmp
 fi
 busybox cp -f $core/LS00LSPEED $init/LSPEED
@@ -4545,20 +4553,20 @@ busybox chmod 755 $init/LSPEED
 busybox chown 0:2000 $init/LSPEED
 sh $init/LSPEED
 fi
-busybox sleep $timelong 
+busybox sleep $timelong
   busybox clear
 busybox echo "Checking selinux status"
 busybox sleep $timeshort
 if [ "$sestat" = "Enforcing" ]; then
         busybox echo "Your selinux status is $sestat"
-          busybox echo ""; busybox echo ""; busybox echo ""; 
+          busybox echo ""; busybox echo ""; busybox echo "";
             busybox sleep $timeshort
              busybox echo "Time to configure L Speed ;) "
     elif [ "$sestat" = "Permissive" ]; then
               busybox echo "Your selinux status is $sestat"
                 busybox echo ""; busybox echo ""; busybox echo "";
-                  busybox echo "Time to configure L Speed ;) "    
-          else 
+                  busybox echo "Time to configure L Speed ;) "
+          else
              busybox echo "Your device doesn't have selinux, this option is unavailable"
                busybox echo ""; busybox echo ""; busybox echo "";
                  busybox sleep $timeshort
@@ -4906,7 +4914,7 @@ busybox echo $divider
 busybox echo ""
 busybox echo -n "Please select an option:"
 read -r character
-case $character in 
+case $character in
 1)busybox clear
 busybox echo ""
 busybox free | busybox awk '/Mem/{print ">>>...Memory Before Boosting: "$4/1024" MB";}'
@@ -4996,14 +5004,14 @@ else
 fi
 	busybox echo -e -n " To use this, please flash superSU first
  If first doesnt work, try second
- 
+
     current: $init_meth
 
  1. su.d
  2. install-recovery-2.sh
- 
+
  0. Exit
- 
+
   Choose enabling method:"
 	read -r option
 	if [ "$option" -eq 1 ]; then
@@ -5078,7 +5086,7 @@ fi
 	cpu_opt="\e[1;31mOff\e[0m"
 fi
 	busybox echo -e -n "   Welcome to CPU tuner
-  
+
   Cores: $max_cores_norm
   Online cores: $online_norm
 
@@ -5086,7 +5094,7 @@ fi
 2. CPU optimizer           | $cpu_opt
 
 0. Exit
- 
+
    Please select an option: "
 	read -r option
 	if [ "$option" -eq 1 ]; then
@@ -5121,7 +5129,7 @@ done;;
         busybox chmod 755 /system/su.d/LS00Selinux_Enforce
         busybox chown 0:2000 /system/su.d/LS00Selinux_Enforce
         sh /system/su.d/LS00Selinux_Enforce 2>/dev/null
-          else 
+          else
              busybox echo "  Your device doesn't have selinux, this option is unavailable"
                  busybox sleep $timelong
       fi;;
@@ -5140,9 +5148,9 @@ fi
 3. Set cleaner on boot   | $cleaner
 4. Wipe cache partition
 5. Wipe dalvik-cache
- 
+
 0. Go back
- 
+
    Please select an option: "
 	read -r option
 	if [ "$option" -eq 1 ]; then
@@ -5213,7 +5221,7 @@ busybox echo "Please wait!!!"
 	for dir in ${CACHE_DIR[*]}; do
 		busybox find "$dir" -type f -delete 2>/dev/null
   done
-busybox echo "Cleaning is done"  
+busybox echo "Cleaning is done"
   busybox sleep $timelong
     elif [ "$option" -eq 3 ]; then
       if [ -f $init/LS00Cleaner ]; then
@@ -5251,7 +5259,7 @@ if [ "$option" -eq 1 ]; then
 else
 break
 fi
-done   
+done
     elif [ "$option" -eq 5 ]; then
     while true; do
   busybox clear
@@ -5280,7 +5288,7 @@ if [ "$option" -eq 1 ]; then
 else
 break
 fi
-done   
+done
     elif [ "$option" -eq 0 ]; then
 break
     fi
@@ -5300,7 +5308,7 @@ else
 	seeder_profile="\e[1;31mOff\e[0m"
 fi
 	busybox echo -e -n "   Seeder menu
- 
+
      Current: $seeder_profile
      Current Entropy: $entropy
 
@@ -5309,7 +5317,7 @@ fi
 3. Enlarger
 4. Moderate
 5. Aggressive
- 
+
 0. Go back
 
    Please select an option: "
@@ -5384,15 +5392,15 @@ else
 	ram_profile="\e[1;30mDefault\e[0m"
 fi
 	busybox echo -e -n "   Ram manager
- 
+
      Current: $ram_profile
      Current levels: $minfreemb1,$minfreemb2,$minfreemb3,$minfreemb4,$minfreemb5,$minfreemb6
-     
+
 1. Default
 2. Multitasking
 3. Balanced
 4. Gaming
- 
+
 0. Go back
 
    Please select an option: "
@@ -5439,15 +5447,15 @@ else
 	oom="\e[1;30mDefault\e[0m"
 fi
 	busybox echo -e -n "   OOM Killer
- 
+
      Current: $oom
 
 1. Default
 2. Enabled
 3. Disabled
- 
+
 0. Go back
- 
+
    Please select an option: "
 	read -r option
 	if [ "$option" -eq 1 ]; then
@@ -5481,16 +5489,16 @@ else
 	reclaiming="\e[1;30mDefault\e[0m"
 fi
 	busybox echo -e -n "   Cache reclaiming
- 
+
      Current: $reclaiming
 
 1. Default
 2. Lesser
 3. Less
 4. x2
- 
+
 0. Go back
- 
+
    Please select an option: "
 	read -r option
 	if [ "$option" -eq 1 ]; then
@@ -5532,7 +5540,7 @@ else
   allocation="\e[1;30mDefault\e[0m"
 fi
 	busybox echo -e -n "   Cache allocation
- 
+
      Current: $allocation
 
 1. Default
@@ -5540,7 +5548,7 @@ fi
 3. Large
 
 0. Go back
- 
+
    Please select an option: "
 	read -r option
 	if [ "$option" -eq 1 ]; then
@@ -5573,7 +5581,7 @@ else
 	kernel_tweaks="\e[1;30mDefault\e[0m"
 fi
 	busybox echo -e -n "   Kernel tweaks menu
- 
+
      Current: $kernel_tweaks
 
 1. Default
@@ -5581,7 +5589,7 @@ fi
 3. Heavy
 
 0. Go back
- 
+
    Please select an option: "
 	read -r option
 	if [ "$option" -eq 1 ]; then
@@ -5628,14 +5636,14 @@ else
   ril="\e[1;31mDisabled\e[0m"
 fi
 	busybox echo -e -n "   LNET Optimizer
- 
+
 1. Buffers    | $buffers
 2. DNS        | $dns
 3. Protection | $protection
 4. Ril        | $ril
 
 0. Go back
- 
+
    Please select an option: "
 	read -r option
 	if [ "$option" -eq 1 ]; then
@@ -5649,17 +5657,17 @@ fi
         buffers="\e[1;30mDefault\e[0m"
       fi
 	  busybox echo -e -n "   Buffer menu
-    
+
         Current: $buffers
- 
+
   1. Default buffers
   2. Small buffers
   3. Big buffers
 
   0. Go back
-  
+
      Please select an option: "
-   	  read -r option 
+   	  read -r option
     if [ "$option" -eq 1 ]; then
 busybox rm -rf $init/LS00Net_Small_Buffers 2>/dev/null
 busybox rm -rf $init/LS00Net_Big_Buffers 2>/dev/null
@@ -5677,7 +5685,7 @@ busybox chmod 755 $init/LS00Net_Big_Buffers
 busybox chown 0:2000 $init/LS00Net_Big_Buffers
   elif [ "$option" -eq 0 ]; then
 break
-    fi 
+    fi
     done
   elif [ "$option" -eq 2 ]; then
  if [ -f $init/LS00Net_Tweaks_DNS ]; then
@@ -5715,7 +5723,7 @@ else
 	adblocker="\e[1;31mOff\e[0m"
 fi
 	busybox echo -e -n "   AdBlocker
- 
+
      Current: $adblocker
      info: Internet connection is required
 
@@ -5723,7 +5731,7 @@ fi
 2. Disable
 
 0. Go back
- 
+
    Please select an option: "
 	read -r option
 	if [ "$option" -eq 1 ]; then
@@ -5735,7 +5743,7 @@ fi
    busybox cat /system/etc/host3 >> /system/etc/host2; busybox rm -rf /system/etc/host3
    busybox wget -O /system/etc/host1 "http://winhelp2002.mvps.org/hosts.txt"
    busybox cat /system/etc/host2 >> /system/etc/host1; busybox rm -rf /system/etc/host2
-   busybox sed '/^#/ d' /system/etc/host1 > /system/etc/host; 
+   busybox sed '/^#/ d' /system/etc/host1 > /system/etc/host;
    busybox rm -rf /system/etc/host1
    busybox sort /system/etc/host | busybox uniq -u > /system/etc/hosts; busybox rm -rf /system/etc/host
    busybox sed '/localhost/d' /system/etc/hosts > /system/etc/host; busybox rm -rf /system/etc/hosts
@@ -5772,12 +5780,12 @@ else
   IO_queue="\e[1;31mOff\e[0m"
 fi
 	busybox echo -e -n "   IO tweaks menu
- 
+
 1. IO Boost         | $IO_boost
 2. IO Extend Queue  | $IO_queue
 
 0. Go back
- 
+
    Please select an option: "
 	read -r option
   if [ "$option" -eq 1 ]; then
@@ -5911,7 +5919,7 @@ busybox rm -rf $init/LS00Improve_Battery
 busybox cp -f $core/LS00Improve_Battery $init/LS00Improve_Battery
 busybox chmod 755 $init/LS00Improve_Battery
 busybox chown 0:2000 $init/LS00Improve_Battery
-fi;; 
+fi;;
 33) if [ -f $init/LS00Scrolling ]; then
 busybox rm -rf $init/LS00Scrolling
      else
@@ -5960,7 +5968,7 @@ busybox rm -rf $init/LS00Fast_Dormancy
 busybox cp -f $core/LS00Fast_Dormancy $init/LS00Fast_Dormancy
 busybox chmod 755 $init/LS00Fast_Dormancy
 busybox chown 0:2000 $init/LS00Fast_Dormancy
-fi;; 
+fi;;
 40) if [ -f $init/LS00Misc_Tweaks ]; then
 busybox rm -rf $init/LS00Misc_Tweaks
      else
@@ -5992,7 +6000,7 @@ fi
  busybox echo "3.Delete backup"
  busybox echo "4.Back"
  busybox echo ""
- busybox echo -n "Please select an option: " 
+ busybox echo -n "Please select an option: "
 read -r option
   if [ "$option" -eq 1 ]; then
   busybox echo "Creating backup!!!"
@@ -6042,7 +6050,7 @@ if [ -f $backup/LS00Seeder_Light ]; then
 busybox cp -f $core/LS00Seeder_Light $init/LS00Seeder_Light
 busybox chmod 755 $init/LS00Seeder_Light
 busybox chown 0:2000 $init/LS00Seeder_Light
-fi 
+fi
 if [ -f $backup/LS00Seeder_Enlarger ]; then
 busybox cp -f $core/LS00Seeder_Enlarger $init/LS00Seeder_Enlarger
 busybox chmod 755 $init/LS00Seeder_Enlarger
@@ -6360,19 +6368,19 @@ t|T)su -c "LD_LIBRARY_PATH=/vendor/lib:/system/lib am start $thread";;
 u|U)for file in $init/LS00*
 do
   busybox rm -rf $file 2>/dev/null
-done 
-busybox rm -rf $init/LSPEED 2>/dev/null; 
+done
+busybox rm -rf $init/LSPEED 2>/dev/null;
 busybox rm -rf $core 2>/dev/null;
 for file in /system/su.d/LS00*
 do
   busybox rm -rf $file 2>/dev/null
 done
-busybox rm -rf /system/etc/LS00ad_calib.cfg 2>/dev/null; 
-busybox rm -rf /system/xbin/boost 2>/dev/null; 
+busybox rm -rf /system/etc/LS00ad_calib.cfg 2>/dev/null;
+busybox rm -rf /system/xbin/boost 2>/dev/null;
 busybox rm -rf /system/bin/LS 2>/dev/null;
 busybox clear;
 exit;;
-r|R)busybox clear; 
+r|R)busybox clear;
 	busybox echo "Rebooting device"
 	busybox echo "3"
 	busybox sleep $timeshort
@@ -6400,5 +6408,3 @@ busybox echo "#Invalid Option, please try again"
 busybox sleep $timeshort
 esac
 done
-
-
