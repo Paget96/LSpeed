@@ -5,9 +5,9 @@
 #
 # L SPEED V4.3.2 VECTOR by Paget96
 #
-ver="4.3.2"
+ver="4.3.3"
 #
-# 5-JAN-2016
+# 7-JAN-2016
 #
 #=======================================================================#
 # This program is free software: you can redistribute it and/or modify
@@ -34,10 +34,10 @@ core="/system/L_SPEED" 2>/dev/null
 backup="/sdcard/LS_backup" 2>/dev/null
 bb1="/system/bin/busybox" 2>/dev/null
 bb2="/system/xbin/busybox" 2>/dev/null
+bb_down="https://play.google.com/store/apps/details?id=stericson.busybox"
 bb_down_flash="http://forum.xda-developers.com/showthread.php?t=3219431"
-bb_down="https://play.google.com/store/apps/details?id=stericson.busybox" 2>/dev/null
-thread="http://forum.xda-developers.com/android/software-hacking/tweak-l-speed-v1-0-02-02-2015-t3020138" 2>/dev/null
-donation="http://forum.xda-developers.com/donatetome.php?u=5514152" 2>/dev/null
+thread="http://forum.xda-developers.com/android/software-hacking/tweak-l-speed-v1-0-02-02-2015-t3020138"
+donation="http://forum.xda-developers.com/donatetome.php?u=5514152"
 bbver=$(busybox | busybox head -n 1 | busybox awk '{print $1,$2}') 2>/dev/null
 sestat=$(getenforce) 2>/dev/null
 id="$(id)"; id="${id#*=}"; id="${id%%\(*}"; id="${id%% *}"
@@ -114,10 +114,10 @@ if [ -e $bb1 ]; then
 			busybox echo "Choose source :"
       			busybox sleep $timeshorter
       			busybox echo "[ 1 = App from play store | 2 = Flashable zip by me]"
-      			read -r op2
-      			if [ "$op2" -eq 1 ]; then
+      			read -r option
+      			if [ "$option" -eq 1 ]; then
         			su -c "LD_LIBRARY_PATH=/vendor/lib:/system/lib am start $bb_down"
-      			if [ "$op2" -eq 2 ]; then
+      			if [ "$option" -eq 2 ]; then
         			su -c "LD_LIBRARY_PATH=/vendor/lib:/system/lib am start $bb_down_flash"
      			busybox clear
      			exit
