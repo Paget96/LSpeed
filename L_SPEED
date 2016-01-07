@@ -117,10 +117,13 @@ if [ -e $bb1 ]; then
       			read -r option
       			if [ "$option" -eq 1 ]; then
         			su -c "LD_LIBRARY_PATH=/vendor/lib:/system/lib am start $bb_down"
-      			if [ "$option" -eq 2 ]; then
+				busybox clear
+     			exit
+      			elif [ "$option" -eq 2 ]; then
         			su -c "LD_LIBRARY_PATH=/vendor/lib:/system/lib am start $bb_down_flash"
      			busybox clear
      			exit
+				fi
 				else
 			busybox echo "     When you have a time, download it"
 			busybox sleep $timeshort
