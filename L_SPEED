@@ -3202,6 +3202,8 @@ busybox mount -o remount,ro /system 2>/dev/null
 busybox mount -o remount,ro /system /system 2>/dev/null
 
 EOF
+busybox chmod 755 $core/LS00Wifi_Sleeper
+busybox chown 0:0 $core/LS00Wifi_Sleeper
 #
 #
 #   Flag Tuner
@@ -3866,6 +3868,8 @@ busybox mount -o remount,ro /system 2>/dev/null
 busybox mount -o remount,ro /system /system 2>/dev/null
 
 EOF
+busybox chmod 755 $core/LS00Disable_Logcats
+busybox chown 0:0 $core/LS00Disable_Logcats
 #
 #
 #   Fast Dormancy
