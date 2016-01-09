@@ -448,20 +448,26 @@ busybox echo "" | busybox tee -a \$LS
 busybox echo "Optimizing CPU.." | busybox tee -a \$LS
 
 # CPU_Optimizer
-# Source - google code
-# Thanks to @fivefour
-pid=\$(busybox pgrep surfaceflinger 2>/dev/null);
-busybox echo "\$pid" >> /dev/cpuctl/cgroup.procs 2>/dev/null;
-for i in /proc/\$pid/task; do
-  busybox echo "\$i" >> /dev/cpuctl/tasks 2>/dev/null;
-done;
-pid=\$(busybox pgrep binder 2>/dev/null);
-busybox echo "\$pid" >> /dev/cpuctl/cgroup.procs 2>/dev/null;
-for i in /proc/\$pid/task; do
-  busybox echo "\$i" >> /dev/cpuctl/tasks 2>/dev/null;
-done;
+if [ -e /dev/cpuctl/cpu.shares ]; then
+busybox echo "1024" > /dev/cpuctl/cpu.shares
+fi;
+if [ -e /dev/cpuctl/cpu.rt_runtime_us ]; then
+busybox echo "800000" > /dev/cpuctl/cpu.rt_runtime_us
+fi;
+if [ -e /dev/cpuctl/cpu.rt_period_us ]; then
+busybox echo "1000000" > /dev/cpuctl/cpu.rt_period_us
+fi;
 
-busybox echo "96" > /dev/cpuctl/bg_non_interactive/cpu.shares 2>/dev/null;
+# 6.0%
+if [ -e /dev/cpuctl/bg_non_interactive/cpu.shares ]; then
+busybox echo "62" > /dev/cpuctl/bg_non_interactive/cpu.shares
+fi;
+if [ -e /dev/cpuctl/bg_non_interactive/cpu.rt_runtime_us ]; then
+busybox echo "700000" > /dev/cpuctl/bg_non_interactive/cpu.rt_runtime_us
+fi;
+if [ -e /dev/cpuctl/bg_non_interactive/cpu.rt_runtime_us ]; then
+busybox echo "1000000" > /dev/cpuctl/bg_non_interactive/cpu.rt_period_us
+fi;
 
 busybox echo "" | busybox tee -a \$LS
 busybox echo "CPU is optimized" | busybox tee -a \$LS
