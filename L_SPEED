@@ -1714,10 +1714,10 @@ busybox echo "Dyn_fsync doesn't exist on your kernel" | busybox tee -a \$LS
 fi
 
 #FS tweak
-busybox sysctl -w fs.lease-break-time=10
-busybox sysctl -w fs.inotify.max_queued_events=32000
+busybox sysctl -w fs.lease-break-time=8
+busybox sysctl -w fs.inotify.max_queued_events=32768
 busybox sysctl -w fs.inotify.max_user_instances=256
-busybox sysctl -w fs.inotify.max_user_watches=10240
+busybox sysctl -w fs.inotify.max_user_watches=16384
 
 busybox echo "File system parameters are updated" | busybox tee -a \$LS
 
@@ -1807,7 +1807,7 @@ busybox echo "" | busybox tee -a \$LS
 busybox echo "Activating heavy kernel tweaks.." | busybox tee -a \$LS
 
 # Kernel_tweaks
-busybox sysctl -w kernel.msgmni=32000
+busybox sysctl -w kernel.msgmni=32768
 busybox sysctl -w kernel.msgmax=8192
 busybox sysctl -w kernel.msgmnb=16384
 busybox sysctl -w kernel.shmmni=4096
@@ -1826,9 +1826,9 @@ fi
 
 #FS tweak
 busybox sysctl -w fs.lease-break-time=5
-busybox sysctl -w fs.inotify.max_queued_events=32000
+busybox sysctl -w fs.inotify.max_queued_events=32768
 busybox sysctl -w fs.inotify.max_user_instances=256
-busybox sysctl -w fs.inotify.max_user_watches=10240
+busybox sysctl -w fs.inotify.max_user_watches=16384
 
 busybox echo "File system parameters are updated" | busybox tee -a \$LS
 
