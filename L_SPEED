@@ -79,8 +79,6 @@ busybox echo "                    Hell yeah!!!"
 busybox echo ""
 busybox sleep $timelong
 busybox clear
-busybox echo ""
-busybox echo ""
 mount -o remount,rw / 2>/dev/null
 mount -o remount,rw / / 2>/dev/null
 mount -o remount,rw rootfs 2>/dev/null
@@ -98,70 +96,85 @@ if [ ! -d /system/su.d ]; then
 busybox mkdir -p /system/su.d/
 busybox chmod 755 /system/su.d/
 fi
+busybox echo ""
+busybox echo "       Checking some important parts :D"
+busybox sleep $timeshort
+busybox echo ""
+busybox echo $divider
+busybox echo ""
 busybox echo "Checking busybox"
-    busybox sleep $timeshort
-        busybox echo ""
-        busybox echo ""
-if [ -e $bb1 ]; then
-	busybox echo "Awesome, you have $bbver"
-	busybox echo ""
-  elif [ -e $bb2 ]; then
-	busybox echo "Awesome, you have $bbver"
-	busybox echo ""
-		else
+busybox sleep $timeshort
+busybox echo ""
+if [[ -e $bb1 || -e $bb2 ]]
+	then busybox echo "Awesome, you have $bbver"
+else
 	busybox echo "You don't have busybox"
 	busybox sleep $timeshorter
 	busybox echo "Do you want to download it now??"
   	busybox sleep $timeshorter
 	busybox echo "[ 1 = Download now | 2 = I will do that later ]:"
 	read -r option
-		if [ "$option" -eq 1 ]; then
-			busybox echo "Choose source :"
-      			busybox sleep $timeshorter
-      			busybox echo "[ 1 = App from play store | 2 = Flashable zip by me]"
-      			read -r option
-      			if [ "$option" -eq 1 ]; then
-        			su -c "LD_LIBRARY_PATH=/vendor/lib:/system/lib am start $bb_down"
-				  busybox clear
-     			exit
-      			elif [ "$option" -eq 2 ]; then
-        			su -c "LD_LIBRARY_PATH=/vendor/lib:/system/lib am start $bb_down_flash"
-     			busybox clear
-     			exit
-				fi
-				else
-			busybox echo "     When you have a time, download it"
-			busybox sleep $timeshort
-			busybox echo "          Then come back here ^~^"
-			busybox sleep $timeshort
-			busybox echo "                Good luck!!!"
-			busybox sleep $timelong
-     busybox clear
-     exit
+	if [ "$option" -eq 1 ]; then
+		busybox echo "Choose source:"
+      		busybox sleep $timeshorter
+      		busybox echo "[ 1 = App from play store | 2 = Flashable zip by me]"
+      		read -r option
+      		if [ "$option" -eq 1 ]
+      			then su -c "LD_LIBRARY_PATH=/vendor/lib:/system/lib am start $bb_down"
+      		elif [ "$option" -eq 2 ]
+      			then su -c "LD_LIBRARY_PATH=/vendor/lib:/system/lib am start $bb_down_flash"
 		fi
+		busybox clear
+		exit
+	else
+		busybox echo "     When you have a time, download it"
+		busybox sleep $timeshort
+		busybox echo "          Then come back here ^~^"
+		busybox sleep $timeshort
+		busybox echo "               Good luck!!!"
+		busybox sleep $timelong
+		busybox clear
+		exit
+	fi
 fi
+busybox echo ""
+busybox echo ""
+busybox sleep $timelong
+busybox echo "Checking selinux status"
+busybox echo ""
+busybox sleep $timeshort
+if [[ "$sestat" == "Permissive" || "$sestat" == "Enforcing" ]]
+	then busybox echo "Your selinux status is $sestat"
+	else busybox echo "Your device doesn't have selinux, this option is unavailable"
+fi
+busybox echo ""
 busybox echo ""
 busybox sleep $timelong
 busybox echo "Checking init.d support"
 busybox echo ""
 busybox sleep $timeshort
-        if [ -e $init ]; then
-busybox echo "GOOD!!! You have init.d support"
+if [ -e $init ]; then
+	busybox echo "GOOD!!! You have init.d support"
+	busybox sleep $timelong
+else
+	busybox echo "Baad :( Please enable the init.d support"
+	busybox sleep $timeshort
+	busybox echo "Installer will now create only the"
+	busybox echo "         init.d folder"
+	busybox sleep $timeshort
+	busybox echo "You will need to enable init.d support later"
+	busybox echo "         from L SPEED WIZARD"
+	busybox sleep $timelong
+	busybox mkdir -p $init/
+	busybox chmod 755 $init/
+	busybox chown 0:0 $init/
+fi
+busybox clear
+busybox echo ""
 busybox sleep $timelong
-    else
-busybox echo "Baad :( Please enable init.d support"
-busybox sleep $timeshort
-busybox echo " Installer will now create"
-busybox sleep $timeshort
-busybox echo "only init.d folder"
-busybox sleep $timeshort
-busybox echo "You need to enable init.d support later"
-busybox echo "from L SPEED WIZARD"
-busybox sleep $timelong
-busybox mkdir -p $init/
-busybox chmod 755 $init/
-busybox chown 0:0 $init/
-  fi
+busybox echo "Now we will do some core working!!"
+busybox echo ""; busybox echo ""; busybox echo ""
+busybox echo "Wait a moment..."
 if [ ! -d $core ]; then
 busybox mkdir -p $core
 busybox chmod 755 $core
@@ -169,9 +182,8 @@ busybox mkdir -p $core/LOGS
 busybox chmod 755 $core/LOGS
 touch $core/LOGS/dummy_file
 fi
-  for file in $core/LS00*
-do
-  busybox rm -rf $file 2>/dev/null
+for file in $core/LS00*
+	do busybox rm -rf $file 2>/dev/null
 done
 #
 #
@@ -4571,25 +4583,11 @@ busybox chmod 755 $init/LSPEED
 busybox chown 0:2000 $init/LSPEED
 sh $init/LSPEED
 fi
-busybox sleep $timelong
-  busybox clear
-busybox echo "Checking selinux status"
+busybox "Done"
 busybox sleep $timeshort
-if [ "$sestat" = "Enforcing" ]; then
-        busybox echo "Your selinux status is $sestat"
-          busybox echo ""; busybox echo ""; busybox echo "";
-            busybox sleep $timeshort
-             busybox echo "Time to configure L Speed ;) "
-    elif [ "$sestat" = "Permissive" ]; then
-              busybox echo "Your selinux status is $sestat"
-                busybox echo ""; busybox echo ""; busybox echo "";
-                  busybox echo "Time to configure L Speed ;) "
-          else
-             busybox echo "Your device doesn't have selinux, this option is unavailable"
-               busybox echo ""; busybox echo ""; busybox echo "";
-                 busybox sleep $timeshort
-                   busybox echo "Time to configure L Speed ;) "
-                fi
+busybox clear
+busybox sleep $timeshort
+busybox echo "      Now is time to configure L Speed ;) "
 busybox echo ""
 mount -o remount,ro / 2>/dev/null
 mount -o remount,ro / / 2>/dev/null
