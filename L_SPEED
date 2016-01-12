@@ -4245,6 +4245,12 @@ busybox chown 0:0 $core/LS00Boost
 cp -f $core/LS00Boost /system/xbin/boost
 busybox chmod 755 /system/xbin/boost
 busybox chown 0:2000 /system/xbin/boost
+#
+#
+#   Default Configs
+#
+#
+#
 mount -o remount,rw / 2>/dev/null
 mount -o remount,rw / / 2>/dev/null
 mount -o remount,rw rootfs 2>/dev/null
@@ -4577,6 +4583,12 @@ busybox mount -o remount,ro / / 2>/dev/null
 busybox mount -o remount,ro rootfs 2>/dev/null
 busybox mount -o remount,ro /system 2>/dev/null
 busybox mount -o remount,ro /system /system 2>/dev/null
+#
+#
+#   Core Menu
+#
+#
+#
 while true; do
 ${lsclear}
 mount -o remount,rw / 2>/dev/null
