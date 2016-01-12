@@ -20,14 +20,15 @@ ver="4.3.3"
 # You should have received a copy of the GNU General Public License along with this program. If not, see <http://www.gnu.org/licenses/>.
 #=======================================================================#
 
-if [ -e /system/bin/busybox ]; then
-busybox chmod 111 /system/bin/busybox
-elif [ -e /system/xbin/busybox ]; then
-busybox chmod 111 /system/xbin/busybox
+if [ -e /system/bin/busybox ]
+	then busybox chmod 111 /system/bin/busybox 2>/dev/null
+elif [ -e /system/xbin/busybox ]
+	then busybox chmod 111 /system/xbin/busybox 2>/dev/null
 fi
-if [ ! -d "/data/local/busybox*/xbin" ]; then export "PATH"=$PATH:/system/xbin:/sbin:/vendor/bin:/system/sbin:/system/bin
+if [ ! -d "/data/local/busybox*/xbin" ]
+then export "PATH"=$PATH:/system/xbin:/sbin:/vendor/bin:/system/sbin:/system/bin
 else export "PATH"=$PATH:/system/xbin:/sbin:/vendor/bin:/system/sbin:/system/bin:$(busybox ls -d /data/local/busybox*/xbin 2>/dev/null)
-fi 2>/dev/null
+fi
 divider="==============================================="
 timeblast="0.1"
 timeshorter="0.5"
@@ -49,18 +50,15 @@ id="$(id)"; id="${id#*=}"; id="${id%%\(*}"; id="${id%% *}"
 if [ "$id" != "0" ] && [ "$id" != "root" ]; then
 busybox sleep $timeshort
 busybox echo ""
-busybox echo ""
-busybox echo "    You don't have ROOT..."
-busybox echo "    Please type su first (terminal emulator)"
-busybox echo "    Enable run as ROOT (script manager)"
+busybox echo "   You don't have ROOT access..."
+busybox echo "   Please type su first (in Terminal Emulator)"
+busybox echo "   Or enable run as ROOT (on script manager)"
 busybox echo ""
 busybox sleep $timeshort
 exit
 fi
 busybox clear
-busybox echo ""
-busybox echo ""
-busybox echo ""
+busybox echo ""; busybox echo ""; busybox echo ""
 busybox echo " Welcome"
 busybox sleep $timeshort
 busybox echo "      to L SPEED"
@@ -68,9 +66,7 @@ busybox sleep $timeshorter
 busybox echo "              VECTOR"
 busybox sleep $timeshorter
 busybox echo "                    by Paget96"
-busybox echo ""
-busybox echo ""
-busybox echo ""
+busybox echo ""; busybox echo ""; busybox echo ""
 busybox sleep $timeshorter
 busybox echo ""
 busybox sleep $timeshorter
@@ -79,8 +75,6 @@ busybox echo "                    Hell yeah!!!"
 busybox echo ""
 busybox sleep $timelong
 busybox clear
-busybox echo ""
-busybox echo ""
 mount -o remount,rw / 2>/dev/null
 mount -o remount,rw / / 2>/dev/null
 mount -o remount,rw rootfs 2>/dev/null
@@ -91,77 +85,92 @@ busybox mount -o remount,rw / / 2>/dev/null
 busybox mount -o remount,rw rootfs 2>/dev/null
 busybox mount -o remount,rw /system 2>/dev/null
 busybox mount -o remount,rw /system /system 2>/dev/null
-if [ ! -d "/sqlite_stmt_journals" ]; then
-  busybox mkdir -p /sqlite_stmt_journals;
+if [ ! -d "/sqlite_stmt_journals" ]
+	then busybox mkdir -p /sqlite_stmt_journals;
 fi
 if [ ! -d /system/su.d ]; then
 busybox mkdir -p /system/su.d/
 busybox chmod 755 /system/su.d/
 fi
+busybox echo ""
+busybox echo "       Checking some important parts :D"
+busybox sleep $timeshort
+busybox echo ""
+busybox echo $divider
+busybox echo ""
 busybox echo "Checking busybox"
-    busybox sleep $timeshort
-        busybox echo ""
-        busybox echo ""
-if [ -e $bb1 ]; then
-	busybox echo "Awesome, you have $bbver"
-	busybox echo ""
-  elif [ -e $bb2 ]; then
-	busybox echo "Awesome, you have $bbver"
-	busybox echo ""
-		else
+busybox sleep $timeshort
+busybox echo ""
+if [[ -e $bb1 || -e $bb2 ]]
+	then busybox echo "Awesome, you have $bbver"
+else
 	busybox echo "You don't have busybox"
 	busybox sleep $timeshorter
 	busybox echo "Do you want to download it now??"
   	busybox sleep $timeshorter
 	busybox echo "[ 1 = Download now | 2 = I will do that later ]:"
 	read -r option
-		if [ "$option" -eq 1 ]; then
-			busybox echo "Choose source :"
-      			busybox sleep $timeshorter
-      			busybox echo "[ 1 = App from play store | 2 = Flashable zip by me]"
-      			read -r option
-      			if [ "$option" -eq 1 ]; then
-        			su -c "LD_LIBRARY_PATH=/vendor/lib:/system/lib am start $bb_down"
-				  busybox clear
-     			exit
-      			elif [ "$option" -eq 2 ]; then
-        			su -c "LD_LIBRARY_PATH=/vendor/lib:/system/lib am start $bb_down_flash"
-     			busybox clear
-     			exit
-				fi
-				else
-			busybox echo "     When you have a time, download it"
-			busybox sleep $timeshort
-			busybox echo "          Then come back here ^~^"
-			busybox sleep $timeshort
-			busybox echo "                Good luck!!!"
-			busybox sleep $timelong
-     busybox clear
-     exit
+	if [ "$option" -eq 1 ]; then
+		busybox echo "Choose source:"
+      		busybox sleep $timeshorter
+      		busybox echo "[ 1 = App from play store | 2 = Flashable zip by me]"
+      		read -r option
+      		if [ "$option" -eq 1 ]
+      			then su -c "LD_LIBRARY_PATH=/vendor/lib:/system/lib am start $bb_down"
+      		elif [ "$option" -eq 2 ]
+      			then su -c "LD_LIBRARY_PATH=/vendor/lib:/system/lib am start $bb_down_flash"
 		fi
+		busybox clear
+		exit
+	else
+		busybox echo "     When you have a time, download it"
+		busybox sleep $timeshort
+		busybox echo "          Then come back here ^~^"
+		busybox sleep $timeshort
+		busybox echo "               Good luck!!!"
+		busybox sleep $timelong
+		busybox clear
+		exit
+	fi
 fi
+busybox echo ""
+busybox echo ""
+busybox sleep $timelong
+busybox echo "Checking selinux status"
+busybox echo ""
+busybox sleep $timeshort
+if [[ "$sestat" == "Permissive" || "$sestat" == "Enforcing" ]]
+	then busybox echo "Your selinux status is $sestat"
+	else busybox echo "Your device doesn't have selinux, this option is unavailable"
+fi
+busybox echo ""
 busybox echo ""
 busybox sleep $timelong
 busybox echo "Checking init.d support"
 busybox echo ""
 busybox sleep $timeshort
-        if [ -e $init ]; then
-busybox echo "GOOD!!! You have init.d support"
+if [ -e $init ]
+	then busybox echo "GOOD, you have init.d support"
+else
+	busybox echo "Baad :( Please enable the init.d support"
+	busybox sleep $timeshort
+	busybox echo "Installer will now create only the"
+	busybox echo "         init.d folder"
+	busybox sleep $timeshort
+	busybox echo "You will need to enable init.d support later"
+	busybox echo "         from L SPEED WIZARD"
+	busybox sleep $timelong
+	busybox mkdir -p $init/
+	busybox chmod 755 $init/
+	busybox chown 0:0 $init/
+fi
 busybox sleep $timelong
-    else
-busybox echo "Baad :( Please enable init.d support"
+busybox clear
+busybox echo ""
 busybox sleep $timeshort
-busybox echo " Installer will now create"
-busybox sleep $timeshort
-busybox echo "only init.d folder"
-busybox sleep $timeshort
-busybox echo "You need to enable init.d support later"
-busybox echo "from L SPEED WIZARD"
-busybox sleep $timelong
-busybox mkdir -p $init/
-busybox chmod 755 $init/
-busybox chown 0:0 $init/
-  fi
+busybox echo "      Now is time to configure L Speed ;) "
+busybox echo ""; busybox echo ""; busybox echo ""
+busybox echo "Wait a moment..."
 if [ ! -d $core ]; then
 busybox mkdir -p $core
 busybox chmod 755 $core
@@ -169,9 +178,8 @@ busybox mkdir -p $core/LOGS
 busybox chmod 755 $core/LOGS
 touch $core/LOGS/dummy_file
 fi
-  for file in $core/LS00*
-do
-  busybox rm -rf $file 2>/dev/null
+for file in $core/LS00*
+	do busybox rm -rf $file 2>/dev/null
 done
 #
 #
@@ -218,16 +226,16 @@ busybox mount -o remount,ro /system 2>/dev/null
 busybox mount -o remount,ro /system /system 2>/dev/null
 
 EOF
-	busybox chmod 755 $core/LS00Init_d.sh
-	busybox chown 0:0 $core/LS00Init_d.sh
+busybox chmod 755 $core/LS00Init_d.sh
+busybox chown 0:0 $core/LS00Init_d.sh
 if [ -f /system/su.d/LS00init_d.sh ]; then
-  busybox rm -rf /system/su.d/LS00init_d.sh
-  busybox cp -f $core/LS00Init_d.sh /system/su.d/LS00init_d.sh
+	busybox rm -rf /system/su.d/LS00init_d.sh
+	busybox cp -f $core/LS00Init_d.sh /system/su.d/LS00init_d.sh
 	busybox chmod 755 /system/su.d/LS00init_d.sh
 	busybox chown 0:2000 /system/su.d/LS00init_d.sh
 elif [ -f /system/etc/install-recovery-2.sh ]; then
-  busybox rm -rf /system/etc/install-recovery-2.sh
-  busybox cp -f $core/LS00Init_d.sh /system/etc/install-recovery-2.sh
+	busybox rm -rf /system/etc/install-recovery-2.sh
+	busybox cp -f $core/LS00Init_d.sh /system/etc/install-recovery-2.sh
   	busybox chmod 755 /system/etc/install-recovery-2.sh
 	busybox chown 0:2000 /system/etc/install-recovery-2.sh
 fi
@@ -282,10 +290,10 @@ EOF
 busybox chmod 755 $core/LS00Sysinit
 busybox chown 0:0 $core/LS00Sysinit
 if [ -f /system/xbin/sysinit ]; then
-  busybox rm -rf /system/xbin/sysinit
-  busybox cp -f $core/LS00Sysinit /system/xbin/sysinit
-  busybox chmod 755 /system/xbin/sysinit
-  busybox chown 0:0 /system/xbin/sysinit
+	busybox rm -rf /system/xbin/sysinit
+	busybox cp -f $core/LS00Sysinit /system/xbin/sysinit
+	busybox chmod 755 /system/xbin/sysinit
+	busybox chown 0:0 /system/xbin/sysinit
 fi
 #
 #
@@ -387,14 +395,13 @@ busybox echo "" | busybox tee -a \$LS
 busybox echo "CPU multicore power save is running..." | busybox tee -a \$LS
 
 # MCPS
-if [ -f "/sys/devices/system/cpu/sched_mc_power_savings" ]; then
-busybox echo "2" > /sys/devices/system/cpu/sched_mc_power_savings;
-fi;
+if [ -f "/sys/devices/system/cpu/sched_mc_power_savings" ]
+	then busybox echo "2" > /sys/devices/system/cpu/sched_mc_power_savings
+fi
 
-if busybox grep 2 /sys/devices/system/cpu/sched_mc_power_savings; then
-busybox echo "Feature enabled" | busybox tee -a \$LS; else
-busybox echo "This feature is not avaible for you, because your device is not multi core or your CPU doesn't support it" | busybox tee -a \$LS
-
+if busybox grep 2 /sys/devices/system/cpu/sched_mc_power_savings
+	then busybox echo "Feature enabled" | busybox tee -a \$LS
+	else busybox echo "This feature is not avaible for you, because your device is not multi core or your CPU doesn't support it" | busybox tee -a \$LS
 fi
 
 mount -o remount,ro / 2>/dev/null
@@ -453,26 +460,26 @@ busybox echo "" | busybox tee -a \$LS
 busybox echo "Optimizing CPU.." | busybox tee -a \$LS
 
 # CPU_Optimizer
-if [ -e /dev/cpuctl/cpu.shares ]; then
-busybox echo "1024" > /dev/cpuctl/cpu.shares
-fi;
-if [ -e /dev/cpuctl/cpu.rt_runtime_us ]; then
-busybox echo "800000" > /dev/cpuctl/cpu.rt_runtime_us
-fi;
-if [ -e /dev/cpuctl/cpu.rt_period_us ]; then
-busybox echo "1000000" > /dev/cpuctl/cpu.rt_period_us
-fi;
+if [ -e /dev/cpuctl/cpu.shares ]
+	then busybox echo "1024" > /dev/cpuctl/cpu.shares
+fi
+if [ -e /dev/cpuctl/cpu.rt_runtime_us ]
+	then busybox echo "800000" > /dev/cpuctl/cpu.rt_runtime_us
+fi
+if [ -e /dev/cpuctl/cpu.rt_period_us ]
+	then busybox echo "1000000" > /dev/cpuctl/cpu.rt_period_us
+fi
 
 # 6.0%
-if [ -e /dev/cpuctl/bg_non_interactive/cpu.shares ]; then
-busybox echo "62" > /dev/cpuctl/bg_non_interactive/cpu.shares
-fi;
-if [ -e /dev/cpuctl/bg_non_interactive/cpu.rt_runtime_us ]; then
-busybox echo "700000" > /dev/cpuctl/bg_non_interactive/cpu.rt_runtime_us
-fi;
-if [ -e /dev/cpuctl/bg_non_interactive/cpu.rt_runtime_us ]; then
-busybox echo "1000000" > /dev/cpuctl/bg_non_interactive/cpu.rt_period_us
-fi;
+if [ -e /dev/cpuctl/bg_non_interactive/cpu.shares ]
+	then busybox echo "62" > /dev/cpuctl/bg_non_interactive/cpu.shares
+fi
+if [ -e /dev/cpuctl/bg_non_interactive/cpu.rt_runtime_us ]
+	then busybox echo "700000" > /dev/cpuctl/bg_non_interactive/cpu.rt_runtime_us
+fi
+if [ -e /dev/cpuctl/bg_non_interactive/cpu.rt_runtime_us ]
+	then busybox echo "1000000" > /dev/cpuctl/bg_non_interactive/cpu.rt_period_us
+fi
 
 busybox echo "" | busybox tee -a \$LS
 busybox echo "CPU is optimized" | busybox tee -a \$LS
@@ -792,10 +799,9 @@ busybox sysctl -e -w kernel.random.write_wakeup_threshold=256
 
 busybox sleep 1
 
-if grep "128" proc/sys/kernel/random/read_wakeup_threshold; then
-busybox echo "Light seeder profile is activated.." | busybox tee -a \$LS
-else
-busybox echo "Light seeder profile is not activated.." | busybox tee -a \$LS
+if grep "128" proc/sys/kernel/random/read_wakeup_threshold
+	then busybox echo "Light seeder profile is activated.." | busybox tee -a \$LS
+	else busybox echo "Light seeder profile is not activated.." | busybox tee -a \$LS
 fi
 
 mount -o remount,ro / 2>/dev/null
@@ -858,10 +864,9 @@ busybox sysctl -e -w kernel.random.write_wakeup_threshold=896
 
 busybox sleep 1
 
-if grep "64" /proc/sys/kernel/random/read_wakeup_threshold; then
-busybox echo "Enlarger seeder profile is activated.." | busybox tee -a \$LS
-else
-busybox echo "Enlarger seeder profile is not activated.." | busybox tee -a \$LS
+if grep "64" /proc/sys/kernel/random/read_wakeup_threshold
+	then busybox echo "Enlarger seeder profile is activated.." | busybox tee -a \$LS
+	else busybox echo "Enlarger seeder profile is not activated.." | busybox tee -a \$LS
 fi
 
 mount -o remount,ro / 2>/dev/null
@@ -924,10 +929,9 @@ busybox sysctl -e -w kernel.random.write_wakeup_threshold=2048
 
 busybox sleep 1
 
-if grep "1366" /proc/sys/kernel/random/read_wakeup_threshold; then
-busybox echo "Moderate seeder profile is activated.." | busybox tee -a \$LS
-else
-busybox echo "Moderate seeder profile is not activated.." | busybox tee -a \$LS
+if grep "1366" /proc/sys/kernel/random/read_wakeup_threshold
+	then busybox echo "Moderate seeder profile is activated.." | busybox tee -a \$LS
+	else busybox echo "Moderate seeder profile is not activated.." | busybox tee -a \$LS
 fi
 
 mount -o remount,ro / 2>/dev/null
@@ -990,10 +994,9 @@ busybox sysctl -e -w kernel.random.write_wakeup_threshold=2048
 
 busybox sleep 1
 
-if grep "1708" /proc/sys/kernel/random/read_wakeup_threshold; then
-busybox echo "Aggressive seeder profile is activated.." | busybox tee -a \$LS
-else
-busybox echo "Aggressive seeder profile is not activated.." | busybox tee -a \$LS
+if grep "1708" /proc/sys/kernel/random/read_wakeup_threshold
+	then busybox echo "Aggressive seeder profile is activated.." | busybox tee -a \$LS
+	else busybox echo "Aggressive seeder profile is not activated.." | busybox tee -a \$LS
 fi
 
 mount -o remount,ro / 2>/dev/null
@@ -1053,8 +1056,8 @@ busybox echo "Tweaking minfree, cost & debug values..." | busybox tee -a \$LS
 
 # Cost
 if [ -e /sys/module/lowmemorykiller/parameters/cost ]; then
-busybox chmod 644 /sys/module/lowmemorykiller/parameters/cost
-busybox echo "64" > /sys/module/lowmemorykiller/parameters/cost
+	busybox chmod 644 /sys/module/lowmemorykiller/parameters/cost
+	busybox echo "64" > /sys/module/lowmemorykiller/parameters/cost
 fi
 
 # Minfree Values
@@ -1129,8 +1132,8 @@ busybox echo "Tweaking minfree, cost & debug values..." | busybox tee -a \$LS
 
 # Cost
 if [ -e /sys/module/lowmemorykiller/parameters/cost ]; then
-busybox chmod 644 /sys/module/lowmemorykiller/parameters/cost
-busybox echo "32" > /sys/module/lowmemorykiller/parameters/cost
+	busybox chmod 644 /sys/module/lowmemorykiller/parameters/cost
+	busybox echo "32" > /sys/module/lowmemorykiller/parameters/cost
 fi
 
 # Minfree Values
@@ -1205,8 +1208,8 @@ busybox echo "Tweaking minfree, cost & debug values..." | busybox tee -a \$LS
 
 # Cost
 if [ -e /sys/module/lowmemorykiller/parameters/cost ]; then
-busybox chmod 644 /sys/module/lowmemorykiller/parameters/cost
-busybox echo "16" > /sys/module/lowmemorykiller/parameters/cost
+	busybox chmod 644 /sys/module/lowmemorykiller/parameters/cost
+	busybox echo "16" > /sys/module/lowmemorykiller/parameters/cost
 fi
 
 # Minfree Values
@@ -1709,13 +1712,12 @@ busybox echo "" | busybox tee -a \$LS
 busybox echo "Activating light kernel tweaks.." | busybox tee -a \$LS
 
 # Kernel_tweaks
-if [ -e /sys/kernel/dyn_fsync/Dyn_fsync_active ]; then
-busybox echo "1" > /sys/kernel/dyn_fsync/Dyn_fsync_active
+if [ -e /sys/kernel/dyn_fsync/Dyn_fsync_active ]
+	then busybox echo "1" > /sys/kernel/dyn_fsync/Dyn_fsync_active
 fi
-if grep 1 /sys/kernel/dyn_fsync/Dyn_fsync_active; then
-busybox echo "Dyn_fsync enabled" | busybox tee -a \$LS
-else
-busybox echo "Dyn_fsync doesn't exist on your kernel" | busybox tee -a \$LS
+if grep 1 /sys/kernel/dyn_fsync/Dyn_fsync_active
+	then busybox echo "Dyn_fsync enabled" | busybox tee -a \$LS
+	else busybox echo "Dyn_fsync doesn't exist on your kernel" | busybox tee -a \$LS
 fi
 
 #FS tweak
@@ -1739,19 +1741,19 @@ busybox sysctl -w vm.min_free_order_shift=4
 busybox sysctl -w vm.oom_dump_tasks=1
 busybox sysctl -w vm.page-cluster=2
 if [ "\$mem" -lt 524288 ]; then
-    busybox sysctl -w vm.dirty_background_ratio=15
-    busybox sysctl -w vm.dirty_ratio=30
+	busybox sysctl -w vm.dirty_background_ratio=15
+	busybox sysctl -w vm.dirty_ratio=30
 elif [ "\$mem" -lt 1048576 ]; then
-    busybox sysctl -w vm.dirty_background_ratio=10
-    busybox sysctl -w vm.dirty_ratio=20
-  else
-    busybox sysctl -w vm.dirty_background_ratio=5
-    busybox sysctl -w vm.dirty_ratio=10
+	busybox sysctl -w vm.dirty_background_ratio=10
+	busybox sysctl -w vm.dirty_ratio=20
+else
+	busybox sysctl -w vm.dirty_background_ratio=5
+	busybox sysctl -w vm.dirty_ratio=10
 fi
 if [ -e /sys/block/zram* ]; then
-		busybox sysctl -w vm.swappiness=40
-      else
-		busybox sysctl -w vm.swappiness=20
+	busybox sysctl -w vm.swappiness=40
+else
+	busybox sysctl -w vm.swappiness=20
 fi
 busybox echo "" | busybox tee -a \$LS
 busybox echo "Light kernel tweaks are activated" | busybox tee -a \$LS
@@ -1820,13 +1822,12 @@ busybox sysctl -w kernel.shmall=2097152
 busybox sysctl -w kernel.shmmax=268435456
 busybox sysctl -w kernel.sem='250 32000 100 128'
 
-if [ -e /sys/kernel/dyn_fsync/Dyn_fsync_active ]; then
-busybox echo "1" > /sys/kernel/dyn_fsync/Dyn_fsync_active
+if [ -e /sys/kernel/dyn_fsync/Dyn_fsync_active ]
+	then busybox echo "1" > /sys/kernel/dyn_fsync/Dyn_fsync_active
 fi
-if grep 1 /sys/kernel/dyn_fsync/Dyn_fsync_active; then
-busybox echo "Dyn_fsync enabled" | busybox tee -a \$LS
-else
-busybox echo "Dyn_fsync doesn't exist on your kernel" | busybox tee -a \$LS
+if grep 1 /sys/kernel/dyn_fsync/Dyn_fsync_active
+	then busybox echo "Dyn_fsync enabled" | busybox tee -a \$LS
+	else busybox echo "Dyn_fsync doesn't exist on your kernel" | busybox tee -a \$LS
 fi
 
 #FS tweak
@@ -1853,9 +1854,9 @@ busybox sysctl -w vm.page-cluster=2
 busybox sysctl -w vm.dirty_background_ratio=20
 busybox sysctl -w vm.dirty_ratio=40
 if [ -e /sys/block/zram* ]; then
-		busybox sysctl -w vm.swappiness=40
-      else
-		busybox sysctl -w vm.swappiness=20
+	busybox sysctl -w vm.swappiness=40
+else
+	busybox sysctl -w vm.swappiness=20
 fi
 busybox echo "" | busybox tee -a \$LS
 busybox echo "Heavy kernel tweaks are activated" | busybox tee -a \$LS
@@ -2245,17 +2246,17 @@ busybox echo "Activating I/O boost tweak..." | busybox tee -a \$LS
 
 for S in /sys/block/*
 do
-  if [ -f \$S/queue/rq_affinity ]; then
-    busybox echo "1" > \$S/queue/rq_affinity
-  fi
-	if [ -f \$S/queue/rotational ]; then
-		busybox echo "0" > \$S/queue/rotational
+	if [ -f \$S/queue/rq_affinity ]
+		then busybox echo "1" > \$S/queue/rq_affinity
 	fi
-	if [ -f \$S/queue/iostats ]; then
-		busybox echo "0" > \$S/queue/iostats
+	if [ -f \$S/queue/rotational ]
+		then busybox echo "0" > \$S/queue/rotational
 	fi
-	if [ -f \$S/queue/nomerges ]; then
-		busybox echo "1" > \$S/queue/nomerges
+	if [ -f \$S/queue/iostats ]
+		then busybox echo "0" > \$S/queue/iostats
+	fi
+	if [ -f \$S/queue/nomerges ]
+		then busybox echo "1" > \$S/queue/nomerges
 	fi
 done
 
@@ -2322,8 +2323,8 @@ busybox echo "Activating I/O extend queue..." | busybox tee -a \$LS
 MMC=/sys/block/mmc*
 for S in \$MMC;
 do
-	if [ -f \$S/queue/nr_requests ]; then
-		busybox echo "1024" > \$S/queue/nr_requests
+	if [ -f \$S/queue/nr_requests ]
+		then busybox echo "1024" > \$S/queue/nr_requests
 	fi
 done
 
@@ -2388,16 +2389,16 @@ busybox echo "" | busybox tee -a \$LS
 busybox echo "Disabling debugging.." | busybox tee -a \$LS
 
 if [ -e /sys/module/lowmemorykiller/parameters/debug_level ]; then
-    busybox chmod 644 /sys/module/lowmemorykiller/parameters/debug_level
-    busybox echo "0" > /sys/module/lowmemorykiller/parameters/debug_level
+	busybox chmod 644 /sys/module/lowmemorykiller/parameters/debug_level
+	busybox echo "0" > /sys/module/lowmemorykiller/parameters/debug_level
 fi
 
 for parameter in /sys/module/*
-   do
-if [ -e $parameter/parameters/debug_mask ]; then
-    busybox chmod 644 $parameter/parameters/debug_mask
-    busybox echo "0" > $parameter/parameters/debug_mask
-fi
+do
+	if [ -e $parameter/parameters/debug_mask ]; then
+		busybox chmod 644 $parameter/parameters/debug_mask
+		busybox echo "0" > $parameter/parameters/debug_mask
+	fi
 done
 
 busybox echo "" | busybox tee -a \$LS
@@ -2524,31 +2525,31 @@ busybox echo "Applying kernel sleepers.." | busybox tee -a \$LS
 
 # Kernel sleepers
 if [ -e "/sys/kernel/debug/sched_features" ]; then
-busybox chmod 644 /sys/kernel/debug/sched_features
-mount -t debugfs none /sys/kernel/debug
-busybox mount -t debugfs none /sys/kernel/debug
-busybox echo "NO_AFFINE_WAKEUPS " > /sys/kernel/debug/sched_features
-busybox echo "ARCH_POWER " >> /sys/kernel/debug/sched_features
-busybox echo "CACHE_HOT_BUDDY " >> /sys/kernel/debug/sched_features
-busybox echo "NO_DOUBLE_TICK " >> /sys/kernel/debug/sched_features
-busybox echo "NO_FORCE_SD_OVERLAP " >> /sys/kernel/debug/sched_features
-busybox echo "GENTLE_FAIR_SLEEPERS " >> /sys/kernel/debug/sched_features
-busybox echo "NO_HRTICK " >> /sys/kernel/debug/sched_features
-busybox echo "LAST_BUDDY " >> /sys/kernel/debug/sched_features
-busybox echo "LB_BIAS " >> /sys/kernel/debug/sched_features
-busybox echo "NO_LB_MIN " >> /sys/kernel/debug/sched_features
-busybox echo "NO_NEW_FAIR_SLEEPERS " >> /sys/kernel/debug/sched_features
-busybox echo "NO_NEXT_BUDDY " >> /sys/kernel/debug/sched_features
-busybox echo "NONTASK_POWER " >> /sys/kernel/debug/sched_features
-busybox echo "NO_NORMALIZED_SLEEPERS " >> /sys/kernel/debug/sched_features
-busybox echo "NO_OWNER_SPIN " >> /sys/kernel/debug/sched_features
-busybox echo "RT_RUNTIME_SHARE " >> /sys/kernel/debug/sched_features
-busybox echo "START_DEBIT " >> /sys/kernel/debug/sched_features
-busybox echo "TTWU_QUEUE " >> /sys/kernel/debug/sched_features
-busybox echo "NO_WAKEUP_OVERLAP " >> /sys/kernel/debug/sched_feature
-busybox echo "WAKEUP_PREEMPTION " >> /sys/kernel/debug/sched_features
-umount /sys/kernel/debug
-busybox umount /sys/kernel/debug
+	busybox chmod 644 /sys/kernel/debug/sched_features
+	mount -t debugfs none /sys/kernel/debug
+	busybox mount -t debugfs none /sys/kernel/debug
+	busybox echo "NO_AFFINE_WAKEUPS " > /sys/kernel/debug/sched_features
+	busybox echo "ARCH_POWER " >> /sys/kernel/debug/sched_features
+	busybox echo "CACHE_HOT_BUDDY " >> /sys/kernel/debug/sched_features
+	busybox echo "NO_DOUBLE_TICK " >> /sys/kernel/debug/sched_features
+	busybox echo "NO_FORCE_SD_OVERLAP " >> /sys/kernel/debug/sched_features
+	busybox echo "GENTLE_FAIR_SLEEPERS " >> /sys/kernel/debug/sched_features
+	busybox echo "NO_HRTICK " >> /sys/kernel/debug/sched_features
+	busybox echo "LAST_BUDDY " >> /sys/kernel/debug/sched_features
+	busybox echo "LB_BIAS " >> /sys/kernel/debug/sched_features
+	busybox echo "NO_LB_MIN " >> /sys/kernel/debug/sched_features
+	busybox echo "NO_NEW_FAIR_SLEEPERS " >> /sys/kernel/debug/sched_features
+	busybox echo "NO_NEXT_BUDDY " >> /sys/kernel/debug/sched_features
+	busybox echo "NONTASK_POWER " >> /sys/kernel/debug/sched_features
+	busybox echo "NO_NORMALIZED_SLEEPERS " >> /sys/kernel/debug/sched_features
+	busybox echo "NO_OWNER_SPIN " >> /sys/kernel/debug/sched_features
+	busybox echo "RT_RUNTIME_SHARE " >> /sys/kernel/debug/sched_features
+	busybox echo "START_DEBIT " >> /sys/kernel/debug/sched_features
+	busybox echo "TTWU_QUEUE " >> /sys/kernel/debug/sched_features
+	busybox echo "NO_WAKEUP_OVERLAP " >> /sys/kernel/debug/sched_feature
+	busybox echo "WAKEUP_PREEMPTION " >> /sys/kernel/debug/sched_features
+	umount /sys/kernel/debug
+	busybox umount /sys/kernel/debug
 fi
 
 busybox echo "" | busybox tee -a \$LS
@@ -2678,14 +2679,12 @@ L=256
 MMC=/sys/block/mmc*
 for S in \$MMC;
 do
-	if [ -f \$S/queue/read_ahead_kb ];
-	then
-		busybox echo "\$L" > \$S/queue/read_ahead_kb;
-	fi;
-	if [ -f \$S/bdi/read_ahead_kb ];
-        then
-              busybox echo "\$L" > \$S/bdi/read_ahead_kb;
-        fi;
+	if [ -f \$S/queue/read_ahead_kb ]
+		then busybox echo "\$L" > \$S/queue/read_ahead_kb
+	fi
+	if [ -f \$S/bdi/read_ahead_kb ]
+		then busybox echo "\$L" > \$S/bdi/read_ahead_kb
+	fi
 done
 
 busybox echo "" | busybox tee -a \$LS
@@ -2747,50 +2746,47 @@ busybox echo "" | busybox tee -a \$LS
 busybox echo "Starting Automatic ZipAlign" | busybox tee -a \$LS
 
 if [ -f /system/xbin/zipalign ]; then
+	ZIPALIGNDB=/data/zipalign.db
+	if [ ! -f \$ZIPALIGNDB ]; then
+		touch \$ZIPALIGNDB
+	fi
 
-ZIPALIGNDB=/data/zipalign.db
-
-if [ ! -f \$ZIPALIGNDB ]; then
-	touch \$ZIPALIGNDB;
-fi;
-
-for DIR in /system/app /data/app /system/priv-app;
-do
-	cd \$DIR;
-	for APK in *.apk */*.apk;
+	for DIR in /system/app /data/app /system/priv-app
 	do
-		if [ \$APK -ot \$ZIPALIGNDB ] && [ \$(grep "\$DIR/\$APK" \$ZIPALIGNDB|wc -l) -gt 0 ]; then
-			echo "Already checked: \$DIR/\$APK" | tee -a \$LS;
-		else
-			ZIPCHECK=\$(/system/xbin/zipalign -c -v 4 \$APK | grep FAILED | wc -l);
-			if [ \$ZIPCHECK == "1" ]; then
-				echo "Now aligning: \$DIR/\$APK" | tee -a \$LS;
-				/system/xbin/zipalign -f 4 \$APK /data/local/\$APK;
-				rc="\$?";
-				if [ \$rc -eq 0 ]; then
-					if [ -e "/data/local/\$APK" ]; then
-						cp -f -p "/data/local/\$APK" "\$APK" | tee -a \$LS;
-						busybox rm -f "/data/local/\$APK";
-						grep "\$DIR/\$APK" \$ZIPALIGNDB > /dev/null || echo \$DIR/\$APK >> \$ZIPALIGNDB;
-					else
-						echo "ZipAligning \$APK Failed (no output file)"  | tee -a \$LS;
-					fi;
-				else
-					[ -f "/data/local/\$APK" ] && busybox rm -f "/data/local/\$APK"
-					echo "ZipAligning \$APK Failed (rc: \$rc)"  | tee -a \$LS;
-				fi;
+		cd \$DIR
+		for APK in *.apk */*.apk;
+		do
+			if [ \$APK -ot \$ZIPALIGNDB ] && [ \$(grep "\$DIR/\$APK" \$ZIPALIGNDB|wc -l) -gt 0 ]
+				then echo "Already checked: \$DIR/\$APK" | tee -a \$LS
 			else
-				echo "Already aligned: \$DIR/\$APK" | tee -a \$LS;
-				grep "\$DIR/\$APK" \$ZIPALIGNDB > /dev/null || echo $DIR/\$APK >> \$ZIPALIGNDB;
-			fi;
-		fi;
-	done;
-done;
-
-busybox touch \$ZIPALIGNDB
-busybox echo "Automatic ZipAlign finished" | busybox tee -a \$LS
+				ZIPCHECK=\$(/system/xbin/zipalign -c -v 4 \$APK | grep FAILED | wc -l)
+				if [ \$ZIPCHECK == "1" ]; then
+					echo "Now aligning: \$DIR/\$APK" | tee -a \$LS
+					/system/xbin/zipalign -f 4 \$APK /data/local/\$APK
+					rc="\$?"
+					if [ \$rc -eq 0 ]; then
+						if [ -e "/data/local/\$APK" ]; then
+							cp -f -p "/data/local/\$APK" "\$APK" | tee -a \$LS
+							busybox rm -f "/data/local/\$APK"
+							grep "\$DIR/\$APK" \$ZIPALIGNDB > /dev/null || echo \$DIR/\$APK >> \$ZIPALIGNDB
+						else
+							echo "ZipAligning \$APK Failed (no output file)"  | tee -a \$LS
+						fi
+					else
+						[ -f "/data/local/\$APK" ] && busybox rm -f "/data/local/\$APK"
+						echo "ZipAligning \$APK Failed (rc: \$rc)"  | tee -a \$LS
+					fi
+				else
+					echo "Already aligned: \$DIR/\$APK" | tee -a \$LS
+					grep "\$DIR/\$APK" \$ZIPALIGNDB > /dev/null || echo $DIR/\$APK >> \$ZIPALIGNDB
+				fi
+			fi
+		done
+	done
+	busybox touch \$ZIPALIGNDB
+	busybox echo "Automatic ZipAlign finished" | busybox tee -a \$LS
 else
-busybox echo "Your device doesn't have zipalign binary" | busybox tee -a \$LS
+	busybox echo "Your device doesn't have zipalign binary" | busybox tee -a \$LS
 fi
 
 mount -o remount,ro / 2>/dev/null
@@ -2849,13 +2845,12 @@ busybox echo "" | busybox tee -a \$LS
 busybox echo "Activating fast charging mode..." | busybox tee -a \$LS
 
 #Force fast-charge
-if [ -e /sys/kernel/fast_charge/force_fast_charge ]; then
-       busybox echo "1" > /sys/kernel/fast_charge/force_fast_charge
+if [ -e /sys/kernel/fast_charge/force_fast_charge ]
+	then busybox echo "1" > /sys/kernel/fast_charge/force_fast_charge
 fi
-if grep 1 /sys/kernel/fast_charge/force_fast_charge; then
-busybox echo "Force fast charge enabled enabled" | busybox tee -a \$LS
-else
-busybox echo "Force fast charge doesn't exist on your kernel" | busybox tee -a \$LS
+if grep 1 /sys/kernel/fast_charge/force_fast_charge
+	then busybox echo "Force fast charge enabled enabled" | busybox tee -a \$LS
+	else busybox echo "Force fast charge doesn't exist on your kernel" | busybox tee -a \$LS
 fi
 
 mount -o remount,ro / 2>/dev/null
@@ -3050,8 +3045,8 @@ busybox echo "" | busybox tee -a \$LS
 busybox echo "Killing media server.." | busybox tee -a \$LS
 
 if [ "\$(pgrep media)" ] && [ "\$(pgrep mediaserver)" ]; then
-busybox killall -9 android.process.media;
-busybox killall -9 mediaserver;
+	busybox killall -9 android.process.media;
+	busybox killall -9 mediaserver;
 fi
 
 busybox echo "" | busybox tee -a \$LS
@@ -3117,18 +3112,18 @@ ZRAM=\$((RAM/4))
 algorithm=lz4
 
 if [ -f /sys/block/zram0/disksize ]; then
-if [ -f /sys/block/zram0/comp_algorithm ]; then
-busybox echo "1" > /sys/module/zswap/parameters/enabled
-busybox echo "\$algorithm" > /sys/block/zram0/comp_algorithm
-fi
-busybox swapoff /dev/block/zram0
-busybox echo "1" /sys/devices/virtual/block/zram0/reset
-busybox echo \$((ZRAM*1024*1024)) > /sys/block/zram0/disksize
-busybox mkswap /dev/block/zram0
-busybox swapon /dev/block/zram0
-busybox echo "ZRAM is activated" | busybox tee -a \$LS
+	if [ -f /sys/block/zram0/comp_algorithm ]; then
+		busybox echo "1" > /sys/module/zswap/parameters/enabled
+		busybox echo "\$algorithm" > /sys/block/zram0/comp_algorithm
+	fi
+	busybox swapoff /dev/block/zram0
+	busybox echo "1" /sys/devices/virtual/block/zram0/reset
+	busybox echo \$((ZRAM*1024*1024)) > /sys/block/zram0/disksize
+	busybox mkswap /dev/block/zram0
+	busybox swapon /dev/block/zram0
+	busybox echo "ZRAM is activated" | busybox tee -a \$LS
 else
-busybox echo "Your kernel doesn't support zram" | busybox tee -a \$LS
+	busybox echo "Your kernel doesn't support zram" | busybox tee -a \$LS
 fi
 
 mount -o remount,ro / 2>/dev/null
@@ -3192,10 +3187,9 @@ wifi_idle_wait=30000
 
 RETURN_VALUE=\$(\$sqlite /data/data/com.android.providers.settings/databases/settings.db "select value from secure where name='wifi_idle_ms'")
 
-if [ "\$RETURN_VALUE" = '' ]; then
-   \$sqlite /data/data/com.android.providers.settings/databases/settings.db "insert into secure (name, value) values ('wifi_idle_ms', \$wifi_idle_wait )"
-else
-   \$sqlite /data/data/com.android.providers.settings/databases/settings.db "update secure set value=\$wifi_idle_wait where name='wifi_idle_ms'"
+if [ "\$RETURN_VALUE" = '' ]
+	then \$sqlite /data/data/com.android.providers.settings/databases/settings.db "insert into secure (name, value) values ('wifi_idle_ms', \$wifi_idle_wait )"
+	else \$sqlite /data/data/com.android.providers.settings/databases/settings.db "update secure set value=\$wifi_idle_wait where name='wifi_idle_ms'"
 fi
 
 busybox echo "" | busybox tee -a \$LS
@@ -3529,11 +3523,11 @@ setprop ro.min.fling_velocity 8000
 busybox echo "Other parameters tweaked.." | busybox tee -a \$LS
 
 if [ -e /sys/module/tpd_setting/parameters/tpd_mode ]; then
-busybox chmod 644 /sys/module/tpd_setting/parameters/tpd_mode
-busybox echo "1" > /sys/module/tpd_setting/parameters/tpd_mode
+	busybox chmod 644 /sys/module/tpd_setting/parameters/tpd_mode
+	busybox echo "1" > /sys/module/tpd_setting/parameters/tpd_mode
 elif [ -e /sys/module/hid_magicmouse/parameters/scroll_speed ]; then
-busybox chmod 644 /sys/module/hid_magicmouse/parameters/scroll_speed
-busybox echo "63" > /sys/module/hid_magicmouse/parameters/scroll_speed
+	busybox chmod 644 /sys/module/hid_magicmouse/parameters/scroll_speed
+	busybox echo "63" > /sys/module/hid_magicmouse/parameters/scroll_speed
 fi
 
 busybox echo "" | busybox tee -a \$LS
@@ -4222,7 +4216,7 @@ busybox sleep 1
 dc=/proc/sys/vm/drop_caches
 dc_v=\$(busybox cat \$dc)
 if [ "\$dc_v" -gt 1 ]; then
-busybox sysctl -w vm.drop_caches=1
+	busybox sysctl -w vm.drop_caches=1
 fi
 busybox echo ""
 busybox echo ""
@@ -4249,6 +4243,12 @@ busybox chown 0:0 $core/LS00Boost
 cp -f $core/LS00Boost /system/xbin/boost
 busybox chmod 755 /system/xbin/boost
 busybox chown 0:2000 /system/xbin/boost
+#
+#
+#   Default Configs
+#
+#
+#
 mount -o remount,rw / 2>/dev/null
 mount -o remount,rw / / 2>/dev/null
 mount -o remount,rw rootfs 2>/dev/null
@@ -4571,26 +4571,6 @@ busybox chmod 755 $init/LSPEED
 busybox chown 0:2000 $init/LSPEED
 sh $init/LSPEED
 fi
-busybox sleep $timelong
-  busybox clear
-busybox echo "Checking selinux status"
-busybox sleep $timeshort
-if [ "$sestat" = "Enforcing" ]; then
-        busybox echo "Your selinux status is $sestat"
-          busybox echo ""; busybox echo ""; busybox echo "";
-            busybox sleep $timeshort
-             busybox echo "Time to configure L Speed ;) "
-    elif [ "$sestat" = "Permissive" ]; then
-              busybox echo "Your selinux status is $sestat"
-                busybox echo ""; busybox echo ""; busybox echo "";
-                  busybox echo "Time to configure L Speed ;) "
-          else
-             busybox echo "Your device doesn't have selinux, this option is unavailable"
-               busybox echo ""; busybox echo ""; busybox echo "";
-                 busybox sleep $timeshort
-                   busybox echo "Time to configure L Speed ;) "
-                fi
-busybox echo ""
 mount -o remount,ro / 2>/dev/null
 mount -o remount,ro / / 2>/dev/null
 mount -o remount,ro rootfs 2>/dev/null
@@ -4601,7 +4581,12 @@ busybox mount -o remount,ro / / 2>/dev/null
 busybox mount -o remount,ro rootfs 2>/dev/null
 busybox mount -o remount,ro /system 2>/dev/null
 busybox mount -o remount,ro /system /system 2>/dev/null
-busybox sleep $timelonger
+#
+#
+#   Core Menu
+#
+#
+#
 while true; do
 busybox clear
 mount -o remount,rw / 2>/dev/null
@@ -4623,7 +4608,7 @@ LEVEL=$(busybox cat /sys/class/power_supply/battery/capacity) 2>/dev/null
 if [ -f /system/su.d/LS00init_d.sh ]; then
 	init_meth="\e[1;32msu.d\e[0m"
 elif [ -f /system/etc/install-recovery-2.sh ]; then
-  init_meth="\e[1;32mInstall-recovery-2.sh\e[0m"
+	init_meth="\e[1;32mInstall-recovery-2.sh\e[0m"
 else
 	init_meth="\e[1;30mDefault\e[0m"
 fi
