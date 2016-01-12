@@ -4564,12 +4564,13 @@ busybox chmod 755 $init/LSPEED
 busybox chown 0:2000 $init/LSPEED
 sh $init/LSPEED
 fi
-busybox "Done"
+busybox echo "Done"
 busybox sleep $timeshort
 busybox clear
 busybox sleep $timeshort
 busybox echo "      Now is time to configure L Speed ;) "
-busybox echo ""
+busybox echo ""; busybox echo ""; busybox echo ""
+busybox echo "Wait a moment..."
 mount -o remount,ro / 2>/dev/null
 mount -o remount,ro / / 2>/dev/null
 mount -o remount,ro rootfs 2>/dev/null
