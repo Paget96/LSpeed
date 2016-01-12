@@ -35,7 +35,8 @@ timeshorter="0.5"
 timeshort="1"
 timelong="2"
 timelonger="5"
-lsclear="echo -e '\033c\c'"
+#lsclear="busybox echo -e \033c\c"
+lsclear="busybox clear"
 init="/system/etc/init.d" 2>/dev/null
 core="/system/L_SPEED" 2>/dev/null
 backup="/sdcard/LS_backup" 2>/dev/null
@@ -58,7 +59,7 @@ busybox echo ""
 busybox sleep $timeshort
 exit
 fi
-$lsclear
+${lsclear}
 busybox echo ""; busybox echo ""; busybox echo ""
 busybox echo " Welcome"
 busybox sleep $timeshort
@@ -75,7 +76,7 @@ busybox echo ""
 busybox echo "                    Hell yeah!!!"
 busybox echo ""
 busybox sleep $timelong
-$lsclear
+${lsclear}
 mount -o remount,rw / 2>/dev/null
 mount -o remount,rw / / 2>/dev/null
 mount -o remount,rw rootfs 2>/dev/null
@@ -121,7 +122,7 @@ else
       		elif [ "$option" -eq 2 ]
       			then su -c "LD_LIBRARY_PATH=/vendor/lib:/system/lib am start $bb_down_flash"
 		fi
-		$lsclear
+		${lsclear}
 		exit
 	else
 		busybox echo "     When you have a time, download it"
@@ -130,7 +131,7 @@ else
 		busybox sleep $timeshort
 		busybox echo "               Good luck!!!"
 		busybox sleep $timelong
-		$lsclear
+		${lsclear}
 		exit
 	fi
 fi
@@ -165,10 +166,10 @@ else
 	busybox chmod 755 $init/
 	busybox chown 0:0 $init/
 fi
-$lsclear
-busybox echo ""
 busybox sleep $timelong
-busybox echo "Now we will do some core working!!"
+${lsclear}
+busybox echo ""
+busybox echo "      Now we will do some core working!!"
 busybox echo ""; busybox echo ""; busybox echo ""
 busybox echo "Wait a moment..."
 if [ ! -d $core ]; then
@@ -4203,7 +4204,7 @@ busybox mount -o remount,rw rootfs 2>/dev/null
 busybox mount -o remount,rw /system 2>/dev/null
 busybox mount -o remount,rw /system /system 2>/dev/null
 
-$lsclear
+${lsclear}
 busybox echo ""
 busybox free | busybox awk '/Mem/{print ">>>...Memory Before Boosting: "\$4/1024" MB";}'
 busybox sleep 1
@@ -4565,7 +4566,7 @@ busybox chmod 755 $init/LSPEED
 busybox chown 0:2000 $init/LSPEED
 sh $init/LSPEED
 fi
-$lsclear
+${lsclear}
 busybox sleep $timeshort
 busybox echo "      Now is time to configure L Speed ;) "
 busybox echo ""; busybox echo ""; busybox echo ""
@@ -4582,7 +4583,7 @@ busybox mount -o remount,ro /system 2>/dev/null
 busybox mount -o remount,ro /system /system 2>/dev/null
 busybox sleep $timelonger
 while true; do
-$lsclear
+${lsclear}
 mount -o remount,rw / 2>/dev/null
 mount -o remount,rw / / 2>/dev/null
 mount -o remount,rw rootfs 2>/dev/null
@@ -4912,7 +4913,7 @@ busybox echo ""
 busybox echo -n "Please select an option:"
 read -r character
 case $character in
-1)$lsclear
+1)${lsclear}
 busybox echo ""
 busybox free | busybox awk '/Mem/{print ">>>...Memory Before Boosting: "$4/1024" MB";}'
 busybox sleep $timeshort
@@ -4934,7 +4935,7 @@ busybox echo ""
 busybox echo ""
 busybox free | busybox awk '/Mem/{print ">>>...Memory After Boosting : "$4/1024" MB";}'
 busybox sleep $timelonger;;
-2)$lsclear
+2)${lsclear}
   busybox echo ""
 if [ -e /system/bin/fstrim ]; then
 	busybox echo "Triming cache, please wait..."
@@ -4961,7 +4962,7 @@ fi
 	busybox echo ""
 	busybox echo "Done !!!"
 	busybox sleep $timelong;;
-3)$lsclear
+3)${lsclear}
 	busybox echo ""
 	busybox echo "You need full battery..."
 	busybox echo ""
@@ -4991,7 +4992,7 @@ fi
 		busybox sleep $timelong
 	fi;;
 4)while true; do
-$lsclear
+${lsclear}
 if [ -f /system/su.d/LS00init_d.sh ]; then
 	init_meth="\e[1;32msu.d\e[0m"
 elif [ -f /system/etc/install-recovery-2.sh ]; then
@@ -5051,7 +5052,7 @@ break
 	fi
 done;;
 5)while true; do
-$lsclear
+${lsclear}
 online=$(busybox cat /sys/devices/system/cpu/online)
 if [ "$online" = "0" ] ; then
 online_norm=1
@@ -5131,7 +5132,7 @@ done;;
                  busybox sleep $timelong
       fi;;
 7)while true; do
-$lsclear
+${lsclear}
 if [ -f $init/LS00Cleaner ]; then
 	cleaner="\e[1;32mOn boot\e[0m"
 else
@@ -5230,7 +5231,7 @@ busybox chown 0:2000 $init/LS00Cleaner
 fi
     elif [ "$option" -eq 4 ]; then
     while true; do
-  $lsclear
+  ${lsclear}
 busybox echo "Wiping cache parttion..."
 busybox echo ""
 busybox echo ""
@@ -5259,7 +5260,7 @@ fi
 done
     elif [ "$option" -eq 5 ]; then
     while true; do
-  $lsclear
+  ${lsclear}
 busybox echo "Wiping dalvik-cache parttion..."
 busybox echo ""
 busybox echo ""
@@ -5291,7 +5292,7 @@ break
     fi
 done;;
 8)while true; do
-$lsclear
+${lsclear}
 entropy=$(busybox cat /proc/sys/kernel/random/entropy_avail)
 if [ -f $init/LS00Seeder_Light ]; then
 	seeder_profile="\e[1;33mLight\e[0m"
@@ -5365,7 +5366,7 @@ break
     fi
 done;;
 9)while true; do
-$lsclear
+${lsclear}
 busybox chmod 644 /sys/module/lowmemorykiller/parameters/minfree
 minfree1=$(busybox awk -F , '{print $1}' /sys/module/lowmemorykiller/parameters/minfree);
 minfree2=$(busybox awk -F , '{print $2}' /sys/module/lowmemorykiller/parameters/minfree);
@@ -5435,7 +5436,7 @@ break
     fi
 done;;
 10)while true; do
-$lsclear
+${lsclear}
 if [ -f $init/LS00OOM_Enabled ]; then
 	oom="\e[1;32mEnabled\e[0m"
 elif [ -f $init/LS00OOM_Disabled ]; then
@@ -5475,7 +5476,7 @@ break
     fi
 done;;
 11)while true; do
-$lsclear
+${lsclear}
 if [ -f $init/LS00CR_Lesser ]; then
 	reclaiming="\e[1;33mLesser\e[0m"
 elif [ -f $init/LS00CR_Less ]; then
@@ -5528,7 +5529,7 @@ break
     fi
 done;;
 12)while true; do
-$lsclear
+${lsclear}
 if [ -f $init/LS00Allocation_Medium ]; then
   allocation="\e[1;33mMedium\e[0m"
 elif [ -f $init/LS00Allocation_Large ]; then
@@ -5569,7 +5570,7 @@ break
     fi
 done;;
 13)while true; do
-$lsclear
+${lsclear}
 if [ -f $init/LS00Kernel_Tweaks_Light ]; then
 	kernel_tweaks="\e[1;33mLight\e[0m"
 elif [ -f $init/LS00Kernel_Tweaks_Heavy ]; then
@@ -5609,7 +5610,7 @@ break
     fi
 done;;
 14)while true; do
-$lsclear
+${lsclear}
 if [ -f $init/LS00Net_Small_Buffers ]; then
   buffers="\e[1;33mSmall\e[0m"
 elif [ -f $init/LS00Net_Big_Buffers ]; then
@@ -5645,7 +5646,7 @@ fi
 	read -r option
 	if [ "$option" -eq 1 ]; then
     while true; do
-    $lsclear
+    ${lsclear}
       if [ -f $init/LS00Net_Small_Buffers ]; then
         buffers="\e[1;33mSmall\e[0m"
       elif [ -f $init/LS00Net_Big_Buffers ]; then
@@ -5713,7 +5714,7 @@ break
     fi
 done;;
 15)while true; do
-$lsclear
+${lsclear}
 if grep -q adblocker /system/etc/hosts; then
 	adblocker="\e[1;32m`busybox date -r /system/etc/hosts`\e[0m"
 else
@@ -5765,7 +5766,7 @@ break
     fi
 done;;
 16)while true; do
-$lsclear
+${lsclear}
 if [ -f $init/LS00IO_Boost ]; then
   IO_boost="\e[1;32mOn\e[0m"
 else
@@ -5985,7 +5986,7 @@ busybox chmod 755 /system/etc/LS00ad_calib.cfg
 busybox chown 0:2000 /system/etc/LS00ad_calib.cfg
 fi;;
 0)while true; do
-$lsclear
+${lsclear}
 if [ -d $backup ]; then
   backup_time="\e[1;32m`busybox date -r $backup`\e[0m"
 else
@@ -6009,7 +6010,7 @@ read -r option
     do
       busybox cp -f $file $backup
   done
-	$lsclear
+	${lsclear}
 	busybox echo "Backup created!!!"
 	busybox sleep $timelong
   elif [ "$option" -eq 2 ]; then
@@ -6294,7 +6295,7 @@ fi
 busybox echo "Backup restored!!!"
 busybox sleep $timelong
 else
-$lsclear
+${lsclear}
 busybox echo "You don't have any backup"
 busybox sleep $timelong
 fi
@@ -6375,9 +6376,9 @@ done
 busybox rm -rf /system/etc/LS00ad_calib.cfg 2>/dev/null;
 busybox rm -rf /system/xbin/boost 2>/dev/null;
 busybox rm -rf /system/bin/LS 2>/dev/null;
-$lsclear;
+${lsclear};
 exit;;
-r|R)$lsclear;
+r|R)${lsclear};
 	busybox echo "Rebooting device"
 	busybox echo "3"
 	busybox sleep $timeshort
@@ -6388,7 +6389,7 @@ r|R)$lsclear;
   reboot;
 	busybox echo "1" > /proc/sys/kernel/sysrq;
   busybox echo "b" > /proc/sysrq-trigger;;
-e|E)$lsclear;
+e|E)${lsclear};
 mount -o remount,ro / 2>/dev/null
 mount -o remount,ro / / 2>/dev/null
 mount -o remount,ro rootfs 2>/dev/null
@@ -6400,7 +6401,7 @@ busybox mount -o remount,ro rootfs 2>/dev/null
 busybox mount -o remount,ro /system 2>/dev/null
 busybox mount -o remount,ro /system /system 2>/dev/null
 exit;;
-*)$lsclear;
+*)${lsclear};
 busybox echo "#Invalid Option, please try again"
 busybox sleep $timeshort
 esac
