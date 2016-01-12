@@ -2388,16 +2388,16 @@ busybox echo "" | busybox tee -a \$LS
 busybox echo "Disabling debugging.." | busybox tee -a \$LS
 
 if [ -e /sys/module/lowmemorykiller/parameters/debug_level ]; then
-    busybox chmod 644 /sys/module/lowmemorykiller/parameters/debug_level
-    busybox echo "0" > /sys/module/lowmemorykiller/parameters/debug_level
+	busybox chmod 644 /sys/module/lowmemorykiller/parameters/debug_level
+	busybox echo "0" > /sys/module/lowmemorykiller/parameters/debug_level
 fi
 
 for parameter in /sys/module/*
-   do
-if [ -e $parameter/parameters/debug_mask ]; then
-    busybox chmod 644 $parameter/parameters/debug_mask
-    busybox echo "0" > $parameter/parameters/debug_mask
-fi
+do
+	if [ -e $parameter/parameters/debug_mask ]; then
+		busybox chmod 644 $parameter/parameters/debug_mask
+		busybox echo "0" > $parameter/parameters/debug_mask
+	fi
 done
 
 busybox echo "" | busybox tee -a \$LS
@@ -2524,31 +2524,31 @@ busybox echo "Applying kernel sleepers.." | busybox tee -a \$LS
 
 # Kernel sleepers
 if [ -e "/sys/kernel/debug/sched_features" ]; then
-busybox chmod 644 /sys/kernel/debug/sched_features
-mount -t debugfs none /sys/kernel/debug
-busybox mount -t debugfs none /sys/kernel/debug
-busybox echo "NO_AFFINE_WAKEUPS " > /sys/kernel/debug/sched_features
-busybox echo "ARCH_POWER " >> /sys/kernel/debug/sched_features
-busybox echo "CACHE_HOT_BUDDY " >> /sys/kernel/debug/sched_features
-busybox echo "NO_DOUBLE_TICK " >> /sys/kernel/debug/sched_features
-busybox echo "NO_FORCE_SD_OVERLAP " >> /sys/kernel/debug/sched_features
-busybox echo "GENTLE_FAIR_SLEEPERS " >> /sys/kernel/debug/sched_features
-busybox echo "NO_HRTICK " >> /sys/kernel/debug/sched_features
-busybox echo "LAST_BUDDY " >> /sys/kernel/debug/sched_features
-busybox echo "LB_BIAS " >> /sys/kernel/debug/sched_features
-busybox echo "NO_LB_MIN " >> /sys/kernel/debug/sched_features
-busybox echo "NO_NEW_FAIR_SLEEPERS " >> /sys/kernel/debug/sched_features
-busybox echo "NO_NEXT_BUDDY " >> /sys/kernel/debug/sched_features
-busybox echo "NONTASK_POWER " >> /sys/kernel/debug/sched_features
-busybox echo "NO_NORMALIZED_SLEEPERS " >> /sys/kernel/debug/sched_features
-busybox echo "NO_OWNER_SPIN " >> /sys/kernel/debug/sched_features
-busybox echo "RT_RUNTIME_SHARE " >> /sys/kernel/debug/sched_features
-busybox echo "START_DEBIT " >> /sys/kernel/debug/sched_features
-busybox echo "TTWU_QUEUE " >> /sys/kernel/debug/sched_features
-busybox echo "NO_WAKEUP_OVERLAP " >> /sys/kernel/debug/sched_feature
-busybox echo "WAKEUP_PREEMPTION " >> /sys/kernel/debug/sched_features
-umount /sys/kernel/debug
-busybox umount /sys/kernel/debug
+	busybox chmod 644 /sys/kernel/debug/sched_features
+	mount -t debugfs none /sys/kernel/debug
+	busybox mount -t debugfs none /sys/kernel/debug
+	busybox echo "NO_AFFINE_WAKEUPS " > /sys/kernel/debug/sched_features
+	busybox echo "ARCH_POWER " >> /sys/kernel/debug/sched_features
+	busybox echo "CACHE_HOT_BUDDY " >> /sys/kernel/debug/sched_features
+	busybox echo "NO_DOUBLE_TICK " >> /sys/kernel/debug/sched_features
+	busybox echo "NO_FORCE_SD_OVERLAP " >> /sys/kernel/debug/sched_features
+	busybox echo "GENTLE_FAIR_SLEEPERS " >> /sys/kernel/debug/sched_features
+	busybox echo "NO_HRTICK " >> /sys/kernel/debug/sched_features
+	busybox echo "LAST_BUDDY " >> /sys/kernel/debug/sched_features
+	busybox echo "LB_BIAS " >> /sys/kernel/debug/sched_features
+	busybox echo "NO_LB_MIN " >> /sys/kernel/debug/sched_features
+	busybox echo "NO_NEW_FAIR_SLEEPERS " >> /sys/kernel/debug/sched_features
+	busybox echo "NO_NEXT_BUDDY " >> /sys/kernel/debug/sched_features
+	busybox echo "NONTASK_POWER " >> /sys/kernel/debug/sched_features
+	busybox echo "NO_NORMALIZED_SLEEPERS " >> /sys/kernel/debug/sched_features
+	busybox echo "NO_OWNER_SPIN " >> /sys/kernel/debug/sched_features
+	busybox echo "RT_RUNTIME_SHARE " >> /sys/kernel/debug/sched_features
+	busybox echo "START_DEBIT " >> /sys/kernel/debug/sched_features
+	busybox echo "TTWU_QUEUE " >> /sys/kernel/debug/sched_features
+	busybox echo "NO_WAKEUP_OVERLAP " >> /sys/kernel/debug/sched_feature
+	busybox echo "WAKEUP_PREEMPTION " >> /sys/kernel/debug/sched_features
+	umount /sys/kernel/debug
+	busybox umount /sys/kernel/debug
 fi
 
 busybox echo "" | busybox tee -a \$LS
@@ -2678,14 +2678,12 @@ L=256
 MMC=/sys/block/mmc*
 for S in \$MMC;
 do
-	if [ -f \$S/queue/read_ahead_kb ];
-	then
-		busybox echo "\$L" > \$S/queue/read_ahead_kb;
-	fi;
-	if [ -f \$S/bdi/read_ahead_kb ];
-        then
-              busybox echo "\$L" > \$S/bdi/read_ahead_kb;
-        fi;
+	if [ -f \$S/queue/read_ahead_kb ]
+		then busybox echo "\$L" > \$S/queue/read_ahead_kb
+	fi
+	if [ -f \$S/bdi/read_ahead_kb ]
+		then busybox echo "\$L" > \$S/bdi/read_ahead_kb
+	fi
 done
 
 busybox echo "" | busybox tee -a \$LS
@@ -2747,50 +2745,47 @@ busybox echo "" | busybox tee -a \$LS
 busybox echo "Starting Automatic ZipAlign" | busybox tee -a \$LS
 
 if [ -f /system/xbin/zipalign ]; then
+	ZIPALIGNDB=/data/zipalign.db
+	if [ ! -f \$ZIPALIGNDB ]; then
+		touch \$ZIPALIGNDB
+	fi
 
-ZIPALIGNDB=/data/zipalign.db
-
-if [ ! -f \$ZIPALIGNDB ]; then
-	touch \$ZIPALIGNDB;
-fi;
-
-for DIR in /system/app /data/app /system/priv-app;
-do
-	cd \$DIR;
-	for APK in *.apk */*.apk;
+	for DIR in /system/app /data/app /system/priv-app
 	do
-		if [ \$APK -ot \$ZIPALIGNDB ] && [ \$(grep "\$DIR/\$APK" \$ZIPALIGNDB|wc -l) -gt 0 ]; then
-			echo "Already checked: \$DIR/\$APK" | tee -a \$LS;
-		else
-			ZIPCHECK=\$(/system/xbin/zipalign -c -v 4 \$APK | grep FAILED | wc -l);
-			if [ \$ZIPCHECK == "1" ]; then
-				echo "Now aligning: \$DIR/\$APK" | tee -a \$LS;
-				/system/xbin/zipalign -f 4 \$APK /data/local/\$APK;
-				rc="\$?";
-				if [ \$rc -eq 0 ]; then
-					if [ -e "/data/local/\$APK" ]; then
-						cp -f -p "/data/local/\$APK" "\$APK" | tee -a \$LS;
-						busybox rm -f "/data/local/\$APK";
-						grep "\$DIR/\$APK" \$ZIPALIGNDB > /dev/null || echo \$DIR/\$APK >> \$ZIPALIGNDB;
-					else
-						echo "ZipAligning \$APK Failed (no output file)"  | tee -a \$LS;
-					fi;
-				else
-					[ -f "/data/local/\$APK" ] && busybox rm -f "/data/local/\$APK"
-					echo "ZipAligning \$APK Failed (rc: \$rc)"  | tee -a \$LS;
-				fi;
+		cd \$DIR
+		for APK in *.apk */*.apk;
+		do
+			if [ \$APK -ot \$ZIPALIGNDB ] && [ \$(grep "\$DIR/\$APK" \$ZIPALIGNDB|wc -l) -gt 0 ]
+				then echo "Already checked: \$DIR/\$APK" | tee -a \$LS
 			else
-				echo "Already aligned: \$DIR/\$APK" | tee -a \$LS;
-				grep "\$DIR/\$APK" \$ZIPALIGNDB > /dev/null || echo $DIR/\$APK >> \$ZIPALIGNDB;
-			fi;
-		fi;
-	done;
-done;
-
-busybox touch \$ZIPALIGNDB
-busybox echo "Automatic ZipAlign finished" | busybox tee -a \$LS
+				ZIPCHECK=\$(/system/xbin/zipalign -c -v 4 \$APK | grep FAILED | wc -l)
+				if [ \$ZIPCHECK == "1" ]; then
+					echo "Now aligning: \$DIR/\$APK" | tee -a \$LS
+					/system/xbin/zipalign -f 4 \$APK /data/local/\$APK
+					rc="\$?"
+					if [ \$rc -eq 0 ]; then
+						if [ -e "/data/local/\$APK" ]; then
+							cp -f -p "/data/local/\$APK" "\$APK" | tee -a \$LS
+							busybox rm -f "/data/local/\$APK"
+							grep "\$DIR/\$APK" \$ZIPALIGNDB > /dev/null || echo \$DIR/\$APK >> \$ZIPALIGNDB
+						else
+							echo "ZipAligning \$APK Failed (no output file)"  | tee -a \$LS
+						fi
+					else
+						[ -f "/data/local/\$APK" ] && busybox rm -f "/data/local/\$APK"
+						echo "ZipAligning \$APK Failed (rc: \$rc)"  | tee -a \$LS
+					fi
+				else
+					echo "Already aligned: \$DIR/\$APK" | tee -a \$LS
+					grep "\$DIR/\$APK" \$ZIPALIGNDB > /dev/null || echo $DIR/\$APK >> \$ZIPALIGNDB
+				fi
+			fi
+		done
+	done
+	busybox touch \$ZIPALIGNDB
+	busybox echo "Automatic ZipAlign finished" | busybox tee -a \$LS
 else
-busybox echo "Your device doesn't have zipalign binary" | busybox tee -a \$LS
+	busybox echo "Your device doesn't have zipalign binary" | busybox tee -a \$LS
 fi
 
 mount -o remount,ro / 2>/dev/null
@@ -2849,13 +2844,12 @@ busybox echo "" | busybox tee -a \$LS
 busybox echo "Activating fast charging mode..." | busybox tee -a \$LS
 
 #Force fast-charge
-if [ -e /sys/kernel/fast_charge/force_fast_charge ]; then
-       busybox echo "1" > /sys/kernel/fast_charge/force_fast_charge
+if [ -e /sys/kernel/fast_charge/force_fast_charge ]
+	then busybox echo "1" > /sys/kernel/fast_charge/force_fast_charge
 fi
-if grep 1 /sys/kernel/fast_charge/force_fast_charge; then
-busybox echo "Force fast charge enabled enabled" | busybox tee -a \$LS
-else
-busybox echo "Force fast charge doesn't exist on your kernel" | busybox tee -a \$LS
+if grep 1 /sys/kernel/fast_charge/force_fast_charge
+	then busybox echo "Force fast charge enabled enabled" | busybox tee -a \$LS
+	else busybox echo "Force fast charge doesn't exist on your kernel" | busybox tee -a \$LS
 fi
 
 mount -o remount,ro / 2>/dev/null
@@ -3050,8 +3044,8 @@ busybox echo "" | busybox tee -a \$LS
 busybox echo "Killing media server.." | busybox tee -a \$LS
 
 if [ "\$(pgrep media)" ] && [ "\$(pgrep mediaserver)" ]; then
-busybox killall -9 android.process.media;
-busybox killall -9 mediaserver;
+	busybox killall -9 android.process.media;
+	busybox killall -9 mediaserver;
 fi
 
 busybox echo "" | busybox tee -a \$LS
@@ -3117,18 +3111,18 @@ ZRAM=\$((RAM/4))
 algorithm=lz4
 
 if [ -f /sys/block/zram0/disksize ]; then
-if [ -f /sys/block/zram0/comp_algorithm ]; then
-busybox echo "1" > /sys/module/zswap/parameters/enabled
-busybox echo "\$algorithm" > /sys/block/zram0/comp_algorithm
-fi
-busybox swapoff /dev/block/zram0
-busybox echo "1" /sys/devices/virtual/block/zram0/reset
-busybox echo \$((ZRAM*1024*1024)) > /sys/block/zram0/disksize
-busybox mkswap /dev/block/zram0
-busybox swapon /dev/block/zram0
-busybox echo "ZRAM is activated" | busybox tee -a \$LS
+	if [ -f /sys/block/zram0/comp_algorithm ]; then
+		busybox echo "1" > /sys/module/zswap/parameters/enabled
+		busybox echo "\$algorithm" > /sys/block/zram0/comp_algorithm
+	fi
+	busybox swapoff /dev/block/zram0
+	busybox echo "1" /sys/devices/virtual/block/zram0/reset
+	busybox echo \$((ZRAM*1024*1024)) > /sys/block/zram0/disksize
+	busybox mkswap /dev/block/zram0
+	busybox swapon /dev/block/zram0
+	busybox echo "ZRAM is activated" | busybox tee -a \$LS
 else
-busybox echo "Your kernel doesn't support zram" | busybox tee -a \$LS
+	busybox echo "Your kernel doesn't support zram" | busybox tee -a \$LS
 fi
 
 mount -o remount,ro / 2>/dev/null
@@ -3192,10 +3186,9 @@ wifi_idle_wait=30000
 
 RETURN_VALUE=\$(\$sqlite /data/data/com.android.providers.settings/databases/settings.db "select value from secure where name='wifi_idle_ms'")
 
-if [ "\$RETURN_VALUE" = '' ]; then
-   \$sqlite /data/data/com.android.providers.settings/databases/settings.db "insert into secure (name, value) values ('wifi_idle_ms', \$wifi_idle_wait )"
-else
-   \$sqlite /data/data/com.android.providers.settings/databases/settings.db "update secure set value=\$wifi_idle_wait where name='wifi_idle_ms'"
+if [ "\$RETURN_VALUE" = '' ]
+	then \$sqlite /data/data/com.android.providers.settings/databases/settings.db "insert into secure (name, value) values ('wifi_idle_ms', \$wifi_idle_wait )"
+	else \$sqlite /data/data/com.android.providers.settings/databases/settings.db "update secure set value=\$wifi_idle_wait where name='wifi_idle_ms'"
 fi
 
 busybox echo "" | busybox tee -a \$LS
@@ -3529,11 +3522,11 @@ setprop ro.min.fling_velocity 8000
 busybox echo "Other parameters tweaked.." | busybox tee -a \$LS
 
 if [ -e /sys/module/tpd_setting/parameters/tpd_mode ]; then
-busybox chmod 644 /sys/module/tpd_setting/parameters/tpd_mode
-busybox echo "1" > /sys/module/tpd_setting/parameters/tpd_mode
+	busybox chmod 644 /sys/module/tpd_setting/parameters/tpd_mode
+	busybox echo "1" > /sys/module/tpd_setting/parameters/tpd_mode
 elif [ -e /sys/module/hid_magicmouse/parameters/scroll_speed ]; then
-busybox chmod 644 /sys/module/hid_magicmouse/parameters/scroll_speed
-busybox echo "63" > /sys/module/hid_magicmouse/parameters/scroll_speed
+	busybox chmod 644 /sys/module/hid_magicmouse/parameters/scroll_speed
+	busybox echo "63" > /sys/module/hid_magicmouse/parameters/scroll_speed
 fi
 
 busybox echo "" | busybox tee -a \$LS
@@ -4222,7 +4215,7 @@ busybox sleep 1
 dc=/proc/sys/vm/drop_caches
 dc_v=\$(busybox cat \$dc)
 if [ "\$dc_v" -gt 1 ]; then
-busybox sysctl -w vm.drop_caches=1
+	busybox sysctl -w vm.drop_caches=1
 fi
 busybox echo ""
 busybox echo ""
@@ -4609,7 +4602,7 @@ LEVEL=$(busybox cat /sys/class/power_supply/battery/capacity) 2>/dev/null
 if [ -f /system/su.d/LS00init_d.sh ]; then
 	init_meth="\e[1;32msu.d\e[0m"
 elif [ -f /system/etc/install-recovery-2.sh ]; then
-  init_meth="\e[1;32mInstall-recovery-2.sh\e[0m"
+	init_meth="\e[1;32mInstall-recovery-2.sh\e[0m"
 else
 	init_meth="\e[1;30mDefault\e[0m"
 fi
