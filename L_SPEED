@@ -21,9 +21,9 @@ ver="4.3.3"
 #=======================================================================#
 
 if [ -e /system/bin/busybox ]
-	then busybox chmod 111 /system/bin/busybox
+	then busybox chmod 111 /system/bin/busybox 2>/dev/null
 elif [ -e /system/xbin/busybox ]
-	then busybox chmod 111 /system/xbin/busybox
+	then busybox chmod 111 /system/xbin/busybox 2>/dev/null
 fi
 if [ ! -d "/data/local/busybox*/xbin" ]
 then export "PATH"=$PATH:/system/xbin:/sbin:/vendor/bin:/system/sbin:/system/bin
