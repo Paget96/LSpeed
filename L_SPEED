@@ -169,7 +169,8 @@ fi
 busybox sleep $timelong
 ${lsclear}
 busybox echo ""
-busybox echo "      Now we will do some core working!!"
+busybox sleep $timeshort
+busybox echo "      Now is time to configure L Speed ;) "
 busybox echo ""; busybox echo ""; busybox echo ""
 busybox echo "Wait a moment..."
 if [ ! -d $core ]; then
@@ -4566,11 +4567,6 @@ busybox chmod 755 $init/LSPEED
 busybox chown 0:2000 $init/LSPEED
 sh $init/LSPEED
 fi
-${lsclear}
-busybox sleep $timeshort
-busybox echo "      Now is time to configure L Speed ;) "
-busybox echo ""; busybox echo ""; busybox echo ""
-busybox echo "Wait a moment..."
 mount -o remount,ro / 2>/dev/null
 mount -o remount,ro / / 2>/dev/null
 mount -o remount,ro rootfs 2>/dev/null
@@ -4581,7 +4577,6 @@ busybox mount -o remount,ro / / 2>/dev/null
 busybox mount -o remount,ro rootfs 2>/dev/null
 busybox mount -o remount,ro /system 2>/dev/null
 busybox mount -o remount,ro /system /system 2>/dev/null
-busybox sleep $timelonger
 while true; do
 ${lsclear}
 mount -o remount,rw / 2>/dev/null
