@@ -49,18 +49,15 @@ id="$(id)"; id="${id#*=}"; id="${id%%\(*}"; id="${id%% *}"
 if [ "$id" != "0" ] && [ "$id" != "root" ]; then
 busybox sleep $timeshort
 busybox echo ""
-busybox echo ""
-busybox echo "    You don't have ROOT..."
-busybox echo "    Please type su first (terminal emulator)"
-busybox echo "    Enable run as ROOT (script manager)"
+busybox echo "   You don't have ROOT access..."
+busybox echo "   Please type su first (in Terminal Emulator)"
+busybox echo "   Or enable run as ROOT (on script manager)"
 busybox echo ""
 busybox sleep $timeshort
 exit
 fi
 busybox clear
-busybox echo ""
-busybox echo ""
-busybox echo ""
+busybox echo ""; busybox echo ""; busybox echo ""
 busybox echo " Welcome"
 busybox sleep $timeshort
 busybox echo "      to L SPEED"
@@ -68,9 +65,7 @@ busybox sleep $timeshorter
 busybox echo "              VECTOR"
 busybox sleep $timeshorter
 busybox echo "                    by Paget96"
-busybox echo ""
-busybox echo ""
-busybox echo ""
+busybox echo ""; busybox echo ""; busybox echo ""
 busybox sleep $timeshorter
 busybox echo ""
 busybox sleep $timeshorter
@@ -153,9 +148,8 @@ busybox sleep $timelong
 busybox echo "Checking init.d support"
 busybox echo ""
 busybox sleep $timeshort
-if [ -e $init ]; then
-	busybox echo "GOOD!!! You have init.d support"
-	busybox sleep $timelong
+if [ -e $init ]
+	then busybox echo "GOOD, you have init.d support"
 else
 	busybox echo "Baad :( Please enable the init.d support"
 	busybox sleep $timeshort
