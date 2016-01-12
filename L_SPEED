@@ -20,14 +20,15 @@ ver="4.3.3"
 # You should have received a copy of the GNU General Public License along with this program. If not, see <http://www.gnu.org/licenses/>.
 #=======================================================================#
 
-if [ -e /system/bin/busybox ]; then
-busybox chmod 111 /system/bin/busybox
-elif [ -e /system/xbin/busybox ]; then
-busybox chmod 111 /system/xbin/busybox
+if [ -e /system/bin/busybox ]
+	then busybox chmod 111 /system/bin/busybox
+elif [ -e /system/xbin/busybox ]
+	then busybox chmod 111 /system/xbin/busybox
 fi
-if [ ! -d "/data/local/busybox*/xbin" ]; then export "PATH"=$PATH:/system/xbin:/sbin:/vendor/bin:/system/sbin:/system/bin
+if [ ! -d "/data/local/busybox*/xbin" ]
+then export "PATH"=$PATH:/system/xbin:/sbin:/vendor/bin:/system/sbin:/system/bin
 else export "PATH"=$PATH:/system/xbin:/sbin:/vendor/bin:/system/sbin:/system/bin:$(busybox ls -d /data/local/busybox*/xbin 2>/dev/null)
-fi 2>/dev/null
+fi
 divider="==============================================="
 timeblast="0.1"
 timeshorter="0.5"
@@ -84,8 +85,8 @@ busybox mount -o remount,rw / / 2>/dev/null
 busybox mount -o remount,rw rootfs 2>/dev/null
 busybox mount -o remount,rw /system 2>/dev/null
 busybox mount -o remount,rw /system /system 2>/dev/null
-if [ ! -d "/sqlite_stmt_journals" ]; then
-  busybox mkdir -p /sqlite_stmt_journals;
+if [ ! -d "/sqlite_stmt_journals" ]
+	then busybox mkdir -p /sqlite_stmt_journals;
 fi
 if [ ! -d /system/su.d ]; then
 busybox mkdir -p /system/su.d/
@@ -224,16 +225,16 @@ busybox mount -o remount,ro /system 2>/dev/null
 busybox mount -o remount,ro /system /system 2>/dev/null
 
 EOF
-	busybox chmod 755 $core/LS00Init_d.sh
-	busybox chown 0:0 $core/LS00Init_d.sh
+busybox chmod 755 $core/LS00Init_d.sh
+busybox chown 0:0 $core/LS00Init_d.sh
 if [ -f /system/su.d/LS00init_d.sh ]; then
-  busybox rm -rf /system/su.d/LS00init_d.sh
-  busybox cp -f $core/LS00Init_d.sh /system/su.d/LS00init_d.sh
+	busybox rm -rf /system/su.d/LS00init_d.sh
+	busybox cp -f $core/LS00Init_d.sh /system/su.d/LS00init_d.sh
 	busybox chmod 755 /system/su.d/LS00init_d.sh
 	busybox chown 0:2000 /system/su.d/LS00init_d.sh
 elif [ -f /system/etc/install-recovery-2.sh ]; then
-  busybox rm -rf /system/etc/install-recovery-2.sh
-  busybox cp -f $core/LS00Init_d.sh /system/etc/install-recovery-2.sh
+	busybox rm -rf /system/etc/install-recovery-2.sh
+	busybox cp -f $core/LS00Init_d.sh /system/etc/install-recovery-2.sh
   	busybox chmod 755 /system/etc/install-recovery-2.sh
 	busybox chown 0:2000 /system/etc/install-recovery-2.sh
 fi
@@ -288,10 +289,10 @@ EOF
 busybox chmod 755 $core/LS00Sysinit
 busybox chown 0:0 $core/LS00Sysinit
 if [ -f /system/xbin/sysinit ]; then
-  busybox rm -rf /system/xbin/sysinit
-  busybox cp -f $core/LS00Sysinit /system/xbin/sysinit
-  busybox chmod 755 /system/xbin/sysinit
-  busybox chown 0:0 /system/xbin/sysinit
+	busybox rm -rf /system/xbin/sysinit
+	busybox cp -f $core/LS00Sysinit /system/xbin/sysinit
+	busybox chmod 755 /system/xbin/sysinit
+	busybox chown 0:0 /system/xbin/sysinit
 fi
 #
 #
@@ -393,14 +394,13 @@ busybox echo "" | busybox tee -a \$LS
 busybox echo "CPU multicore power save is running..." | busybox tee -a \$LS
 
 # MCPS
-if [ -f "/sys/devices/system/cpu/sched_mc_power_savings" ]; then
-busybox echo "2" > /sys/devices/system/cpu/sched_mc_power_savings;
-fi;
+if [ -f "/sys/devices/system/cpu/sched_mc_power_savings" ]
+	then busybox echo "2" > /sys/devices/system/cpu/sched_mc_power_savings
+fi
 
-if busybox grep 2 /sys/devices/system/cpu/sched_mc_power_savings; then
-busybox echo "Feature enabled" | busybox tee -a \$LS; else
-busybox echo "This feature is not avaible for you, because your device is not multi core or your CPU doesn't support it" | busybox tee -a \$LS
-
+if busybox grep 2 /sys/devices/system/cpu/sched_mc_power_savings
+	then busybox echo "Feature enabled" | busybox tee -a \$LS
+	else busybox echo "This feature is not avaible for you, because your device is not multi core or your CPU doesn't support it" | busybox tee -a \$LS
 fi
 
 mount -o remount,ro / 2>/dev/null
@@ -459,26 +459,26 @@ busybox echo "" | busybox tee -a \$LS
 busybox echo "Optimizing CPU.." | busybox tee -a \$LS
 
 # CPU_Optimizer
-if [ -e /dev/cpuctl/cpu.shares ]; then
-busybox echo "1024" > /dev/cpuctl/cpu.shares
-fi;
-if [ -e /dev/cpuctl/cpu.rt_runtime_us ]; then
-busybox echo "800000" > /dev/cpuctl/cpu.rt_runtime_us
-fi;
-if [ -e /dev/cpuctl/cpu.rt_period_us ]; then
-busybox echo "1000000" > /dev/cpuctl/cpu.rt_period_us
-fi;
+if [ -e /dev/cpuctl/cpu.shares ]
+	then busybox echo "1024" > /dev/cpuctl/cpu.shares
+fi
+if [ -e /dev/cpuctl/cpu.rt_runtime_us ]
+	then busybox echo "800000" > /dev/cpuctl/cpu.rt_runtime_us
+fi
+if [ -e /dev/cpuctl/cpu.rt_period_us ]
+	then busybox echo "1000000" > /dev/cpuctl/cpu.rt_period_us
+fi
 
 # 6.0%
-if [ -e /dev/cpuctl/bg_non_interactive/cpu.shares ]; then
-busybox echo "62" > /dev/cpuctl/bg_non_interactive/cpu.shares
-fi;
-if [ -e /dev/cpuctl/bg_non_interactive/cpu.rt_runtime_us ]; then
-busybox echo "700000" > /dev/cpuctl/bg_non_interactive/cpu.rt_runtime_us
-fi;
-if [ -e /dev/cpuctl/bg_non_interactive/cpu.rt_runtime_us ]; then
-busybox echo "1000000" > /dev/cpuctl/bg_non_interactive/cpu.rt_period_us
-fi;
+if [ -e /dev/cpuctl/bg_non_interactive/cpu.shares ]
+	then busybox echo "62" > /dev/cpuctl/bg_non_interactive/cpu.shares
+fi
+if [ -e /dev/cpuctl/bg_non_interactive/cpu.rt_runtime_us ]
+	then busybox echo "700000" > /dev/cpuctl/bg_non_interactive/cpu.rt_runtime_us
+fi
+if [ -e /dev/cpuctl/bg_non_interactive/cpu.rt_runtime_us ]
+	then busybox echo "1000000" > /dev/cpuctl/bg_non_interactive/cpu.rt_period_us
+fi
 
 busybox echo "" | busybox tee -a \$LS
 busybox echo "CPU is optimized" | busybox tee -a \$LS
@@ -798,10 +798,9 @@ busybox sysctl -e -w kernel.random.write_wakeup_threshold=256
 
 busybox sleep 1
 
-if grep "128" proc/sys/kernel/random/read_wakeup_threshold; then
-busybox echo "Light seeder profile is activated.." | busybox tee -a \$LS
-else
-busybox echo "Light seeder profile is not activated.." | busybox tee -a \$LS
+if grep "128" proc/sys/kernel/random/read_wakeup_threshold
+	then busybox echo "Light seeder profile is activated.." | busybox tee -a \$LS
+	else busybox echo "Light seeder profile is not activated.." | busybox tee -a \$LS
 fi
 
 mount -o remount,ro / 2>/dev/null
@@ -864,10 +863,9 @@ busybox sysctl -e -w kernel.random.write_wakeup_threshold=896
 
 busybox sleep 1
 
-if grep "64" /proc/sys/kernel/random/read_wakeup_threshold; then
-busybox echo "Enlarger seeder profile is activated.." | busybox tee -a \$LS
-else
-busybox echo "Enlarger seeder profile is not activated.." | busybox tee -a \$LS
+if grep "64" /proc/sys/kernel/random/read_wakeup_threshold
+	then busybox echo "Enlarger seeder profile is activated.." | busybox tee -a \$LS
+	else busybox echo "Enlarger seeder profile is not activated.." | busybox tee -a \$LS
 fi
 
 mount -o remount,ro / 2>/dev/null
@@ -930,10 +928,9 @@ busybox sysctl -e -w kernel.random.write_wakeup_threshold=2048
 
 busybox sleep 1
 
-if grep "1366" /proc/sys/kernel/random/read_wakeup_threshold; then
-busybox echo "Moderate seeder profile is activated.." | busybox tee -a \$LS
-else
-busybox echo "Moderate seeder profile is not activated.." | busybox tee -a \$LS
+if grep "1366" /proc/sys/kernel/random/read_wakeup_threshold
+	then busybox echo "Moderate seeder profile is activated.." | busybox tee -a \$LS
+	else busybox echo "Moderate seeder profile is not activated.." | busybox tee -a \$LS
 fi
 
 mount -o remount,ro / 2>/dev/null
@@ -996,10 +993,9 @@ busybox sysctl -e -w kernel.random.write_wakeup_threshold=2048
 
 busybox sleep 1
 
-if grep "1708" /proc/sys/kernel/random/read_wakeup_threshold; then
-busybox echo "Aggressive seeder profile is activated.." | busybox tee -a \$LS
-else
-busybox echo "Aggressive seeder profile is not activated.." | busybox tee -a \$LS
+if grep "1708" /proc/sys/kernel/random/read_wakeup_threshold
+	then busybox echo "Aggressive seeder profile is activated.." | busybox tee -a \$LS
+	else busybox echo "Aggressive seeder profile is not activated.." | busybox tee -a \$LS
 fi
 
 mount -o remount,ro / 2>/dev/null
@@ -1059,8 +1055,8 @@ busybox echo "Tweaking minfree, cost & debug values..." | busybox tee -a \$LS
 
 # Cost
 if [ -e /sys/module/lowmemorykiller/parameters/cost ]; then
-busybox chmod 644 /sys/module/lowmemorykiller/parameters/cost
-busybox echo "64" > /sys/module/lowmemorykiller/parameters/cost
+	busybox chmod 644 /sys/module/lowmemorykiller/parameters/cost
+	busybox echo "64" > /sys/module/lowmemorykiller/parameters/cost
 fi
 
 # Minfree Values
@@ -1135,8 +1131,8 @@ busybox echo "Tweaking minfree, cost & debug values..." | busybox tee -a \$LS
 
 # Cost
 if [ -e /sys/module/lowmemorykiller/parameters/cost ]; then
-busybox chmod 644 /sys/module/lowmemorykiller/parameters/cost
-busybox echo "32" > /sys/module/lowmemorykiller/parameters/cost
+	busybox chmod 644 /sys/module/lowmemorykiller/parameters/cost
+	busybox echo "32" > /sys/module/lowmemorykiller/parameters/cost
 fi
 
 # Minfree Values
@@ -1211,8 +1207,8 @@ busybox echo "Tweaking minfree, cost & debug values..." | busybox tee -a \$LS
 
 # Cost
 if [ -e /sys/module/lowmemorykiller/parameters/cost ]; then
-busybox chmod 644 /sys/module/lowmemorykiller/parameters/cost
-busybox echo "16" > /sys/module/lowmemorykiller/parameters/cost
+	busybox chmod 644 /sys/module/lowmemorykiller/parameters/cost
+	busybox echo "16" > /sys/module/lowmemorykiller/parameters/cost
 fi
 
 # Minfree Values
@@ -1715,13 +1711,12 @@ busybox echo "" | busybox tee -a \$LS
 busybox echo "Activating light kernel tweaks.." | busybox tee -a \$LS
 
 # Kernel_tweaks
-if [ -e /sys/kernel/dyn_fsync/Dyn_fsync_active ]; then
-busybox echo "1" > /sys/kernel/dyn_fsync/Dyn_fsync_active
+if [ -e /sys/kernel/dyn_fsync/Dyn_fsync_active ]
+	then busybox echo "1" > /sys/kernel/dyn_fsync/Dyn_fsync_active
 fi
-if grep 1 /sys/kernel/dyn_fsync/Dyn_fsync_active; then
-busybox echo "Dyn_fsync enabled" | busybox tee -a \$LS
-else
-busybox echo "Dyn_fsync doesn't exist on your kernel" | busybox tee -a \$LS
+if grep 1 /sys/kernel/dyn_fsync/Dyn_fsync_active
+	then busybox echo "Dyn_fsync enabled" | busybox tee -a \$LS
+	else busybox echo "Dyn_fsync doesn't exist on your kernel" | busybox tee -a \$LS
 fi
 
 #FS tweak
@@ -1745,19 +1740,19 @@ busybox sysctl -w vm.min_free_order_shift=4
 busybox sysctl -w vm.oom_dump_tasks=1
 busybox sysctl -w vm.page-cluster=2
 if [ "\$mem" -lt 524288 ]; then
-    busybox sysctl -w vm.dirty_background_ratio=15
-    busybox sysctl -w vm.dirty_ratio=30
+	busybox sysctl -w vm.dirty_background_ratio=15
+	busybox sysctl -w vm.dirty_ratio=30
 elif [ "\$mem" -lt 1048576 ]; then
-    busybox sysctl -w vm.dirty_background_ratio=10
-    busybox sysctl -w vm.dirty_ratio=20
-  else
-    busybox sysctl -w vm.dirty_background_ratio=5
-    busybox sysctl -w vm.dirty_ratio=10
+	busybox sysctl -w vm.dirty_background_ratio=10
+	busybox sysctl -w vm.dirty_ratio=20
+else
+	busybox sysctl -w vm.dirty_background_ratio=5
+	busybox sysctl -w vm.dirty_ratio=10
 fi
 if [ -e /sys/block/zram* ]; then
-		busybox sysctl -w vm.swappiness=40
-      else
-		busybox sysctl -w vm.swappiness=20
+	busybox sysctl -w vm.swappiness=40
+else
+	busybox sysctl -w vm.swappiness=20
 fi
 busybox echo "" | busybox tee -a \$LS
 busybox echo "Light kernel tweaks are activated" | busybox tee -a \$LS
@@ -1826,13 +1821,12 @@ busybox sysctl -w kernel.shmall=2097152
 busybox sysctl -w kernel.shmmax=268435456
 busybox sysctl -w kernel.sem='250 32000 100 128'
 
-if [ -e /sys/kernel/dyn_fsync/Dyn_fsync_active ]; then
-busybox echo "1" > /sys/kernel/dyn_fsync/Dyn_fsync_active
+if [ -e /sys/kernel/dyn_fsync/Dyn_fsync_active ]
+	then busybox echo "1" > /sys/kernel/dyn_fsync/Dyn_fsync_active
 fi
-if grep 1 /sys/kernel/dyn_fsync/Dyn_fsync_active; then
-busybox echo "Dyn_fsync enabled" | busybox tee -a \$LS
-else
-busybox echo "Dyn_fsync doesn't exist on your kernel" | busybox tee -a \$LS
+if grep 1 /sys/kernel/dyn_fsync/Dyn_fsync_active
+	then busybox echo "Dyn_fsync enabled" | busybox tee -a \$LS
+	else busybox echo "Dyn_fsync doesn't exist on your kernel" | busybox tee -a \$LS
 fi
 
 #FS tweak
@@ -1859,9 +1853,9 @@ busybox sysctl -w vm.page-cluster=2
 busybox sysctl -w vm.dirty_background_ratio=20
 busybox sysctl -w vm.dirty_ratio=40
 if [ -e /sys/block/zram* ]; then
-		busybox sysctl -w vm.swappiness=40
-      else
-		busybox sysctl -w vm.swappiness=20
+	busybox sysctl -w vm.swappiness=40
+else
+	busybox sysctl -w vm.swappiness=20
 fi
 busybox echo "" | busybox tee -a \$LS
 busybox echo "Heavy kernel tweaks are activated" | busybox tee -a \$LS
@@ -2251,17 +2245,17 @@ busybox echo "Activating I/O boost tweak..." | busybox tee -a \$LS
 
 for S in /sys/block/*
 do
-  if [ -f \$S/queue/rq_affinity ]; then
-    busybox echo "1" > \$S/queue/rq_affinity
-  fi
-	if [ -f \$S/queue/rotational ]; then
-		busybox echo "0" > \$S/queue/rotational
+	if [ -f \$S/queue/rq_affinity ]
+		then busybox echo "1" > \$S/queue/rq_affinity
 	fi
-	if [ -f \$S/queue/iostats ]; then
-		busybox echo "0" > \$S/queue/iostats
+	if [ -f \$S/queue/rotational ]
+		then busybox echo "0" > \$S/queue/rotational
 	fi
-	if [ -f \$S/queue/nomerges ]; then
-		busybox echo "1" > \$S/queue/nomerges
+	if [ -f \$S/queue/iostats ]
+		then busybox echo "0" > \$S/queue/iostats
+	fi
+	if [ -f \$S/queue/nomerges ]
+		then busybox echo "1" > \$S/queue/nomerges
 	fi
 done
 
@@ -2328,8 +2322,8 @@ busybox echo "Activating I/O extend queue..." | busybox tee -a \$LS
 MMC=/sys/block/mmc*
 for S in \$MMC;
 do
-	if [ -f \$S/queue/nr_requests ]; then
-		busybox echo "1024" > \$S/queue/nr_requests
+	if [ -f \$S/queue/nr_requests ]
+		then busybox echo "1024" > \$S/queue/nr_requests
 	fi
 done
 
