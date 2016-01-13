@@ -21,13 +21,13 @@ ver="4.3.3"
 #=======================================================================#
 
 if [ -e /system/bin/busybox ]; then
-busybox chmod 111 /system/bin/busybox
+busybox chmod 111 /system/bin/busybox 2>/dev/null
 elif [ -e /system/xbin/busybox ]; then
-busybox chmod 111 /system/xbin/busybox
+busybox chmod 111 /system/xbin/busybox 2>/dev/null
 fi
 if [ ! -d "/data/local/busybox*/xbin" ]; then export "PATH"=$PATH:/system/xbin:/sbin:/vendor/bin:/system/sbin:/system/bin
 else export "PATH"=$PATH:/system/xbin:/sbin:/vendor/bin:/system/sbin:/system/bin:$(busybox ls -d /data/local/busybox*/xbin 2>/dev/null)
-fi 2>/dev/null
+fi
 divider="==============================================="
 timeblast="0.1"
 timeshorter="0.5"
@@ -49,10 +49,9 @@ id="$(id)"; id="${id#*=}"; id="${id%%\(*}"; id="${id%% *}"
 if [ "$id" != "0" ] && [ "$id" != "root" ]; then
 busybox sleep $timeshort
 busybox echo ""
-busybox echo ""
-busybox echo "    You don't have ROOT..."
-busybox echo "    Please type su first (terminal emulator)"
-busybox echo "    Enable run as ROOT (script manager)"
+busybox echo "   You don't have ROOT access..."
+busybox echo "   Please type su first (in Terminal Emulator)"
+busybox echo "   Or enable run as ROOT (on script manager)"
 busybox echo ""
 busybox sleep $timeshort
 exit
@@ -78,9 +77,6 @@ busybox echo ""
 busybox echo "                    Hell yeah!!!"
 busybox echo ""
 busybox sleep $timelong
-busybox clear
-busybox echo ""
-busybox echo ""
 mount -o remount,rw / 2>/dev/null
 mount -o remount,rw / / 2>/dev/null
 mount -o remount,rw rootfs 2>/dev/null
@@ -98,70 +94,89 @@ if [ ! -d /system/su.d ]; then
 busybox mkdir -p /system/su.d/
 busybox chmod 755 /system/su.d/
 fi
+busybox clear
+busybox echo ""
+busybox echo "       Checking some important parts :D"
+busybox echo ""
+busybox echo $divider
+busybox echo ""
+busybox sleep $timelong
 busybox echo "Checking busybox"
-    busybox sleep $timeshort
-        busybox echo ""
-        busybox echo ""
-if [ -e $bb1 ]; then
+busybox sleep $timeshort
+busybox echo ""
+if [[ -e $bb1 || -e $bb2 ]]; then
 	busybox echo "Awesome, you have $bbver"
-	busybox echo ""
-  elif [ -e $bb2 ]; then
-	busybox echo "Awesome, you have $bbver"
-	busybox echo ""
-		else
+else
 	busybox echo "You don't have busybox"
 	busybox sleep $timeshorter
 	busybox echo "Do you want to download it now??"
   	busybox sleep $timeshorter
 	busybox echo "[ 1 = Download now | 2 = I will do that later ]:"
 	read -r option
-		if [ "$option" -eq 1 ]; then
-			busybox echo "Choose source :"
-      			busybox sleep $timeshorter
-      			busybox echo "[ 1 = App from play store | 2 = Flashable zip by me]"
-      			read -r option
-      			if [ "$option" -eq 1 ]; then
-        			su -c "LD_LIBRARY_PATH=/vendor/lib:/system/lib am start $bb_down"
-				  busybox clear
-     			exit
-      			elif [ "$option" -eq 2 ]; then
-        			su -c "LD_LIBRARY_PATH=/vendor/lib:/system/lib am start $bb_down_flash"
-     			busybox clear
-     			exit
-				fi
-				else
-			busybox echo "     When you have a time, download it"
-			busybox sleep $timeshort
-			busybox echo "          Then come back here ^~^"
-			busybox sleep $timeshort
-			busybox echo "                Good luck!!!"
-			busybox sleep $timelong
-     busybox clear
-     exit
+	if [ "$option" -eq 1 ]; then
+		busybox echo "Choose source :"
+      		busybox sleep $timeshorter
+      		busybox echo "[ 1 = App from play store | 2 = Flashable zip by me]"
+      		read -r option
+      		if [ "$option" -eq 1 ]; then
+        		su -c "LD_LIBRARY_PATH=/vendor/lib:/system/lib am start $bb_down"
+      		elif [ "$option" -eq 2 ]; then
+        		su -c "LD_LIBRARY_PATH=/vendor/lib:/system/lib am start $bb_down_flash"
 		fi
+	else
+		busybox echo "     When you have a time, download it"
+		busybox sleep $timeshort
+		busybox echo "          Then come back here ^~^"
+		busybox sleep $timeshort
+		busybox echo "                Good luck!!!"
+		busybox sleep $timelong
+	fi
+	busybox clear
+	exit
 fi
+busybox echo ""
+busybox echo ""
+busybox sleep $timelong
+busybox echo "Checking selinux status"
+busybox sleep $timeshort
+busybox echo ""
+if [[ "$sestat" == "Permissive" || "$sestat" == "Enforcing" ]]; then
+	busybox echo "Your selinux status is $sestat"
+else
+	busybox echo "Your device doesn't have selinux, this option is unavailable"
+fi
+
+busybox echo ""
 busybox echo ""
 busybox sleep $timelong
 busybox echo "Checking init.d support"
+busybox sleep $timeshort
 busybox echo ""
-busybox sleep $timeshort
-        if [ -e $init ]; then
-busybox echo "GOOD!!! You have init.d support"
+if [ -e $init ]; then
+	busybox echo "GOOD, you have init.d support"
+else
+	busybox echo "Baad :( Please enable init.d support"
+	busybox sleep $timeshort
+	busybox echo "Installer will now create only the"
+	busybox sleep $timeshort
+	busybox echo "         init.d folder"
+	busybox sleep $timeshort
+	busybox echo "You will need to enable init.d support later"
+	busybox sleep $timeshort
+	busybox echo "         from L SPEED WIZARD"
+	busybox mkdir -p $init/
+	busybox chmod 755 $init/
+	busybox chown 0:0 $init/
+fi
 busybox sleep $timelong
-    else
-busybox echo "Baad :( Please enable init.d support"
+busybox clear
+busybox echo ""
+busybox echo "      Now is time to configure L Speed ;) "
 busybox sleep $timeshort
-busybox echo " Installer will now create"
-busybox sleep $timeshort
-busybox echo "only init.d folder"
-busybox sleep $timeshort
-busybox echo "You need to enable init.d support later"
-busybox echo "from L SPEED WIZARD"
-busybox sleep $timelong
-busybox mkdir -p $init/
-busybox chmod 755 $init/
-busybox chown 0:0 $init/
-  fi
+busybox echo ""
+busybox echo ""
+busybox echo ""
+busybox echo "Wait a moment..."
 if [ ! -d $core ]; then
 busybox mkdir -p $core
 busybox chmod 755 $core
@@ -329,7 +344,9 @@ fi;
 
 busybox touch \$LS
 
-busybox echo "L SPEED dummy file" | busybox tee -a \$LS
+busybox echo ""
+busybox echo "L SPEED Status Check File" | busybox tee -a \$LS
+busybox sleep 1
 
 mount -o remount,ro / 2>/dev/null
 mount -o remount,ro / / 2>/dev/null
@@ -4249,6 +4266,12 @@ busybox chown 0:0 $core/LS00Boost
 cp -f $core/LS00Boost /system/xbin/boost
 busybox chmod 755 /system/xbin/boost
 busybox chown 0:2000 /system/xbin/boost
+#
+#
+#   Default Configs
+#
+#
+#
 mount -o remount,rw / 2>/dev/null
 mount -o remount,rw / / 2>/dev/null
 mount -o remount,rw rootfs 2>/dev/null
@@ -4260,7 +4283,9 @@ busybox mount -o remount,rw rootfs 2>/dev/null
 busybox mount -o remount,rw /system 2>/dev/null
 busybox mount -o remount,rw /system /system 2>/dev/null
 if [ ! -f $init/LSPEED ]; then
-busybox echo "  Loading default configuration..."
+busybox echo ""
+busybox echo "Loading default configuration..."
+busybox sleep $timeshort
 if [ -f $core/LS00Cleaner ]; then
 busybox cp -f $core/LS00Cleaner $init/LS00Cleaner
 busybox chmod 755 $init/LS00Cleaner
@@ -4571,26 +4596,6 @@ busybox chmod 755 $init/LSPEED
 busybox chown 0:2000 $init/LSPEED
 sh $init/LSPEED
 fi
-busybox sleep $timelong
-  busybox clear
-busybox echo "Checking selinux status"
-busybox sleep $timeshort
-if [ "$sestat" = "Enforcing" ]; then
-        busybox echo "Your selinux status is $sestat"
-          busybox echo ""; busybox echo ""; busybox echo "";
-            busybox sleep $timeshort
-             busybox echo "Time to configure L Speed ;) "
-    elif [ "$sestat" = "Permissive" ]; then
-              busybox echo "Your selinux status is $sestat"
-                busybox echo ""; busybox echo ""; busybox echo "";
-                  busybox echo "Time to configure L Speed ;) "
-          else
-             busybox echo "Your device doesn't have selinux, this option is unavailable"
-               busybox echo ""; busybox echo ""; busybox echo "";
-                 busybox sleep $timeshort
-                   busybox echo "Time to configure L Speed ;) "
-                fi
-busybox echo ""
 mount -o remount,ro / 2>/dev/null
 mount -o remount,ro / / 2>/dev/null
 mount -o remount,ro rootfs 2>/dev/null
@@ -4601,7 +4606,12 @@ busybox mount -o remount,ro / / 2>/dev/null
 busybox mount -o remount,ro rootfs 2>/dev/null
 busybox mount -o remount,ro /system 2>/dev/null
 busybox mount -o remount,ro /system /system 2>/dev/null
-busybox sleep $timelonger
+#
+#
+#   Core Menu
+#
+#
+#
 while true; do
 busybox clear
 mount -o remount,rw / 2>/dev/null
@@ -6397,6 +6407,10 @@ busybox rm -rf /system/etc/LS00ad_calib.cfg 2>/dev/null;
 busybox rm -rf /system/xbin/boost 2>/dev/null;
 busybox rm -rf /system/bin/LS 2>/dev/null;
 busybox clear;
+busybox echo "Thanks for using this script"
+busybox echo "Hope you come back soon :D"
+busybox sleep 2
+busybox clear
 exit;;
 r|R)busybox clear;
 	busybox echo "Rebooting device"
