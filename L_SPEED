@@ -344,6 +344,7 @@ fi;
 
 busybox touch \$LS
 
+busybox echo ""
 busybox echo "L SPEED Status Check File" | busybox tee -a \$LS
 busybox sleep 1
 
@@ -4283,7 +4284,7 @@ busybox mount -o remount,rw /system 2>/dev/null
 busybox mount -o remount,rw /system /system 2>/dev/null
 if [ ! -f $init/LSPEED ]; then
 busybox echo ""
-busybox echo "  Loading default configuration..."
+busybox echo "Loading default configuration..."
 busybox sleep $timeshort
 if [ -f $core/LS00Cleaner ]; then
 busybox cp -f $core/LS00Cleaner $init/LS00Cleaner
