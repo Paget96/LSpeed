@@ -175,6 +175,41 @@ do
 done
 #
 #
+# Updater
+#
+#
+busybox cat >> $core/LS00Updater.sh <<EOF
+#!/system/bin/sh
+# Copyright (C) 2016 Paget96 and MSF-Jarvis
+#=======================================================================#
+#  This program is free software: you can redistribute it and/or modify
+#  it under the terms of the GNU General Public License as published by
+#  the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+#  This program is distributed in the hope that it will be useful,
+#  but WITHOUT ANY WARRANTY; without even the implied warranty of
+#  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+#  GNU General Public License for more details.
+#  You should have received a copy of the GNU General Public License along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#=======================================================================#
+busybox echo "Fetching update..."
+busybox sleep $timeblast
+wget https://raw.githubusercontent.com/Paget96/L_SPEED/master/L_SPEED
+busybox echo "Removing previous copy..."
+busybox sleep $timeblast
+rm LS
+busybox echo "Installing update..."
+busybox sleep $timeblast
+mv L_SPEED LS
+busybox echo "Setting permissions..."
+busybox sleep $timeblast
+chmod 755 LS
+busybox sleep $shorter
+busybox clear
+./LS
+
+EOF
+#
+#
 #   Init.d enabler
 #
 #
@@ -4921,6 +4956,7 @@ busybox echo -e "40.Misc L SPEED tweaks              | $misc"
 busybox echo -e "41.Assertive Display                | $assertive_display"
 busybox echo $divider
 busybox echo "0. Backup&Restore"
+busybox echo "g. Get newest update"
 busybox echo "t. xda thread"
 busybox echo "d. Donation"
 busybox echo "x. Load default"
@@ -6424,5 +6460,8 @@ exit;;
 *)busybox clear;
 busybox echo "#Invalid Option, please try again"
 busybox sleep $timeshort
+g|G)busybox clear
+busybox echo "Beginning update..."
+sh $core/LS00Updater.sh
 esac
 done
