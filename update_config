@@ -1,0 +1,7 @@
+{
+  "newVersion": "2.2-beta1",
+  "apkUrl": "https://example.net/example.apk",
+  "versionNotes": [
+    "- Bug fixes"
+  ]
+}
