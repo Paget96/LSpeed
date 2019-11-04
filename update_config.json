@@ -3,8 +3,6 @@
   "latestVersionCode": 290,
   "url": "https://github.com/Paget96/LSpeed/releases/download/v2.1.2-beta1patch1/com.paget96.lspeedandroid.apk",
   "releaseNotes": [
-    "- First evolution",
-    "- Second evolution",
-    "- Bug fixes"
+    "- Fixed boost scheduler"
   ]
 }
