@@ -1,7 +1,9 @@
 {
-  "newVersion": "2.2.0.1",
-  "apkUrl": "http://github.com/Paget96/L_SPEED/releases/download/v2.1.1/com.paget96.lspeedandroid.apk",
+  "newVersion": "0.4.6",
+  "apkUrl":
+"https://github.com/Paget96/L_SPEED/releases/download/v2.1.1/com.paget96.lspeedandroid.apk",
   "versionNotes": [
-    "- Bug fixes"
+    "- Bug fixes",
+    "- Changes GPS code"
   ]
-}
+}```
