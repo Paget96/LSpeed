@@ -1,9 +1,11 @@
 {
-  "latestVersion": "2.1.2-beta1-patch1",
-  "latestVersionCode": 290,
-  "url": "https://github.com/Paget96/LSpeed/releases/tag/v2.1.2-beta1patch1",
+  "latestVersion": "2.1.2-beta2",
+  "latestVersionCode": 292,
+  "url": "https://github.com/Paget96/LSpeed/releases/download/v2.1.2-beta2/com.paget96.lspeedandroid.apk",
   "releaseNotes": [
-    "v2.1.2-beta1-patch1",
-    "- Fixed boost scheduler"
+    "v2.1.2-beta2",
+    "- Fixed boost scheduler",
+    "- Improved app code",
+    "- Improved app performances and battery drain"
   ]
 }
