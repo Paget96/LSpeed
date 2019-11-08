@@ -54,19 +54,39 @@ android.permission.WRITE_SECURE_SETTINGS - Allows an application to write device
 
 
 Help with app translation:
-forum.xda-developers.com/apps/l-speed/translating-help-translating-l-speed-t3587252
+https://forum.xda-developers.com/apps/l-speed/translating-help-translating-l-speed-t3587252
+
+Join our Reddit community:
+https://www.reddit.com/r/LSpeedOptimizer/
 
 Join L Speed discussion on Telegram:
-t.me/LSpeedDiscussion
+https://t.me/LSpeedDiscussion
 
-Join L Speed channel on Telegram:
-t.me/LSpeedChannel
+Join L Speed Channel on Telegram:
+https://t.me/LSpeedChannel
 
-Follow L Speed on Facebook:
-www.facebook.com/LSpeedAndroidOptimizer
+Join Paget96 projects channel on Telegram:
+https://t.me/paget96_projects_channel
+
+Check L Speed blog:
+https://lspeed2016.wordpress.com
 
 Follow L Speed on xda-developers:
-forum.xda-developers.com/apps/l-speed
+https://forum.xda-developers.com/apps/l-speed
 
-Follow L Speed on Patreon:
-www.patreon.com/paget96
+Follow L Speed on Facebook:
+https://www.facebook.com/LSpeedAndroidOptimizer
+
+Join L Speed discussion group on facebook:
+https://www.facebook.com/groups/169281933668021/?source_id=1503157226676471
+
+Follow L Speed on Instagram:
+https://instagram.com/p/BxUcz0zlVUj/?igshid=1ib59rrsrjffl
+
+
+If you want, you can support me over Paypal
+https://paypal.me/Paget96
+also there is a simple free way to do it, simply disable adblocker and support me over ads inside the application
+
+Check my developer account and other apps:
+https://play.google.com/store/apps/dev?id=6924549437581780390&hl=en
