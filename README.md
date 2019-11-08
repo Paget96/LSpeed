@@ -1,6 +1,7 @@
 <b>REQUIRES ROOT!!!</b>
 
 <b>What is L Speed:</b>
+
 L Speed is a modification that combines tweaks inside an intuitive application, Its goal is to improve overall performance, reduce significant lags, extend battery life and improve your gaming experience on Android.
 The mod will and should work on any device that meets its minimum requirement.
 You only need a rooted Android device and Android 4.1 or later for L Speed app to function properly.
@@ -8,30 +9,38 @@ You only need a rooted Android device and Android 4.1 or later for L Speed app t
 L Speed comes with a nice and clean user interface. Options such as tweaks are separated with sections, their explanation can also be opened with a long click. L Speed also supports changing theme colors, with Light and Dark option available to suit everyone's taste.
 
 <b>Requirements:</b>
+
 - Root
 - White-listing (read below)
 
 <b>L Speed white-listing:</b>
+
 You may also need to whitelist L Speed from memory cleaning, autostart, hibernating or similar functioning apps or features on your device.
 
 Here are the list of some known functionality where you can whitelist L Speed:
 
 <b>Samsung:</b> <i>Settings -> Security -> Auto-start</i>
+
 <b>Sony:</b> <i>Settings -> Power management -> STAMINA mode</i>
+
 <b>MIUI:</b> <i>Settings (Security Center) -> Permissions -> Autostart</i>
+
 <b>Huawei:</b> <i>Settings -> All (Permissions) -> Startup manager</i>
 
 These may or may not be available depending on the version of your installed firmware / ROM
 
 <b>How to use:</b>
+
 - Read options description
 - Toggle needed options
 - Reboot is recommended after doing a set of changes
 
 <b>How to uninstall:</b>
+
 Simply uninstall L Speed and reboot device.
 
 <b>Permissions:</b>
+
 android.permission.ACCESS_NETWORK_STATE - Allows an application to access networks state, required for push notifications
 android.permission.ACCESS_SUPERUSER - Allows an app to access ROOT
 android.permission.BATTERY_STATS - Allows an application to access battery stats
