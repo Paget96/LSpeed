@@ -1,48 +1,63 @@
-L Speed is a mod that combines some scripts and little tweaks in one package which is aimed to improve performance, reduce lags and expand battery life.
-Originally developed for the LG L Series, now this mod is expanded and modified accordingly to run on any device!
-This mod will work on any device.
-All you need to ensure is that your phone is running Android!
-It will work from Android 2.3 (Gingerbread) to Android 6.0.1 (Marshmallow)
+REQUIRES ROOT!!!
 
------------------------------------------
+What is L Speed:
+L Speed is a modification that combines tweaks inside an intuitive application, Its goal is to improve overall performance, reduce significant lags, extend battery life and improve your gaming experience on Android.
+The mod will and should work on any device that meets its minimum requirement.
+You only need a rooted Android device and Android 4.1 or later for L Speed app to function properly.
 
-## Installation
+L Speed comes with a nice and clean user interface. Options such as tweaks are separated with sections, their explanation can also be opened with a long click. L Speed also supports changing theme colors, with Light and Dark option available to suit everyone's taste.
 
-1. Uninstall previous versions of LSpeed [ if your version is 3.3 or below ]. 
+Requirements:
+- Root
+- White-listing (read below)
 
-**Note**: If your version is 4.0 and above you can skip this step.
+L Speed white-listing:
+You may also need to whitelist L Speed from memory cleaning, autostart, hibernating or similar functioning apps or features on your device.
 
-2. Install the busybox from [HERE](https://play.google.com/store/apps/details?id=stericson.busybox&hl=en%22) (Stericson) 
+Here are the list of some known functionality where you can whitelist L Speed:
 
-**Note**: It is strongly advised to use this busybox to have full compatibility with the Mod.
+Samsung: Settings -> Security -> Auto-start
+Sony: Settings -> Power management -> STAMINA mode
+MIUI: Settings (Security Center) -> Permissions -> Autostart
+Huawei: Settings -> All (Permissions) -> Startup manager
 
-3. Download [LSpeed file](https://www.androidfilehost.com/?w=files&flid=41769)
+These may or may not be available depending on the version of your installed firmware / ROM
 
-4. Use a file manager with ROOT access and delete old LS file from /system/bin/ 
+<b>How to use:</b>
+- Read options description
+- Toggle needed options
+- Reboot is recommended after doing a set of changes
 
-**Note**: Only "LS", not "ls" neither "lsmod", they are part of Busybox
+How to uninstall:
+Simply uninstall L Speed and reboot device.
 
-5. Rename the downloaded file to LS (without any extension)
+Permissions:
+android.permission.ACCESS_NETWORK_STATE - Allows an application to access networks state, required for push notifications
+android.permission.ACCESS_SUPERUSER - Allows an app to access ROOT
+android.permission.BATTERY_STATS - Allows an application to access battery stats
+android.permission.RECEIVE_BOOT_COMPLETED - Allows an application to receive the ACTION_BOOT_COMPLETED that is broadcast after the system finishes booting.
+android.permission.READ_PHONE_STATE - Allows an application to read current phone state, needed for checking is data connection On, required for battery optimization.
+android.permission.READ_EXTERNAL_STORAGE - Allows an application to read from external storage, required for backup&restore.
+android.permission.WRITE_EXTERNAL_STORAGE - Allows an application to write from external storage, required for backup&restore.
+android.permission.WAKE_LOCK - Allows an application to wake up device from deep sleep, required for governor tuner and app services
+android.permission.WRITE_SETTINGS - Allows an application to write device settings, required for aggressive doze
+android.permission.WRITE_SECURE_SETTINGS - Allows an application to write device secure settings, required for options such as Animation duration scale
 
-6. Copy the renamed file to /system/bin 
 
-7. Set permission to 755 
+Help with app translation:
+forum.xda-developers.com/apps/l-speed/translating-help-translating-l-speed-t3587252
 
-```
-su
-mount -o remount,rw /system
-chmod 755 /system/bin/LS
-```
+Join L Speed discussion on Telegram:
+t.me/LSpeedDiscussion
 
-or
- 
-Simply use a file-manager to set 755 permissions
+Join L Speed channel on Telegram:
+t.me/LSpeedChannel
 
-8. After these steps you can wipe cache and dalvik from recovery (recommended) 
+Follow L Speed on Facebook:
+www.facebook.com/LSpeedAndroidOptimizer
 
-9. Run the script as usual from terminal
+Follow L Speed on xda-developers:
+forum.xda-developers.com/apps/l-speed
 
-```
-su
-LS
-```
+Follow L Speed on Patreon:
+www.patreon.com/paget96
