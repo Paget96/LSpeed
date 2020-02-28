@@ -3,7 +3,8 @@
   "latestVersionCode": 295,
   "url": "https://github.com/Paget96/LSpeed/releases/tag/v2.1.2-beta3",
   "releaseNotes": [
-    "v2.2",
-    "This is just a test, update coming next week!"
+    "v2.1.2-beta3",
+    "- Updated shell access",
+    "- Updated aggressive doze"
   ]
 }
