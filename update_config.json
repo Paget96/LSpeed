@@ -1,10 +1,10 @@
 {
-  "latestVersion": "2.1.2-beta3",
-  "latestVersionCode": 295,
-  "url": "https://github.com/Paget96/LSpeed/releases/tag/v2.1.2-beta3",
+  "latestVersion": "2.1.2-beta4",
+  "latestVersionCode": 297,
+  "url": "https://github.com/Paget96/LSpeed/releases/tag/v2.1.2-beta4",
   "releaseNotes": [
-    "v2.1.2-beta3",
-    "- Updated shell access",
-    "- Updated aggressive doze"
+    "v2.1.2-beta4",
+    "- Fixed WRITE_SETTINGS exception",
+    "- Fixed applying options"
   ]
 }
