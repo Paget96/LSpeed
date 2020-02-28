@@ -1,11 +1,9 @@
 {
-  "latestVersion": "2.1.2-beta3test",
-  "latestVersionCode": 293,
+  "latestVersion": "2.2-updater test",
+  "latestVersionCode": 294,
   "url": "https://github.com/Paget96/LSpeed/releases/tag/v2.1.2-beta2",
   "releaseNotes": [
-    "v2.1.2-beta2",
-    "- Fixed boost scheduler",
-    "- Improved app code",
-    "- Improved app performances and battery drain"
+    "v2.2",
+    "This is just a test, update coming next week!"
   ]
 }
