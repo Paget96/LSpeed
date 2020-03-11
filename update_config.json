@@ -1,10 +1,23 @@
 {
-  "latestVersion": "2.1.2-beta4",
-  "latestVersionCode": 297,
-  "url": "https://github.com/Paget96/LSpeed/releases/tag/v2.1.2-beta4",
+  "latestVersion": "2.1.2",
+  "latestVersionCode": 298,
+  "url": "https://github.com/Paget96/LSpeed/releases/tag/v2.1.2",
   "releaseNotes": [
-    "v2.1.2-beta4",
-    "- Fixed WRITE_SETTINGS exception",
-    "- Fixed applying options"
+    "v2.1.2",
+    "- Updated busybox",
+"- Removed zram optimization",
+"- Updated cpu optimization",
+"- Minor fixes to other tweaks",
+"- Fixed WRITE_SETTINGS exception",
+"- Fixed applying option",
+"- Reworked shell access",
+"- Updated aggressive doze",
+"- Fixed boot scheduler",
+"- Improved app code",
+"- Improved app performances and battery drain",
+"- Updated GPU tweaks",
+"- IO Blocks optimization profiles updated",
+"- Updated dependencies",
+"- Added in app updater"
   ]
 }
