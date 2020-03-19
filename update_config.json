@@ -1,16 +1,15 @@
 {
-  "latestVersion": "2.1.3",
-  "latestVersionCode": 299,
-  "url": "https://github.com/Paget96/LSpeed/releases/tag/v2.1.3",
+  "latestVersion": "2.1.4",
+  "latestVersionCode": 300,
+  "url": "https://github.com/Paget96/LSpeed/releases/tag/v2.1.4",
   "releaseNotes": [
-    "v2.1.3",
-    "- Updated CPU Optimizer",
-"- Updated cleaner",
-"- Updated disable debugging",
-"- Updated profiles backup",
-"- Updated IO Extended queue",
-"- Updated disable IO stats",
-"- Minor bug fixes and improvements",
+    "v2.1.4",
+    "- Fixed closing shell",
+"- Updated RAM manager",
+"- Updated VM tweaks",
+"- Fixed minor issues with force closing",
+"- Improved logging",
+"- Added aggressive doze logging",
 "- Updated dependencies"
   ]
 }
