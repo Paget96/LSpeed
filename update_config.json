@@ -1,15 +1,14 @@
 {
-  "latestVersion": "2.1.4",
-  "latestVersionCode": 300,
-  "url": "https://github.com/Paget96/LSpeed/releases/tag/v2.1.4",
+  "latestVersion": "2.1.5",
+  "latestVersionCode": 301,
+  "url": "https://github.com/Paget96/LSpeed/releases/tag/v2.1.5",
   "releaseNotes": [
-    "v2.1.4",
-    "- Fixed closing shell",
-"- Updated RAM manager",
-"- Updated VM tweaks",
-"- Fixed minor issues with force closing",
-"- Improved logging",
-"- Added aggressive doze logging",
-"- Updated dependencies"
+    "v2.1.5",
+"- Added fix for saving logs",
+"- Added fix for creating a profile backup",
+"- Updated governor tuner",
+"- Improved aggressive doze service",
+"- Updated dependencies",
+"- Fixed issues with the shell"
   ]
 }
