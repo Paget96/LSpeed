@@ -1,6 +1,8 @@
 <h1>L Speed the most advanced tweaker for Android</h1>
 
-[![Github All Releases](https://img.shields.io/github/downloads/atom/atom/total.svg)]()
+[![Downloads](https://pepy.tech/badge/video2tfrecord)](https://pepy.tech/project/video2tfrecord)
+[![Downloads](https://pepy.tech/badge/video2tfrecord/month)](https://pepy.tech/project/video2tfrecord/month)
+[![Downloads](https://pepy.tech/badge/video2tfrecord/week)](https://pepy.tech/project/video2tfrecord/week)
 
 <img src="https://github.com/Paget96/LSpeed/blob/master/screenshots/1.png" width="192" height="317"/> <img src="https://github.com/Paget96/LSpeed/blob/master/screenshots/2.png" width="192" height="317"/> <img src="https://github.com/Paget96/LSpeed/blob/master/screenshots/3.png" width="192" height="317"/> <img src="https://github.com/Paget96/LSpeed/blob/master/screenshots/4.png" width="192" height="317"/> 
 
