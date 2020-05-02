@@ -1,14 +1,13 @@
 {
-  "latestVersion": "2.1.5",
-  "latestVersionCode": 301,
-  "url": "https://github.com/Paget96/LSpeed/releases/tag/v2.1.5",
+  "latestVersion": "2.1.6",
+  "latestVersionCode": 302,
+  "url": "https://github.com/Paget96/LSpeed/releases/tag/v2.1.6",
   "releaseNotes": [
-    "v2.1.5",
-"- Added fix for saving logs",
-"- Added fix for creating a profile backup",
-"- Updated governor tuner",
-"- Improved aggressive doze service",
+    "v2.1.6",
+"- Updated CPU optimization",
+"- Updated CPU detection",
+"- Updated UI",
 "- Updated dependencies",
-"- Fixed issues with the shell"
+"- Review some tweaks"
   ]
 }
