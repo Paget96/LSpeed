@@ -1,13 +1,11 @@
 {
   "latestVersion": "2.1.6",
-  "latestVersionCode": 302,
-  "url": "https://github.com/Paget96/LSpeed/releases/tag/v2.1.6",
+  "latestVersionCode": 303,
+  "url": "https://github.com/Paget96/LSpeed/releases/tag/v2.2",
   "releaseNotes": [
-    "v2.1.6",
-"- Updated CPU optimization",
-"- Updated CPU detection",
-"- Updated UI",
-"- Updated dependencies",
-"- Review some tweaks"
+    "v2.2",
+"- Fixed issues on some devices",
+"- Fixed some typos trough scripts",
+"- Updated dependencies"
   ]
 }
