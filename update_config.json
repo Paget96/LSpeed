@@ -1,11 +1,18 @@
 {
-  "latestVersion": "2.1.6",
-  "latestVersionCode": 303,
-  "url": "https://github.com/Paget96/LSpeed/releases/tag/v2.2",
+  "latestVersion": "2.3",
+  "latestVersionCode": 306,
+  "url": "https://github.com/Paget96/LSpeed/releases/tag/v2.3",
   "releaseNotes": [
-    "v2.2",
-"- Fixed issues on some devices",
-"- Fixed some typos trough scripts",
+    "v2.3",
+"- Removed multicore power saving",
+"- Removed DNS optimization",
+"- Removed support for Android versions below Lollipop",
+"- Improved boot service",
+"- Code optimized",
+"- Improved IO optimization",
+"- Fixed issues with stuck while executing tweaks",
+"- Fixed reboot action after version update",
+"- Improved in app ads",
 "- Updated dependencies"
   ]
 }
