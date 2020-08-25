@@ -1,12 +1,17 @@
 {
-  "latestVersion": "2.4",
-  "latestVersionCode": 307,
-  "url": "https://github.com/Paget96/LSpeed/releases/tag/v2.4",
+  "latestVersion": "2.4.1",
+  "latestVersionCode": 309,
+  "url": "https://github.com/Paget96/LSpeed/releases/tag/v2.4.1",
   "releaseNotes": [
-    "v2.4",
-"- Fixed UI issues",
-"- Improved RAM management",
-"- Updated dependencies",
-"- Updated root commands"
+    "v2.4.1",
+"- Fixed minor issues",
+"- Updated ads in app",
+"- Updated disable debugging",
+"- Updated FS tweaks",
+"- Updated improve battery tweaks",
+"- Updated VM tweaks",
+"- Updated FStrim",
+"- Updated cleaner",
+"- Updated dependencies"
   ]
 }
