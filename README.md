@@ -14,7 +14,7 @@
 **What is L Speed:**
 - L Speed is a modification that combines tweaks inside an intuitive application, Its goal is to improve overall performance, reduce significant lags, extend battery life and improve your gaming experience on Android.
 The mod will and should work on any device that meets its minimum requirement.
-You only need a rooted Android device and Android 4.1 or later for L Speed app to function properly.
+You only need a rooted Android device and Android L or later for L Speed app to function properly.
 
 - L Speed comes with a nice and clean user interface. Options such as tweaks are separated with sections, their explanation can also be opened with a long click. L Speed also supports changing theme colors, with Light and Dark option available to suit everyone's taste.
 
