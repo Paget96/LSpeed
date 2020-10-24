@@ -1,17 +1,32 @@
 {
-  "latestVersion": "2.4.1",
-  "latestVersionCode": 309,
-  "url": "https://github.com/Paget96/LSpeed/releases/download/v2.4.1/LSpeed-2.4.1.apk",
+  "latestVersion": "2.5",
+  "latestVersionCode": 316,
+  "url": "https://github.com/Paget96/LSpeed/releases/download/v2.5/LSpeed-2.5.apk",
   "releaseNotes": [
-    "v2.4.1",
-"- Fixed minor issues",
+    "v2.5",
+"- Updated app UI",
+"- Updated busybox",
+"- Optimized main script",
+"- Updated Profiles",
+"- Removed disable CRC check",
+"- Fixed crash after pressing done button in battery optimization",
+"- Removed fsync",
+"- Increased Read-ahead for SD",
+"- Updated min free kbytes  if over 18mb",
+"- Reduced write wakeup threshold in enlarger entropy profile",
+"- Slightly reduce timing of migration tasks",
+"- Updated IO scheduler parameters",
+"- Disable tuning of global stune parameters",
 "- Updated ads in app",
 "- Updated disable debugging",
+"- Updated syntax in CPU optimizer",
 "- Updated FS tweaks",
 "- Updated improve battery tweaks",
 "- Updated VM tweaks",
 "- Updated FStrim",
 "- Updated cleaner",
-"- Updated dependencies"
+"- Updated app intro",
+"- Updated dependencies",
+"- Minor bug fixes"
   ]
 }
