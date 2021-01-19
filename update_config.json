@@ -1,25 +1,11 @@
 {
-  "latestVersion": "2.5.1",
-  "latestVersionCode": 384,
+  "latestVersion": "2.5.1.1",
+  "latestVersionCode": 385,
   "url": "https://github.com/Paget96/LSpeed/releases",
   "releaseNotes": [
-    "v2.5.1",
-"- Fixed multiple app issues",
-"- Updated boot service",
-"- Removed useless wakelock from boot service",
-"- Updated app UI",
-"- Improved tweaks based on user usage",
-"- Fixed saving logcat, main log and dmesg, kmsg",
-"- Improved IO tweaks",
-"- Fixed some typos in scripts",
-"- Removed disable debugging, not needed at all, 0 improvements",
-"- Updated dependencies",
-"- Fixed min free kbytes calculation",
-"- Updated Low ram flag",
-"- Reduced IO extended queue to 256",
-"- Updated IO tweaks (all 3 profiles, using values from older version)",
-"- Updated Ram manager tweaks (fixed some typos)",
-"- Removed some useless code",
-"- Fixed force closing on several fragments"
+    "v2.5.1.1",
+"- Updated RAM manager crash and not executing",
+"- Updated permission check",
+"- Improved aggressive doze"
   ]
 }
