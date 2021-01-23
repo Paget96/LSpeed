@@ -1,11 +1,9 @@
 {
-  "latestVersion": "2.5.1.1",
-  "latestVersionCode": 385,
+  "latestVersion": "2.5.1.2",
+  "latestVersionCode": 386,
   "url": "https://github.com/Paget96/LSpeed/releases",
   "releaseNotes": [
-    "v2.5.1.1",
-"- Updated RAM manager crash and not executing",
-"- Updated permission check",
-"- Improved aggressive doze"
+    "v2.5.1.2",
+"- Migrated to latest firebase changes"
   ]
 }
