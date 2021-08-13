@@ -1,13 +1,13 @@
 {
-  "latestVersion": "2.5.1.4",
-  "latestVersionCode": 395,
+  "latestVersion": "2.5.1.5",
+  "latestVersionCode": 397,
   "url": "https://github.com/Paget96/LSpeed/releases",
   "releaseNotes": [
-    "v2.5.1.4",
-"- Fixed executing profiles",
-"- Fixed saving/restoring config",
-"- Replaced progress dialogs with progress bar",
-"- Updated cleaner",
-"- Added toast with saved file path for logs"
+    "v2.5.1.5",
+"- Fixed crash on Android 12",
+"- Fixed crash on getting profile date",
+"- Updated dependencies",
+"- Fixed crash on opening app through notifications",
+"- Optimized code"
   ]
 }
